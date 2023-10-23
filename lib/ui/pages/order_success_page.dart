@@ -11,12 +11,12 @@ class _OrderSuccessPageState extends State<OrderSuccessPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color(0xFF393E46),
+      backgroundColor: const Color(0xFF393E46),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Text(
+            const Text(
               'You have succesfuly\nbought the ticket!',
               style: TextStyle(
                 color: Color(0xFFFFDF00),
@@ -25,18 +25,18 @@ class _OrderSuccessPageState extends State<OrderSuccessPage> {
               ),
               textAlign: TextAlign.center,
             ),
-            SizedBox(height: 70),
+            const SizedBox(height: 70),
             Container(
               width: 200,
               height: 300,
               decoration: BoxDecoration(
-                color: Color(0xFFFFDF00),
+                color: const Color(0xFFFFDF00),
                 borderRadius: BorderRadius.circular(15),
               ),
               child: Stack(
                 children: [
                   ClipRRect(
-                    borderRadius: BorderRadius.only(
+                    borderRadius: const BorderRadius.only(
                       topLeft: Radius.circular(15), // Radius sudut kiri atas
                       topRight: Radius.circular(15), // Radius sudut kanan atas
                     ),
@@ -47,7 +47,7 @@ class _OrderSuccessPageState extends State<OrderSuccessPage> {
                       width: double.infinity,
                     ),
                   ),
-                  Positioned(
+                  const Positioned(
                     bottom: 30, // Geser teks ke atas sejauh 20px
                     left: 0,
                     right: 0,
@@ -64,22 +64,22 @@ class _OrderSuccessPageState extends State<OrderSuccessPage> {
                 ],
               ),
             ),
-            SizedBox(height: 70),
+            const SizedBox(height: 70),
             ElevatedButton(
               onPressed: () {
                 Navigator.pushNamed(context, '/success');
               },
               style: ElevatedButton.styleFrom(
-                backgroundColor: Color(0xFFFFDF00), // Warna kuning (FFDF00)
+                backgroundColor: const Color(0xFFFFDF00), // Warna kuning (FFDF00)
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(5),
                 ),
               ),
               child: Container(
                 width: 270,
-                padding: EdgeInsets.all(8),
+                padding: const EdgeInsets.all(8),
                 alignment: Alignment.center,
-                child: Text(
+                child: const Text(
                   'My Ticket',
                   style: TextStyle(
                     color: Colors.black,
@@ -90,23 +90,23 @@ class _OrderSuccessPageState extends State<OrderSuccessPage> {
                 ),
               ),
             ),
-            SizedBox(height: 3),
+            const SizedBox(height: 3),
             ElevatedButton(
               onPressed: () {
                 Navigator.pushNamed(context, '/success');
               },
               style: ElevatedButton.styleFrom(
-                backgroundColor: Color(0xFF393E46), // Warna abu-abu (393E46)
+                backgroundColor: const Color(0xFF393E46), // Warna abu-abu (393E46)
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(5),
-                  side: BorderSide(color: Color(0xFFFFDF00), width: 2),
+                  side: const BorderSide(color: Color(0xFFFFDF00), width: 2),
                 ),
               ),
               child: Container(
                 width: 270,
-                padding: EdgeInsets.all(8),
+                padding: const EdgeInsets.all(8),
                 alignment: Alignment.center,
-                child: Text(
+                child: const Text(
                   'Home',
                   style: TextStyle(
                     color: Color(0xFFFFDF00),

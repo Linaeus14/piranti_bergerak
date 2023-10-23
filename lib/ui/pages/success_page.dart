@@ -11,12 +11,12 @@ class _SuccessPageState extends State<SuccessPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color(0xFF393E46),
+      backgroundColor: const Color(0xFF393E46),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Text(
+            const Text(
               'Your account has \n been created!',
               style: TextStyle(
                 color: Color(0xFFFFDF00),
@@ -25,24 +25,24 @@ class _SuccessPageState extends State<SuccessPage> {
               ),
               textAlign: TextAlign.center,
             ),
-            SizedBox(height: 80),
+            const SizedBox(height: 80),
             Container(
               width: 200,
               height: 200,
               decoration: BoxDecoration(
                 shape: BoxShape.circle,
                 border: Border.all(
-                  color: Color(0xFFFFDF00),
+                  color: const Color(0xFFFFDF00),
                   width: 5,
                 ),
-                image: DecorationImage(
+                image: const DecorationImage(
                   image: AssetImage('lib/assets/profile.jpg'),
                   fit: BoxFit.cover,
                 ),
               ),
             ),
-            SizedBox(height: 80),
-            Text(
+            const SizedBox(height: 80),
+            const Text(
               'Welcome,',
               style: TextStyle(
                 color: Color(0xFFFFDF00),
@@ -50,7 +50,7 @@ class _SuccessPageState extends State<SuccessPage> {
                 fontSize: 24,
               ),
             ),
-            Text(
+            const Text(
               'Anatasya!',
               style: TextStyle(
                 color: Colors.white,
@@ -58,22 +58,22 @@ class _SuccessPageState extends State<SuccessPage> {
                 fontSize: 24,
               ),
             ),
-            SizedBox(height: 70),
+            const SizedBox(height: 70),
             ElevatedButton(
               onPressed: () {
                 Navigator.pushNamed(context, '/order_success');
               },
               style: ElevatedButton.styleFrom(
-                backgroundColor: Color(0xFFFFDF00), // Warna kuning (FFDF00)
+                backgroundColor: const Color(0xFFFFDF00), // Warna kuning (FFDF00)
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(5),
                 ),
               ),
               child: Container(
                 width: 270,
-                padding: EdgeInsets.all(8),
+                padding: const EdgeInsets.all(8),
                 alignment: Alignment.center,
-                child: Text(
+                child: const Text(
                   'Confirm',
                   style: TextStyle(
                     color: Colors.black,
@@ -84,23 +84,23 @@ class _SuccessPageState extends State<SuccessPage> {
                 ),
               ),
             ),
-            SizedBox(height: 3),
+            const SizedBox(height: 3),
             ElevatedButton(
               onPressed: () {
                 Navigator.pushNamed(context, '/order_success');
               },
               style: ElevatedButton.styleFrom(
-                backgroundColor: Color(0xFF393E46), // Warna abu-abu (393E46)
+                backgroundColor: const Color(0xFF393E46), // Warna abu-abu (393E46)
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(5),
-                  side: BorderSide(color: Color(0xFFFFDF00), width: 2),
+                  side: const BorderSide(color: Color(0xFFFFDF00), width: 2),
                 ),
               ),
               child: Container(
                 width: 270,
-                padding: EdgeInsets.all(8),
+                padding: const EdgeInsets.all(8),
                 alignment: Alignment.center,
-                child: Text(
+                child: const Text(
                   'Back',
                   style: TextStyle(
                     color: Color(0xFFFFDF00),
