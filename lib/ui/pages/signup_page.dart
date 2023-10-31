@@ -1,29 +1,8 @@
-import 'package:flutter/gestures.dart';
-import 'package:flutter/material.dart';
-import 'package:piranti_bergerak/ui/pages/signin_page.dart';
+part of 'pages.dart';
 
+class SignUp extends StatelessWidget {
+  const SignUp({super.key});
 
-void main() {
-  runApp(const Signup());
-}
-
-class Signup extends StatelessWidget {
-  const Signup({Key? key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      theme: ThemeData.dark().copyWith(
-        scaffoldBackgroundColor: const Color.fromARGB(255, 18, 32, 47),
-      ),
-      home: Scaffold(
-        body: Main(),
-      ),
-    );
-  }
-}
-
-class Main extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Center(
@@ -31,20 +10,20 @@ class Main extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Container(
-            padding: EdgeInsets.fromLTRB(23, 100, 23, 104),
+            padding: const EdgeInsets.fromLTRB(23, 100, 23, 104),
             width: double.infinity,
-            decoration: BoxDecoration(
+            decoration: const BoxDecoration(
               color: Color(0xff393e46),
             ),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 Container(
-                  margin: EdgeInsets.fromLTRB(0, 0, 119, 48),
-                  constraints: BoxConstraints(
+                  margin: const EdgeInsets.fromLTRB(0, 0, 119, 48),
+                  constraints: const BoxConstraints(
                     maxWidth: 218,
                   ),
-                  child: Text(
+                  child: const Text(
                     'Welcome to Flutix Let’s start our journey',
                     style: TextStyle(
                       fontFamily: 'Raleway',
@@ -56,17 +35,18 @@ class Main extends StatelessWidget {
                   ),
                 ),
                 Container(
-                  margin: EdgeInsets.fromLTRB(5, 0, 5, 22),
+                  margin: const EdgeInsets.fromLTRB(5, 0, 5, 22),
                   width: double.infinity,
                   height: 69,
                   child: TextField(
                     controller: TextEditingController(),
-                    decoration: InputDecoration(
+                    decoration: const InputDecoration(
+                      floatingLabelBehavior: FloatingLabelBehavior.always,
                       contentPadding: EdgeInsets.symmetric(
                           horizontal: 20.0, vertical: 20.0),
                       labelText: 'Email Address',
                       labelStyle: TextStyle(
-                        color: const Color(0xffffdf00),
+                        color: Color(0xffffdf00),
                         fontSize: 16,
                         fontWeight: FontWeight.w400,
                       ),
@@ -74,17 +54,17 @@ class Main extends StatelessWidget {
                       hintStyle: TextStyle(
                         fontSize: 14,
                         fontWeight: FontWeight.w400,
-                        color: const Color(0xffcccccc),
+                        color: Color(0xffcccccc),
                       ),
                       focusedBorder: OutlineInputBorder(
                         borderSide: BorderSide(
-                          color: const Color(0xffffdf00),
+                          color: Color(0xffffdf00),
                           width: 2,
                         ),
                       ),
                       enabledBorder: OutlineInputBorder(
                         borderSide: BorderSide(
-                          color: const Color(0xffffdf00),
+                          color: Color(0xffffdf00),
                           width: 1,
                         ),
                       ),
@@ -92,17 +72,18 @@ class Main extends StatelessWidget {
                   ),
                 ),
                 Container(
-                  margin: EdgeInsets.fromLTRB(5, 0, 5, 22),
+                  margin: const EdgeInsets.fromLTRB(5, 0, 5, 22),
                   width: double.infinity,
                   height: 69,
                   child: TextField(
                     controller: TextEditingController(),
-                    decoration: InputDecoration(
+                    decoration: const InputDecoration(
+                      floatingLabelBehavior: FloatingLabelBehavior.always,
                       contentPadding: EdgeInsets.symmetric(
                           horizontal: 20.0, vertical: 20.0),
                       labelText: 'Password',
                       labelStyle: TextStyle(
-                        color: const Color(0xffffdf00),
+                        color: Color(0xffffdf00),
                         fontSize: 16,
                         fontWeight: FontWeight.w400,
                       ),
@@ -110,17 +91,17 @@ class Main extends StatelessWidget {
                       hintStyle: TextStyle(
                         fontSize: 14,
                         fontWeight: FontWeight.w400,
-                        color: const Color(0xffcccccc),
+                        color: Color(0xffcccccc),
                       ),
                       focusedBorder: OutlineInputBorder(
                         borderSide: BorderSide(
-                          color: const Color(0xffffdf00),
+                          color: Color(0xffffdf00),
                           width: 2,
                         ),
                       ),
                       enabledBorder: OutlineInputBorder(
                         borderSide: BorderSide(
-                          color: const Color(0xffffdf00),
+                          color: Color(0xffffdf00),
                           width: 1,
                         ),
                       ),
@@ -128,17 +109,18 @@ class Main extends StatelessWidget {
                   ),
                 ),
                 Container(
-                  margin: EdgeInsets.fromLTRB(5, 0, 5, 22),
+                  margin: const EdgeInsets.fromLTRB(5, 0, 5, 22),
                   width: double.infinity,
                   height: 69,
                   child: TextField(
                     controller: TextEditingController(),
-                    decoration: InputDecoration(
+                    decoration: const InputDecoration(
+                      floatingLabelBehavior: FloatingLabelBehavior.always,
                       contentPadding: EdgeInsets.symmetric(
                           horizontal: 20.0, vertical: 20.0),
                       labelText: 'Name',
                       labelStyle: TextStyle(
-                        color: const Color(0xffffdf00),
+                        color: Color(0xffffdf00),
                         fontSize: 16,
                         fontWeight: FontWeight.w400,
                       ),
@@ -146,17 +128,17 @@ class Main extends StatelessWidget {
                       hintStyle: TextStyle(
                         fontSize: 14,
                         fontWeight: FontWeight.w400,
-                        color: const Color(0xffcccccc),
+                        color: Color(0xffcccccc),
                       ),
                       focusedBorder: OutlineInputBorder(
                         borderSide: BorderSide(
-                          color: const Color(0xffffdf00),
+                          color: Color(0xffffdf00),
                           width: 2,
                         ),
                       ),
                       enabledBorder: OutlineInputBorder(
                         borderSide: BorderSide(
-                          color: const Color(0xffffdf00),
+                          color: Color(0xffffdf00),
                           width: 1,
                         ),
                       ),
@@ -164,39 +146,35 @@ class Main extends StatelessWidget {
                   ),
                 ),
                 Container(
-                  margin: EdgeInsets.fromLTRB(16, 0, 16, 36),
+                  margin: const EdgeInsets.fromLTRB(16, 0, 16, 36),
                   width: double.infinity,
                   height: 93,
                   child: Row(
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
                       Container(
-                        margin: EdgeInsets.fromLTRB(0, 0, 45.62, 0),
+                        margin: const EdgeInsets.fromLTRB(0, 0, 45.62, 0),
                         width: 98.84,
                         height: 93,
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Icon(
-                              Icons.person_outline_outlined, 
-                              size: 48, 
-                              color: Color(
-                                  0xFFFFFFFF), 
-                            ),
-                            SizedBox(height:8),
-                          ],
+                        decoration: BoxDecoration(
+                          image: const DecorationImage(
+                              image: AssetImage("assets/Profile.png"),
+                              fit: BoxFit.cover),
+                          border: Border.all(color: const Color(0xFFFFDF00)),
+                          borderRadius: BorderRadius.circular(70),
                         ),
                       ),
                       Container(
-                        margin: EdgeInsets.fromLTRB(0, 22.14, 0, 15.5),
+                        margin: const EdgeInsets.fromLTRB(0, 22.14, 0, 15.5),
                         width: 170.53,
                         height: double.infinity,
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.center,
                           children: [
                             Container(
-                              margin: EdgeInsets.fromLTRB(1.09, 0, 0, 4.71),
-                              child: Text(
+                              margin:
+                                  const EdgeInsets.fromLTRB(1.09, 0, 0, 4.71),
+                              child: const Text(
                                 'Pick a Photo!',
                                 textAlign: TextAlign.center,
                                 style: TextStyle(
@@ -216,9 +194,9 @@ class Main extends StatelessWidget {
                                 ),
                                 side: const BorderSide(
                                     color: Color(0xffffdf00), width: 2.0),
-                                fixedSize: Size(200, 37.64),
+                                fixedSize: const Size(200, 37.64),
                               ),
-                              child: Text(
+                              child: const Text(
                                 'Upload',
                                 style: TextStyle(
                                   fontFamily: 'Raleway',
@@ -238,13 +216,13 @@ class Main extends StatelessWidget {
                 ElevatedButton(
                   onPressed: () {},
                   style: ElevatedButton.styleFrom(
-                    primary: Color(0xffffdf00),
+                    backgroundColor: const Color(0xffffdf00),
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(5.0),
                     ),
-                    minimumSize: Size(double.infinity, 38),
+                    minimumSize: const Size(double.infinity, 38),
                   ),
-                  child: Text(
+                  child: const Text(
                     'Sign Up',
                     style: TextStyle(
                       fontFamily: 'Raleway',
@@ -259,7 +237,7 @@ class Main extends StatelessWidget {
                 RichText(
                   textAlign: TextAlign.center,
                   text: TextSpan(
-                    style: TextStyle(
+                    style: const TextStyle(
                       fontFamily: 'Raleway',
                       fontSize: 11,
                       fontWeight: FontWeight.w400,
@@ -267,7 +245,7 @@ class Main extends StatelessWidget {
                       color: Color(0xff000000),
                     ),
                     children: [
-                      TextSpan(
+                      const TextSpan(
                         text: 'Already has an account?',
                         style: TextStyle(
                           fontFamily: 'Raleway',
@@ -278,19 +256,19 @@ class Main extends StatelessWidget {
                         ),
                       ),
                       TextSpan(
-                        text: 'Sign Up',
-                        style: TextStyle(
+                        text: 'Sign In',
+                        style: const TextStyle(
                           fontSize: 11,
                           fontWeight: FontWeight.w400,
                           decoration: TextDecoration.underline,
-                          color: const Color(0xffffdf00),
-                          decorationColor: const Color(0xffffdf00),
+                          color: Color(0xffffdf00),
+                          decorationColor: Color(0xffffdf00),
                         ),
                         recognizer: TapGestureRecognizer()
                           ..onTap = () {
                             Navigator.of(context).push(MaterialPageRoute(
                               builder: (context) {
-                                return Signin();
+                                return const SignIn();
                               },
                             ));
                           },
