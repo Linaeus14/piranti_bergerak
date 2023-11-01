@@ -1,4 +1,6 @@
-part of 'pages.dart';
+// ignore_for_file: prefer_const_constructors
+
+import 'package:flutter/material.dart';
 
 class SuccessPage extends StatefulWidget {
   const SuccessPage({super.key});
@@ -11,12 +13,12 @@ class _SuccessPageState extends State<SuccessPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0xFF393E46),
+      backgroundColor: Color(0xFF393E46),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            const Text(
+            Text(
               'Your account has \n been created!',
               style: TextStyle(
                 color: Color(0xFFFFDF00),
@@ -25,24 +27,24 @@ class _SuccessPageState extends State<SuccessPage> {
               ),
               textAlign: TextAlign.center,
             ),
-            const SizedBox(height: 80),
+            SizedBox(height: 80),
             Container(
               width: 200,
               height: 200,
               decoration: BoxDecoration(
                 shape: BoxShape.circle,
                 border: Border.all(
-                  color: const Color(0xFFFFDF00),
+                  color: Color(0xFFFFDF00),
                   width: 5,
                 ),
-                image: const DecorationImage(
-                  image: AssetImage('lib/assets/profile.jpg'),
+                image: DecorationImage(
+                  image: AssetImage('assets/profile.jpg'),
                   fit: BoxFit.cover,
                 ),
               ),
             ),
-            const SizedBox(height: 80),
-            const Text(
+            SizedBox(height: 80),
+            Text(
               'Welcome,',
               style: TextStyle(
                 color: Color(0xFFFFDF00),
@@ -50,7 +52,7 @@ class _SuccessPageState extends State<SuccessPage> {
                 fontSize: 24,
               ),
             ),
-            const Text(
+            Text(
               'Anatasya!',
               style: TextStyle(
                 color: Colors.white,
@@ -58,49 +60,51 @@ class _SuccessPageState extends State<SuccessPage> {
                 fontSize: 24,
               ),
             ),
-            const SizedBox(height: 70),
+            SizedBox(height: 70),
             ElevatedButton(
               onPressed: () {
                 Navigator.pushNamed(context, '/order_success');
               },
               style: ElevatedButton.styleFrom(
-                backgroundColor: const Color(0xFFFFDF00), // Warna kuning (FFDF00)
+                backgroundColor: Color(0xFFFFDF00),
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(5),
                 ),
               ),
               child: Container(
-                width: 270,
-                padding: const EdgeInsets.all(8),
+                width: 300,
+                padding: EdgeInsets.all(8),
+                margin: EdgeInsets.symmetric(horizontal: 10),
                 alignment: Alignment.center,
-                child: const Text(
+                child: Text(
                   'Confirm',
                   style: TextStyle(
                     color: Colors.black,
                     fontFamily: 'Raleway',
                     fontSize: 16,
-                    fontWeight: FontWeight.bold,
+                    fontWeight: FontWeight.w900,
                   ),
                 ),
               ),
             ),
-            const SizedBox(height: 3),
+            SizedBox(height: 10),
             ElevatedButton(
               onPressed: () {
-                Navigator.pushNamed(context, '/order_success');
+                Navigator.pushNamed(context, '/movie_detail');
               },
               style: ElevatedButton.styleFrom(
-                backgroundColor: const Color(0xFF393E46), // Warna abu-abu (393E46)
+                backgroundColor: Color(0xFF393E46), 
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(5),
-                  side: const BorderSide(color: Color(0xFFFFDF00), width: 2),
+                  side: BorderSide(color: Color(0xFFFFDF00), width: 1),
                 ),
               ),
               child: Container(
-                width: 270,
-                padding: const EdgeInsets.all(8),
+                width: 300,
+                padding: EdgeInsets.all(8),
+                margin: EdgeInsets.symmetric(horizontal: 10),
                 alignment: Alignment.center,
-                child: const Text(
+                child: Text(
                   'Back',
                   style: TextStyle(
                     color: Color(0xFFFFDF00),

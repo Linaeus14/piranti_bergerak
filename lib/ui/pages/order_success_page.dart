@@ -1,4 +1,6 @@
-part of 'pages.dart';
+// ignore_for_file: prefer_const_constructors
+
+import 'package:flutter/material.dart';
 
 class OrderSuccessPage extends StatefulWidget {
   const OrderSuccessPage({super.key});
@@ -11,12 +13,12 @@ class _OrderSuccessPageState extends State<OrderSuccessPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0xFF393E46),
+      backgroundColor: Color(0xFF393E46),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            const Text(
+            Text(
               'You have succesfuly\nbought the ticket!',
               style: TextStyle(
                 color: Color(0xFFFFDF00),
@@ -25,29 +27,33 @@ class _OrderSuccessPageState extends State<OrderSuccessPage> {
               ),
               textAlign: TextAlign.center,
             ),
-            const SizedBox(height: 70),
+
+            SizedBox(height: 70),
+
             Container(
               width: 200,
               height: 300,
               decoration: BoxDecoration(
-                color: const Color(0xFFFFDF00),
+                color: Color(0xFFFFDF00),
                 borderRadius: BorderRadius.circular(15),
               ),
+
               child: Stack(
                 children: [
                   ClipRRect(
-                    borderRadius: const BorderRadius.only(
+                    borderRadius: BorderRadius.only(
                       topLeft: Radius.circular(15), // Radius sudut kiri atas
                       topRight: Radius.circular(15), // Radius sudut kanan atas
                     ),
                     child: Image.asset(
-                      'lib/assets/film2.jpg',
+                      'assets/film2.jpg',
                       fit: BoxFit.cover,
-                      height: 200, // Ubah sesuai kebutuhan
+                      height: 200, 
                       width: double.infinity,
                     ),
                   ),
-                  const Positioned(
+
+                  Positioned(
                     bottom: 30, // Geser teks ke atas sejauh 20px
                     left: 0,
                     right: 0,
@@ -57,6 +63,7 @@ class _OrderSuccessPageState extends State<OrderSuccessPage> {
                         color: Colors.black,
                         fontFamily: 'Raleway',
                         fontSize: 16,
+                        fontWeight: FontWeight.w900
                       ),
                       textAlign: TextAlign.center,
                     ),
@@ -64,49 +71,55 @@ class _OrderSuccessPageState extends State<OrderSuccessPage> {
                 ],
               ),
             ),
-            const SizedBox(height: 70),
+
+            SizedBox(height: 70),
+
             ElevatedButton(
               onPressed: () {
                 Navigator.pushNamed(context, '/success');
               },
               style: ElevatedButton.styleFrom(
-                backgroundColor: const Color(0xFFFFDF00), // Warna kuning (FFDF00)
+                backgroundColor: Color(0xFFFFDF00), 
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(5),
                 ),
               ),
               child: Container(
-                width: 270,
-                padding: const EdgeInsets.all(8),
+                width: 300,
+                padding: EdgeInsets.all(8),
+                margin: EdgeInsets.symmetric(horizontal: 10),
                 alignment: Alignment.center,
-                child: const Text(
+                child: Text(
                   'My Ticket',
                   style: TextStyle(
                     color: Colors.black,
                     fontFamily: 'Raleway',
                     fontSize: 16,
-                    fontWeight: FontWeight.bold,
+                    fontWeight: FontWeight.w900,
                   ),
                 ),
               ),
             ),
-            const SizedBox(height: 3),
+
+            SizedBox(height: 10),
+
             ElevatedButton(
               onPressed: () {
                 Navigator.pushNamed(context, '/success');
               },
               style: ElevatedButton.styleFrom(
-                backgroundColor: const Color(0xFF393E46), // Warna abu-abu (393E46)
+                backgroundColor: Color(0xFF393E46), 
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(5),
-                  side: const BorderSide(color: Color(0xFFFFDF00), width: 2),
+                  side: BorderSide(color: Color(0xFFFFDF00), width: 1),
                 ),
               ),
               child: Container(
-                width: 270,
-                padding: const EdgeInsets.all(8),
+                width: 300,
+                padding: EdgeInsets.all(8),
+                margin: EdgeInsets.symmetric(horizontal: 10),
                 alignment: Alignment.center,
-                child: const Text(
+                child: Text(
                   'Home',
                   style: TextStyle(
                     color: Color(0xFFFFDF00),
