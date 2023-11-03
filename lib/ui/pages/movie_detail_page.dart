@@ -1,6 +1,6 @@
 // ignore_for_file: prefer_const_literals_to_create_immutables, prefer_const_constructors
 
-import 'package:flutter/material.dart';
+part of 'pages.dart';
 
 class MovieDetailPage extends StatefulWidget {
   const MovieDetailPage({super.key});

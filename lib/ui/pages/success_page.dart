@@ -1,6 +1,6 @@
 // ignore_for_file: prefer_const_constructors
 
-import 'package:flutter/material.dart';
+part of 'pages.dart';
 
 class SuccessPage extends StatefulWidget {
   const SuccessPage({super.key});

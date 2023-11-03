@@ -14,4 +14,5 @@ part 'signin_page.dart';
 part 'signup_page.dart';
 part 'my_ticket_page.dart';
 part 'movie_home_page.dart';
+part 'movie_detail_page.dart';
 part 'seat_page.dart';
