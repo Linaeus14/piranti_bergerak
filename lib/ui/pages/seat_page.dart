@@ -41,6 +41,7 @@ class _SeatState extends State<Seat> {
     var width = MediaQuery.of(context).size.width;
     var height = MediaQuery.of(context).size.height - 190;
     return Scaffold(
+      backgroundColor: const Color(0xFF393E46),
       appBar: AppBar(
         backgroundColor: const Color(0xFF393E46),
         title: const SeatAppbar(),

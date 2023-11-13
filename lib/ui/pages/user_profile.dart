@@ -51,6 +51,7 @@ class _UserProfileState extends State<UserProfile> {
     var w = MediaQuery.of(context).size.width - 50;
     var h = MediaQuery.of(context).size.height - 257;
     return Scaffold(
+      backgroundColor: const Color(0xFF393E46),
       body: Column(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
