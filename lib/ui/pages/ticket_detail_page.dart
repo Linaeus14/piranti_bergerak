@@ -38,7 +38,7 @@ class TicketDetailPage extends StatelessWidget {
                     height: 257.49,
                     decoration: const BoxDecoration(
                       image: DecorationImage(
-                        image: AssetImage('film2.jpg'),
+                        image: AssetImage('assets/starwar.png'),
                         fit: BoxFit.fill,
                       ),
                       border: Border(

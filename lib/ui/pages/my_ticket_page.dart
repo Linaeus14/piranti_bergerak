@@ -76,9 +76,7 @@ class _TicketPageState extends State<TicketPage> {
               ),
             ),
           ),
-          Padding(
-            padding: const EdgeInsets.all(0),
-            child: Row(
+          Row(
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
                 ElevatedButton(
@@ -128,7 +126,6 @@ class _TicketPageState extends State<TicketPage> {
                   ),
                 ),
               ],
-            ),
           ),
         ],
       ),
