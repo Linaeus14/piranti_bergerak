@@ -63,13 +63,13 @@ class _TicketPageState extends State<TicketPage> {
                     return GestureDetector(
                       onTap: () {},
                       child: TicketUpcoming(screenSize: screenSize),
-                      onVerticalDragUpdate: (details) {},
+                      // onVerticalDragUpdate: (details) {},
                     );
                   } else {
                     return GestureDetector(
                       onTap: () {},
                       child: TicketUsed(screenSize: screenSize),
-                      onVerticalDragUpdate: (details) {},
+                      // onVerticalDragUpdate: (details) {},
                     );
                   }
                 },
@@ -86,7 +86,7 @@ class _TicketPageState extends State<TicketPage> {
                     }
                   },
                   style: ElevatedButton.styleFrom(
-                    fixedSize: const Size(196, 30),
+                    fixedSize: const Size(196, 50),
                     backgroundColor: isUsedButtonActive
                         ? const Color(0xFFFFDF00)
                         : const Color(0xFFFFDF00),
@@ -109,7 +109,7 @@ class _TicketPageState extends State<TicketPage> {
                     }
                   },
                   style: ElevatedButton.styleFrom(
-                    fixedSize: const Size(196, 30),
+                    fixedSize: const Size(196, 50),
                     backgroundColor: !isUsedButtonActive
                         ? const Color(0xFFFFDF00)
                         : const Color(0xFFFFDF00),

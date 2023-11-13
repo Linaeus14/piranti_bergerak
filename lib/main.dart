@@ -23,7 +23,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return const MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: Seat()
+      home: TicketPage()
       // home: Scaffold(
       //     body: Center(
       //   child: Column(
