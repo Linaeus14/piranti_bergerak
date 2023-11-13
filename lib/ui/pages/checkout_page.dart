@@ -58,6 +58,7 @@ class CheckoutPage extends StatelessWidget {
                         end: Alignment.bottomCenter,
                         colors: [
                           Color(0xFF393E46),
+                          Color(0xFF393E46),
                         ],
                       ),
                     ),
