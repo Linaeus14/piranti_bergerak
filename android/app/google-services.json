@@ -1,13 +1,13 @@
 {
   "project_info": {
-    "project_number": "91725855288",
-    "project_id": "flutix-2fe6d",
-    "storage_bucket": "flutix-2fe6d.appspot.com"
+    "project_number": "1059072486837",
+    "project_id": "pirantibergerak",
+    "storage_bucket": "pirantibergerak.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:91725855288:android:23d971480ba361603dc4cd",
+        "mobilesdk_app_id": "1:1059072486837:android:3cd3f510046abe18c3bdfc",
         "android_client_info": {
           "package_name": "com.example.piranti_bergerak"
         }
@@ -15,7 +15,7 @@
       "oauth_client": [],
       "api_key": [
         {
-          "current_key": "AIzaSyA3Y7A35HtSbu9v_NonLQ-ZJeSwD8GA_wI"
+          "current_key": "AIzaSyCzDdgR6esIS3GaFMQwAuS1FoB2vDSjt18"
         }
       ],
       "services": {
