@@ -72,13 +72,6 @@ class _MyWalletPageState extends State<MyWalletPage> {
                 margin: const EdgeInsets.symmetric(horizontal: 40),
                 padding: const EdgeInsets.all(6),
                 decoration: BoxDecoration(
-                  color: Colors.red,
-                  boxShadow: const [
-                    BoxShadow(
-                        offset: Offset(0, 2),
-                        color: Colors.black26,
-                        blurRadius: 2)
-                  ],
                   borderRadius: BorderRadius.circular(50),
                   border: Border.all(color: const Color(0xFFFFDF00), width: 2),
                 ),
