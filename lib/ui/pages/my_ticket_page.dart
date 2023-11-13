@@ -98,7 +98,7 @@ class _TicketPageState extends State<TicketPage> {
                     'Upcoming',
                     style: TextStyle(
                       color: isUsedButtonActive ? Colors.black : Colors.grey,
-                      fontSize: 10,
+                      fontSize: 12,
                     ),
                   ),
                 ),
@@ -121,7 +121,7 @@ class _TicketPageState extends State<TicketPage> {
                     'Used',
                     style: TextStyle(
                       color: !isUsedButtonActive ? Colors.black : Colors.grey,
-                      fontSize: 10,
+                      fontSize: 12,
                     ),
                   ),
                 ),
