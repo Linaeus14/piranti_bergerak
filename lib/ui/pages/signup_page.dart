@@ -5,6 +5,7 @@ class SignUp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    bool isButtonPressed = false;
     return Center(
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
@@ -174,9 +175,9 @@ class SignUp extends StatelessWidget {
                           borderRadius: BorderRadius.circular(70),
                         ),
                       ),
-                      Container(
-                        margin: const EdgeInsets.fromLTRB(0, 22.14, 0, 15.5),
-                        width: 170.53,
+                      SizedBox(
+                        // margin: const EdgeInsets.fromLTRB(0, 22.14, 0, 15.5),
+                        width: 160.53,
                         height: double.infinity,
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.center,
@@ -225,13 +226,25 @@ class SignUp extends StatelessWidget {
                   ),
                 ),
                 ElevatedButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    // Logika yang ingin Anda jalankan saat tombol ditekan
+                  },
                   style: ElevatedButton.styleFrom(
-                    backgroundColor: const Color(0xffffdf00),
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(5.0),
+                    fixedSize: const Size(330, 40), 
+                  ).merge(
+                    ButtonStyle(
+                      backgroundColor: MaterialStateProperty.resolveWith<Color>(
+                        (Set<MaterialState> states) {
+                          if (states.contains(MaterialState.pressed)) {
+                            isButtonPressed = true;
+                            return const Color(0xFFDAA520); 
+                          } else {
+                            isButtonPressed = false;
+                            return const Color(0xffffdf00);
+                          }
+                        },
+                      ),
                     ),
-                    minimumSize: const Size(double.infinity, 38),
                   ),
                   child: const Text(
                     'Sign Up',

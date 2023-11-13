@@ -5,6 +5,8 @@ class SignIn extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    bool isButtonPressed = false;
+
     return Material(
       color: const Color(0xff393e46),
       child: Center(
@@ -121,30 +123,39 @@ class SignIn extends StatelessWidget {
                     ),
                   ),
                   ElevatedButton(
-                    onPressed: () {
-                      Navigator.pushReplacement(context, MaterialPageRoute(builder: (context){
+                  onPressed: () {
+                    Navigator.pushReplacement(context, MaterialPageRoute(builder: (context){
                         return const Home();
                       }));
-                    },
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: const Color(0xffffdf00),
-                      minimumSize: const Size(double.infinity, 38),
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(5),
-                      ),
-                    ),
-                    child: const Padding(
-                      padding: EdgeInsets.all(8.0),
-                      child: Text(
-                        'Sign In',
-                        style: TextStyle(
-                          fontSize: 16,
-                          fontWeight: FontWeight.w700,
-                          color: Color(0xff000000),
-                        ),
+                  },
+                  style: ElevatedButton.styleFrom(
+                    fixedSize: const Size(330, 40), 
+                  ).merge(
+                    ButtonStyle(
+                      backgroundColor: MaterialStateProperty.resolveWith<Color>(
+                        (Set<MaterialState> states) {
+                          if (states.contains(MaterialState.pressed)) {
+                            isButtonPressed = true;
+                            return const Color(0xFFDAA520); 
+                          } else {
+                            isButtonPressed = false;
+                            return const Color(0xffffdf00);
+                          }
+                        },
                       ),
                     ),
                   ),
+                  child: const Text(
+                    'Sign In',
+                    style: TextStyle(
+                      fontFamily: 'Raleway',
+                      fontSize: 16,
+                      fontWeight: FontWeight.w700,
+                      height: 1.175,
+                      color: Color(0xff000000),
+                    ),
+                  ),
+                ),
                   const SizedBox(height: 8),
                   RichText(
                     textAlign: TextAlign.center,
