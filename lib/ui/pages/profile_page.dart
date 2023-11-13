@@ -1,20 +1,5 @@
 part of 'pages.dart';
 
-void main() {
-  runApp(const MyApp());
-}
-
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return const MaterialApp(
-      home: ProfilePage(),
-    );
-  }
-}
-
 class ProfilePage extends StatelessWidget {
   const ProfilePage({super.key});
 
@@ -71,13 +56,26 @@ class ProfilePage extends StatelessWidget {
             color: const Color(0xFF393E46),
             child: const Column(
               children: [
-                Divider(height: 0, color: Color(0xFF888888), thickness: 0.2), // Garis atas sebelum "Edit Profile" (dengan ketebalan 2)
+                Divider(
+                    height: 0,
+                    color: Color(0xFF888888),
+                    thickness:
+                        0.2), // Garis atas sebelum "Edit Profile" (dengan ketebalan 2)
                 MenuItem(Icons.person, 'Edit Profile'),
-                Divider(height: 0, color: Color(0xFF888888),thickness: 0.2), // Garis bawah
+                Divider(
+                    height: 0,
+                    color: Color(0xFF888888),
+                    thickness: 0.2), // Garis bawah
                 MenuItem(Icons.account_balance_wallet, 'Wallet'),
-                Divider(height: 0, color: Color(0xFF888888),thickness: 0.2), // Garis bawah
+                Divider(
+                    height: 0,
+                    color: Color(0xFF888888),
+                    thickness: 0.2), // Garis bawah
                 MenuItem(Icons.star, 'Rate Flutix'),
-                Divider(height: 0, color: Color(0xFF888888),thickness: 0.2), // Garis bawah
+                Divider(
+                    height: 0,
+                    color: Color(0xFF888888),
+                    thickness: 0.2), // Garis bawah
                 MenuItem(Icons.help, 'Help'),
               ],
             ),
@@ -98,7 +96,13 @@ class ProfilePage extends StatelessWidget {
                 label: 'Profile',
               ),
             ],
-          ),
+            selectedItemColor: Color(0xFF393E46), 
+            unselectedItemColor: Color(0xFF393E46), 
+            showSelectedLabels: true, 
+            showUnselectedLabels: true, 
+            type: BottomNavigationBarType
+                .fixed, // Untuk menampilkan label pada semua ikon
+          )
         ],
       ),
     );
