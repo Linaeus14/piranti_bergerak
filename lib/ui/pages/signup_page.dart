@@ -38,71 +38,37 @@ class SignUp extends StatelessWidget {
                   margin: const EdgeInsets.fromLTRB(5, 0, 5, 22),
                   width: double.infinity,
                   height: 69,
-                  child: TextField(
-                    controller: TextEditingController(),
-                    decoration: const InputDecoration(
-                      floatingLabelBehavior: FloatingLabelBehavior.always,
-                      contentPadding: EdgeInsets.symmetric(
-                          horizontal: 20.0, vertical: 20.0),
-                      labelText: 'Email Address',
-                      labelStyle: TextStyle(
-                        color: Color(0xffffdf00),
-                        fontSize: 16,
-                        fontWeight: FontWeight.w400,
-                      ),
-                      hintText: 'Input Email',
-                      hintStyle: TextStyle(
-                        fontSize: 14,
-                        fontWeight: FontWeight.w400,
-                        color: Color(0xffcccccc),
-                      ),
-                      focusedBorder: OutlineInputBorder(
-                        borderSide: BorderSide(
+                  child: Material(
+                    color: const Color(0xff393e46),
+                    child: TextField(
+                      controller: TextEditingController(),
+                      decoration: const InputDecoration(
+                        floatingLabelBehavior: FloatingLabelBehavior.always,
+                        contentPadding: EdgeInsets.symmetric(
+                            horizontal: 20.0, vertical: 20.0),
+                        labelText: 'Email Address',
+                        labelStyle: TextStyle(
                           color: Color(0xffffdf00),
-                          width: 2,
+                          fontSize: 16,
+                          fontWeight: FontWeight.w400,
                         ),
-                      ),
-                      enabledBorder: OutlineInputBorder(
-                        borderSide: BorderSide(
-                          color: Color(0xffffdf00),
-                          width: 1,
+                        hintText: 'Input Email',
+                        hintStyle: TextStyle(
+                          fontSize: 14,
+                          fontWeight: FontWeight.w400,
+                          color: Color(0xffcccccc),
                         ),
-                      ),
-                    ),
-                  ),
-                ),
-                Container(
-                  margin: const EdgeInsets.fromLTRB(5, 0, 5, 22),
-                  width: double.infinity,
-                  height: 69,
-                  child: TextField(
-                    controller: TextEditingController(),
-                    decoration: const InputDecoration(
-                      floatingLabelBehavior: FloatingLabelBehavior.always,
-                      contentPadding: EdgeInsets.symmetric(
-                          horizontal: 20.0, vertical: 20.0),
-                      labelText: 'Password',
-                      labelStyle: TextStyle(
-                        color: Color(0xffffdf00),
-                        fontSize: 16,
-                        fontWeight: FontWeight.w400,
-                      ),
-                      hintText: 'Input Password',
-                      hintStyle: TextStyle(
-                        fontSize: 14,
-                        fontWeight: FontWeight.w400,
-                        color: Color(0xffcccccc),
-                      ),
-                      focusedBorder: OutlineInputBorder(
-                        borderSide: BorderSide(
-                          color: Color(0xffffdf00),
-                          width: 2,
+                        focusedBorder: OutlineInputBorder(
+                          borderSide: BorderSide(
+                            color: Color(0xffffdf00),
+                            width: 2,
+                          ),
                         ),
-                      ),
-                      enabledBorder: OutlineInputBorder(
-                        borderSide: BorderSide(
-                          color: Color(0xffffdf00),
-                          width: 1,
+                        enabledBorder: OutlineInputBorder(
+                          borderSide: BorderSide(
+                            color: Color(0xffffdf00),
+                            width: 1,
+                          ),
                         ),
                       ),
                     ),
@@ -112,34 +78,77 @@ class SignUp extends StatelessWidget {
                   margin: const EdgeInsets.fromLTRB(5, 0, 5, 22),
                   width: double.infinity,
                   height: 69,
-                  child: TextField(
-                    controller: TextEditingController(),
-                    decoration: const InputDecoration(
-                      floatingLabelBehavior: FloatingLabelBehavior.always,
-                      contentPadding: EdgeInsets.symmetric(
-                          horizontal: 20.0, vertical: 20.0),
-                      labelText: 'Name',
-                      labelStyle: TextStyle(
-                        color: Color(0xffffdf00),
-                        fontSize: 16,
-                        fontWeight: FontWeight.w400,
-                      ),
-                      hintText: 'Input Name',
-                      hintStyle: TextStyle(
-                        fontSize: 14,
-                        fontWeight: FontWeight.w400,
-                        color: Color(0xffcccccc),
-                      ),
-                      focusedBorder: OutlineInputBorder(
-                        borderSide: BorderSide(
+                  child: Material(
+                    color: const Color(0xff393e46),
+                    child: TextField(
+                      controller: TextEditingController(),
+                      decoration: const InputDecoration(
+                        floatingLabelBehavior: FloatingLabelBehavior.always,
+                        contentPadding: EdgeInsets.symmetric(
+                            horizontal: 20.0, vertical: 20.0),
+                        labelText: 'Password',
+                        labelStyle: TextStyle(
                           color: Color(0xffffdf00),
-                          width: 2,
+                          fontSize: 16,
+                          fontWeight: FontWeight.w400,
+                        ),
+                        hintText: 'Input Password',
+                        hintStyle: TextStyle(
+                          fontSize: 14,
+                          fontWeight: FontWeight.w400,
+                          color: Color(0xffcccccc),
+                        ),
+                        focusedBorder: OutlineInputBorder(
+                          borderSide: BorderSide(
+                            color: Color(0xffffdf00),
+                            width: 2,
+                          ),
+                        ),
+                        enabledBorder: OutlineInputBorder(
+                          borderSide: BorderSide(
+                            color: Color(0xffffdf00),
+                            width: 1,
+                          ),
                         ),
                       ),
-                      enabledBorder: OutlineInputBorder(
-                        borderSide: BorderSide(
+                    ),
+                  ),
+                ),
+                Container(
+                  margin: const EdgeInsets.fromLTRB(5, 0, 5, 22),
+                  width: double.infinity,
+                  height: 69,
+                  child: Material(
+                    color: const Color(0xff393e46),
+                    child: TextField(
+                      controller: TextEditingController(),
+                      decoration: const InputDecoration(
+                        floatingLabelBehavior: FloatingLabelBehavior.always,
+                        contentPadding: EdgeInsets.symmetric(
+                            horizontal: 20.0, vertical: 20.0),
+                        labelText: 'Name',
+                        labelStyle: TextStyle(
                           color: Color(0xffffdf00),
-                          width: 1,
+                          fontSize: 16,
+                          fontWeight: FontWeight.w400,
+                        ),
+                        hintText: 'Input Name',
+                        hintStyle: TextStyle(
+                          fontSize: 14,
+                          fontWeight: FontWeight.w400,
+                          color: Color(0xffcccccc),
+                        ),
+                        focusedBorder: OutlineInputBorder(
+                          borderSide: BorderSide(
+                            color: Color(0xffffdf00),
+                            width: 2,
+                          ),
+                        ),
+                        enabledBorder: OutlineInputBorder(
+                          borderSide: BorderSide(
+                            color: Color(0xffffdf00),
+                            width: 1,
+                          ),
                         ),
                       ),
                     ),

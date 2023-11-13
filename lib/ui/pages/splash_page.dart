@@ -57,7 +57,11 @@ class _MyWidgetState extends State<SplashPage> {
                   backgroundColor: const Color(0xFFFFDF00),
                   padding: const EdgeInsets.symmetric(horizontal: 120.0),
                 ),
-                onPressed: () {},
+                onPressed: () {
+                  Navigator.push(context, MaterialPageRoute(builder: (context){
+                    return const SignUp();
+                  }));
+                },
                 child: const Text(
                   "Get Started",
                   style: TextStyle(
