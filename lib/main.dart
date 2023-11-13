@@ -2,13 +2,17 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:piranti_bergerak/firebase_options.dart';
 import 'package:piranti_bergerak/services/services.dart';
+import 'package:piranti_bergerak/ui/pages/checkout_page.dart';
+import 'package:piranti_bergerak/ui/pages/my_wallet_page.dart';
 import 'package:piranti_bergerak/ui/pages/pages.dart';
+import 'package:piranti_bergerak/ui/pages/ticket_detail_page.dart';
 
-void main() {
-  // WidgetsFlutterBinding.ensureInitialized();
-  // await Firebase.initializeApp(
-  //   options:  DefaultFirebaseOptions.currentPlatform,
-  // );
+void main() async{
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(
+    name: "pirantibergerak",
+    options:  DefaultFirebaseOptions.currentPlatform,
+  );
   runApp(const MyApp());
 }
 
@@ -19,7 +23,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return const MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: SignUp()
+      home: SplashPage()
       // home: Scaffold(
       //     body: Center(
       //   child: Column(

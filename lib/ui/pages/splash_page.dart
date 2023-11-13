@@ -89,6 +89,9 @@ class _MyWidgetState extends State<SplashPage> {
                   setState(() {
                     signinPressed = !signinPressed;
                   });
+                  Navigator.pushReplacement(context, MaterialPageRoute(builder: (context){
+                    return const SignIn();
+                  }));
                 },
                 child: Text(
                   "Sign In",
