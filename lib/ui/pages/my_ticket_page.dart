@@ -28,7 +28,7 @@ class _TicketPageState extends State<TicketPage> {
           children: [
             CircleAvatar(
               radius: 30,
-              backgroundImage: AssetImage('profileanatasya.png'),
+              backgroundImage: AssetImage('profile_pic.png'),
             ),
             SizedBox(width: 10),
             Column(

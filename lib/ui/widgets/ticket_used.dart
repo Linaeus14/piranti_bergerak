@@ -33,7 +33,7 @@ class TicketUsed extends StatelessWidget {
               height: 65,
               decoration: const BoxDecoration(
                 image: DecorationImage(
-                  image: AssetImage('starwars.png'),
+                  image: AssetImage('film2.jpg'),
                   fit: BoxFit.cover,
                 ),
                 boxShadow: [

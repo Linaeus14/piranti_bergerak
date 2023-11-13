@@ -26,6 +26,7 @@ class SignUp extends StatelessWidget {
                   child: const Text(
                     'Welcome to Flutix Let’s start our journey',
                     style: TextStyle(
+                      decoration: TextDecoration.none,
                       fontFamily: 'Raleway',
                       fontSize: 20,
                       fontWeight: FontWeight.w500,
@@ -188,6 +189,7 @@ class SignUp extends StatelessWidget {
                                 textAlign: TextAlign.center,
                                 style: TextStyle(
                                   fontFamily: 'Raleway',
+                                  decoration: TextDecoration.none,
                                   fontSize: 11,
                                   fontWeight: FontWeight.w400,
                                   height: 1.175,
