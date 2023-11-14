@@ -37,7 +37,7 @@ class _HomeState extends State<Home> {
     var width = MediaQuery.of(context).size.width;
     var height = MediaQuery.of(context).size.height - 130;
     return Scaffold(
-      appBar: AppBar(toolbarHeight: 80, title: const HomeAppbarTitle()),
+      appBar: AppBar(toolbarHeight: 80, title: const HomeAppbarTitle(), backgroundColor: const Color(0xFFFFDF00),),
       body: ListView(
         scrollDirection: Axis.vertical,
         children: [
@@ -228,7 +228,7 @@ class _HomeState extends State<Home> {
                   height: width * 9 / 16,
                   decoration: BoxDecoration(
                       image: DecorationImage(
-                          image: AssetImage("assets/picture$index.png"),
+                          image: AssetImage("assets/picture$index.png.jpg"),
                           fit: BoxFit.cover)),
                 );
               },
