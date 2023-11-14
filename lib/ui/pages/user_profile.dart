@@ -245,7 +245,13 @@ class _UserProfileState extends State<UserProfile> {
                           side: const BorderSide(
                               width: 1, color: Color(0xFFFFDF00)),
                         ),
-                        onPressed: () {},
+                        onPressed: () {
+                          Navigator.of(context).pushReplacement(MaterialPageRoute(
+                            builder: (context) {
+                              return const SignUp();
+                            },
+                          ));
+                        },
                         child: const Text(
                           'Back',
                           textAlign: TextAlign.center,
@@ -264,7 +270,13 @@ class _UserProfileState extends State<UserProfile> {
                         backgroundColor: const Color(0xFFFFDF00),
                         foregroundColor: Colors.black,
                       ),
-                      onPressed: () {},
+                      onPressed: () {
+                        Navigator.of(context).pushReplacement(MaterialPageRoute(
+                          builder: (context) {
+                            return const SuccessPage();
+                          },
+                        ));
+                      },
                       child: const Text(
                         'Continue',
                         textAlign: TextAlign.center,

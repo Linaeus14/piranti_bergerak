@@ -63,7 +63,11 @@ class _SuccessPageState extends State<SuccessPage> {
             SizedBox(height: 70),
             ElevatedButton(
               onPressed: () {
-                Navigator.pushNamed(context, '/order_success');
+                Navigator.of(context).pushReplacement(MaterialPageRoute(
+                  builder: (context) {
+                    return const Home();
+                  },
+                ));
               },
               style: ElevatedButton.styleFrom(
                 backgroundColor: Color(0xFFFFDF00),
@@ -90,7 +94,11 @@ class _SuccessPageState extends State<SuccessPage> {
             SizedBox(height: 10),
             ElevatedButton(
               onPressed: () {
-                Navigator.pushNamed(context, '/movie_detail');
+                Navigator.of(context).pushReplacement(MaterialPageRoute(
+                  builder: (context) {
+                    return const UserProfile();
+                  },
+                ));
               },
               style: ElevatedButton.styleFrom(
                 backgroundColor: Color(0xFF393E46), 

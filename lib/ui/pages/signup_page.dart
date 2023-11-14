@@ -228,6 +228,11 @@ class SignUp extends StatelessWidget {
                 ElevatedButton(
                   onPressed: () {
                     // Logika yang ingin Anda jalankan saat tombol ditekan
+                    Navigator.of(context).pushReplacement(MaterialPageRoute(
+                      builder: (context) {
+                        return const UserProfile();
+                      },
+                    ));
                   },
                   style: ElevatedButton.styleFrom(
                     fixedSize: const Size(330, 40), 
@@ -290,7 +295,7 @@ class SignUp extends StatelessWidget {
                         ),
                         recognizer: TapGestureRecognizer()
                           ..onTap = () {
-                            Navigator.of(context).push(MaterialPageRoute(
+                            Navigator.of(context).pushReplacement(MaterialPageRoute(
                               builder: (context) {
                                 return const SignIn();
                               },
