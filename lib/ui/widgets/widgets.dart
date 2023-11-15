@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../pages/pages.dart';
+
 part 'ticket_used.dart';
 part 'ticket_upcoming.dart';
 part 'home_appbar_title.dart';

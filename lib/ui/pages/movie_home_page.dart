@@ -37,7 +37,7 @@ class _HomeState extends State<Home> {
     var width = MediaQuery.of(context).size.width;
     var height = MediaQuery.of(context).size.height - 130;
     return Scaffold(
-      appBar: AppBar(toolbarHeight: 80, title: const HomeAppbarTitle(), backgroundColor: const Color(0xFFFFDF00),),
+      appBar: AppBar(toolbarHeight: 80, title: const HomeAppbarTitle(), backgroundColor: const Color(0xFFFFDF00), automaticallyImplyLeading: false,),
       body: ListView(
         scrollDirection: Axis.vertical,
         children: [
@@ -58,16 +58,25 @@ class _HomeState extends State<Home> {
               scrollDirection: Axis.horizontal,
               itemCount: 5,
               itemBuilder: (BuildContext context, int index) {
-                return Container(
-                  alignment: Alignment.center,
-                  margin: const EdgeInsets.only(left: 12.5, right: 12.5),
-                  width: (height * 2 / 8 - 45) / 1.1,
-                  height: height * 2 / 8 - 45,
-                  decoration: BoxDecoration(
-                      borderRadius: const BorderRadius.all(Radius.circular(15)),
-                      image: DecorationImage(
-                          image: AssetImage("assets/image$index.png"),
-                          fit: BoxFit.cover)),
+                return GestureDetector(
+                  onTap: () {
+                    Navigator.of(context).pushReplacement(MaterialPageRoute(
+                      builder: (context) {
+                        return const MovieDetailPage();
+                      },
+                    ));
+                  },
+                  child: Container(
+                    alignment: Alignment.center,
+                    margin: const EdgeInsets.only(left: 12.5, right: 12.5),
+                    width: (height * 2 / 8 - 45) / 1.1,
+                    height: height * 2 / 8 - 45,
+                    decoration: BoxDecoration(
+                        borderRadius: const BorderRadius.all(Radius.circular(15)),
+                        image: DecorationImage(
+                            image: AssetImage("assets/image$index.png"),
+                            fit: BoxFit.cover)),
+                  ),
                 );
               },
             ),

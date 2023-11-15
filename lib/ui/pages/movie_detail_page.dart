@@ -54,7 +54,11 @@ class _MovieDetailPageState extends State<MovieDetailPage> {
                         color: Colors.black,
                       ),
                       onPressed: () {
-                        Navigator.of(context).pop();
+                        Navigator.of(context).pushReplacement(MaterialPageRoute(
+                          builder: (context) {
+                            return const Home();
+                          },
+                        ));
                       },
                       iconSize: 40,
                     ),

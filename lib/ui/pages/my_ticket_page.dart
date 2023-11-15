@@ -8,6 +8,7 @@ class TicketPage extends StatefulWidget {
 }
 
 class _TicketPageState extends State<TicketPage> {
+  final int _index = 0;
   bool isUsedButtonActive = true;
 
   void toggleButtons() {
@@ -24,6 +25,7 @@ class _TicketPageState extends State<TicketPage> {
       appBar: AppBar(
         toolbarHeight: 100,
         backgroundColor: const Color(0xFFFFDF00),
+        automaticallyImplyLeading: false,
         title: const Row(
           children: [
             CircleAvatar(
@@ -129,26 +131,27 @@ class _TicketPageState extends State<TicketPage> {
           ),
         ],
       ),
-      bottomNavigationBar: BottomNavigationBar(
-        type: BottomNavigationBarType.fixed,
-        backgroundColor: const Color(0xFFFFDF00),
-        unselectedItemColor: const Color(0xFF393E46),
-        selectedItemColor: const Color(0xFFDAA520),
-        items: const [
-          BottomNavigationBarItem(
-            icon: Icon(Icons.confirmation_number_sharp),
-            label: "Ticket",
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.home),
-            label: "Home",
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.person),
-            label: "Profile",
-          ),
-        ],
-      ),
+      // bottomNavigationBar: BottomNavigationBar(
+      //   type: BottomNavigationBarType.fixed,
+      //   backgroundColor: const Color(0xFFFFDF00),
+      //   unselectedItemColor: const Color(0xFF393E46),
+      //   selectedItemColor: const Color(0xFFDAA520),
+      //   items: const [
+      //     BottomNavigationBarItem(
+      //       icon: Icon(Icons.confirmation_number_sharp),
+      //       label: "Ticket",
+      //     ),
+      //     BottomNavigationBarItem(
+      //       icon: Icon(Icons.home),
+      //       label: "Home",
+      //     ),
+      //     BottomNavigationBarItem(
+      //       icon: Icon(Icons.person),
+      //       label: "Profile",
+      //     ),
+      //   ],
+      // ),
+      bottomNavigationBar: BottomNav(index: _index),
     );
   }
 }

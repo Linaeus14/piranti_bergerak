@@ -1,7 +1,14 @@
 part of 'pages.dart';
 
-class ProfilePage extends StatelessWidget {
+class ProfilePage extends StatefulWidget {
   const ProfilePage({super.key});
+
+  @override
+  State<ProfilePage> createState() => _ProfilePageState();
+}
+
+class _ProfilePageState extends State<ProfilePage> {
+  final int _index = 2;
 
   @override
   Widget build(BuildContext context) {
@@ -80,31 +87,32 @@ class ProfilePage extends StatelessWidget {
               ],
             ),
           ),
-          BottomNavigationBar(
-            backgroundColor: const Color(0xFFFFDF00),
-            items: const [
-              BottomNavigationBarItem(
-                icon: Icon(Icons.confirmation_number, color: Color(0xFF393E46)),
-                label: 'Tiket',
-              ),
-              BottomNavigationBarItem(
-                icon: Icon(Icons.home, color: Color(0xFF393E46)),
-                label: 'Home',
-              ),
-              BottomNavigationBarItem(
-                icon: Icon(Icons.person, color: Color(0xFFDAA520)),
-                label: 'Profile',
-              ),
-            ],
-            selectedItemColor: Color(0xFF393E46), 
-            unselectedItemColor: Color(0xFF393E46), 
-            showSelectedLabels: true, 
-            showUnselectedLabels: true, 
-            type: BottomNavigationBarType
-                .fixed, // Untuk menampilkan label pada semua ikon
-          )
+          // BottomNavigationBar(
+          //   backgroundColor: const Color(0xFFFFDF00),
+          //   items: const [
+          //     BottomNavigationBarItem(
+          //       icon: Icon(Icons.confirmation_number, color: Color(0xFF393E46)),
+          //       label: 'Tiket',
+          //     ),
+          //     BottomNavigationBarItem(
+          //       icon: Icon(Icons.home, color: Color(0xFF393E46)),
+          //       label: 'Home',
+          //     ),
+          //     BottomNavigationBarItem(
+          //       icon: Icon(Icons.person, color: Color(0xFFDAA520)),
+          //       label: 'Profile',
+          //     ),
+          //   ],
+          //   selectedItemColor: const Color(0xFF393E46), 
+          //   unselectedItemColor: const Color(0xFF393E46), 
+          //   showSelectedLabels: true, 
+          //   showUnselectedLabels: true, 
+          //   type: BottomNavigationBarType
+          //       .fixed, // Untuk menampilkan label pada semua ikon
+          // )
         ],
       ),
+      bottomNavigationBar: BottomNav(index: _index),
     );
   }
 }
