@@ -176,7 +176,9 @@ class _EditProfilePageState extends State<EditProfilePage> {
                     backgroundColor: const Color(0xFFFFDF00),
                     padding: const EdgeInsets.symmetric(horizontal: 138.0),
                   ),
-                  onPressed: () {},
+                  onPressed: () {
+                    Navigator.of(context).pop();
+                  },
                   child: const Text(
                     "Update",
                     style: TextStyle(
@@ -195,6 +197,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
                     setState(() {
                       backPressed = !backPressed;
                     });
+                    Navigator.of(context).pop();
                   },
                   style: ElevatedButton.styleFrom(
                     backgroundColor: backPressed ? const Color(0xFFDAA520) : const Color(0xFF393E46),

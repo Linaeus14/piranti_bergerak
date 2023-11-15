@@ -66,7 +66,7 @@ class _ProfilePageState extends State<ProfilePage> {
             color: const Color(0xFF393E46),
             child: Column(
               children: [
-                Divider(
+                const Divider(
                     height: 0,
                     color: Color(0xFF888888),
                     thickness: 0.2), // Garis atas sebelum "Edit Profile" (dengan ketebalan 2)
@@ -76,9 +76,14 @@ class _ProfilePageState extends State<ProfilePage> {
                   isSelected: _selectedMenuIndex == 0,
                   onPressed: () {
                     _selectMenu(0);
+                    Navigator.of(context).push(MaterialPageRoute(
+                      builder: (context) {
+                        return const EditProfilePage();
+                      },
+                    ));
                   },
                 ),
-                Divider(
+                const Divider(
                     height: 0,
                     color: Color(0xFF888888),
                     thickness: 0.2), // Garis bawah
@@ -88,9 +93,14 @@ class _ProfilePageState extends State<ProfilePage> {
                   isSelected: _selectedMenuIndex == 1,
                   onPressed: () {
                     _selectMenu(1);
+                    Navigator.of(context).push(MaterialPageRoute(
+                      builder: (context) {
+                        return const MyWalletPage();
+                      },
+                    ));
                   },
                 ),
-                Divider(
+                const Divider(
                     height: 0,
                     color: Color(0xFF888888),
                     thickness: 0.2), // Garis bawah
@@ -102,7 +112,7 @@ class _ProfilePageState extends State<ProfilePage> {
                     _selectMenu(2);
                   },
                 ),
-                Divider(
+                const Divider(
                     height: 0,
                     color: Color(0xFF888888),
                     thickness: 0.2), // Garis bawah
