@@ -44,6 +44,7 @@ class _SeatState extends State<Seat> {
       backgroundColor: const Color(0xFF393E46),
       appBar: AppBar(
         backgroundColor: const Color(0xFF393E46),
+        automaticallyImplyLeading: false,
         title: const SeatAppbar(),
         toolbarHeight: 100,
       ),

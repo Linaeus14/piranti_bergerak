@@ -28,7 +28,13 @@ class RowButtons extends StatelessWidget {
                     side: const BorderSide(
                         width: 1, color: Color(0xFFFFDF00)),
                   ),
-                  onPressed: () {},
+                  onPressed: () {
+                    Navigator.of(context).pushReplacement(MaterialPageRoute(
+                      builder: (context) {
+                        return const PlaceAndTimePick();
+                      },
+                    ));
+                  },
                   child: const Text(
                     'Back',
                     textAlign: TextAlign.center,
@@ -47,7 +53,13 @@ class RowButtons extends StatelessWidget {
                   backgroundColor: const Color(0xFFFFDF00),
                   foregroundColor: Colors.black,
                 ),
-                onPressed: () {},
+                onPressed: () {
+                  Navigator.of(context).pushReplacement(MaterialPageRoute(
+                    builder: (context) {
+                      return const CheckoutPage();
+                    },
+                  ));
+                },
                 child: const Text(
                   'Continue',
                   textAlign: TextAlign.center,

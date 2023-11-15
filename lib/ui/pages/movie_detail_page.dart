@@ -196,7 +196,11 @@ class _MovieDetailPageState extends State<MovieDetailPage> {
             ),
             ElevatedButton(
               onPressed: () {
-                Navigator.pushNamed(context, '/success');
+              Navigator.of(context).pushReplacement(MaterialPageRoute(
+                  builder: (context) {
+                    return const PlaceAndTimePick();
+                  },
+                ));
               },
               style: ElevatedButton.styleFrom(
                 backgroundColor: Color(0xFFFFDF00),

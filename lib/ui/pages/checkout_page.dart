@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:piranti_bergerak/ui/pages/pages.dart';
 
 class CheckoutPage extends StatelessWidget {
   const CheckoutPage({super.key});
@@ -39,7 +40,11 @@ class CheckoutPage extends StatelessWidget {
                         color: Colors.black,
                       ),
                       onPressed: () {
-                        Navigator.of(context).pop();
+                        Navigator.of(context).pushReplacement(MaterialPageRoute(
+                          builder: (context) {
+                            return const Seat();
+                          },
+                        ));
                       },
                       iconSize: 40,
                     ),
@@ -302,7 +307,13 @@ class CheckoutPage extends StatelessWidget {
                   Container(
                     margin: const EdgeInsets.fromLTRB(45, 20, 45, 40),
                     child: ElevatedButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        Navigator.of(context).pushReplacement(MaterialPageRoute(
+                          builder: (context) {
+                            return const OrderSuccessPage();
+                          },
+                        ));
+                      },
                       style: ElevatedButton.styleFrom(
                         backgroundColor:
                             const Color(0xFF393E46), // Warna abu-abu

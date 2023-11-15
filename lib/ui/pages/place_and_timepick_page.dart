@@ -442,7 +442,13 @@ class _PlaceAndTimePickState extends State<PlaceAndTimePick> {
               backgroundColor: const Color(0xFFFFDF00),
               padding: const EdgeInsets.symmetric(horizontal: 133.0),
             ),
-            onPressed: () {},
+            onPressed: () {
+              Navigator.of(context).pushReplacement(MaterialPageRoute(
+                builder: (context) {
+                  return const Seat();
+                },
+              ));
+            },
             child: const Text(
               "Continue",
               style: TextStyle(
@@ -460,6 +466,11 @@ class _PlaceAndTimePickState extends State<PlaceAndTimePick> {
             onPressed: () {
               setState(() {
                 backPressed = !backPressed;
+                  Navigator.of(context).pushReplacement(MaterialPageRoute(
+                    builder: (context) {
+                      return const MovieDetailPage();
+                    },
+                  ));
               });
             },
             style: ElevatedButton.styleFrom(
