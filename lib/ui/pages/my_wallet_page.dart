@@ -1,7 +1,7 @@
 part of 'pages.dart';
 
 class MyWalletPage extends StatefulWidget {
-  const MyWalletPage({super.key});
+  const MyWalletPage({Key? key}) : super(key: key);
 
   @override
   State<MyWalletPage> createState() => _MyWalletPageState();
@@ -9,6 +9,8 @@ class MyWalletPage extends StatefulWidget {
 
 class _MyWalletPageState extends State<MyWalletPage> {
   final ScrollController _scrollController = ScrollController();
+  int?
+      selectedTopUpIndex; // Variabel untuk menyimpan indeks top-up yang dipilih
 
   @override
   void dispose() {
@@ -20,7 +22,7 @@ class _MyWalletPageState extends State<MyWalletPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
-        color: const Color(0xFF393E46), // Background color (Abu-abu)
+        color: const Color(0xFF393E46), // Warna latar belakang (Abu-abu)
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
@@ -138,28 +140,35 @@ class _MyWalletPageState extends State<MyWalletPage> {
                   itemCount: 10,
                   itemBuilder: (context, index) {
                     final formattedAmount = NumberFormat("#,##0", "id_ID")
-                        .format(50000 *
-                            (index +
-                                1)); // Format angka dengan tanda titik ribu
-                    return Container(
-                      color: Colors.white,
-                      margin:
-                          const EdgeInsets.only(top: 10, left: 20, right: 20),
-                      padding: const EdgeInsets.all(10),
-                      child: Row(
-                        children: [
-                          Image.asset('assets/topUp.png',
-                              width: 50, height: 30),
-                          const SizedBox(width: 10),
-                          Text(
-                            'Rp. $formattedAmount', // Gunakan angka yang sudah diformat
-                            style: const TextStyle(
-                              color: Colors.black,
-                              fontFamily: 'Roboto',
-                              fontSize: 14,
+                        .format(50000 * (index + 1));
+                    return GestureDetector(
+                      onTap: () {
+                        setState(() {
+                          selectedTopUpIndex = index;
+                        });
+                      },
+                      child: Container(
+                        color: selectedTopUpIndex == index
+                            ? const Color(0xFFDAA520) // Warna terpilih
+                            : Colors.white,
+                        margin:
+                            const EdgeInsets.only(top: 10, left: 20, right: 20),
+                        padding: const EdgeInsets.all(10),
+                        child: Row(
+                          children: [
+                            Image.asset('assets/topUp.png',
+                                width: 50, height: 30),
+                            const SizedBox(width: 10),
+                            Text(
+                              'Rp. $formattedAmount',
+                              style: const TextStyle(
+                                color: Colors.black,
+                                fontFamily: 'Roboto',
+                                fontSize: 14,
+                              ),
                             ),
-                          ),
-                        ],
+                          ],
+                        ),
                       ),
                     );
                   },
@@ -178,13 +187,19 @@ class _MyWalletPageState extends State<MyWalletPage> {
                     },
                   ));
                 },
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: const Color(0xFFFFDF00),
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(5),
-                    side: const BorderSide(
-                      color: Color(0xFFFFDF00),
-                      width: 2,
+                style: ButtonStyle(
+                  backgroundColor: MaterialStateProperty.resolveWith<Color>(
+                    (Set<MaterialState> states) {
+                      if (states.contains(MaterialState.pressed)) {
+                        return const Color(
+                            0xFFDAA520); // Warna saat tombol ditekan
+                      }
+                      return const Color(0xFFFFDF00); // Warna default
+                    },
+                  ),
+                  shape: MaterialStateProperty.all(
+                    RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(5),
                     ),
                   ),
                 ),
