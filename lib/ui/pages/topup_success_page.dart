@@ -112,7 +112,8 @@ class TopUpSuccessPage extends StatelessWidget {
                       Navigator.of(context).pop();
                     },
                     style: ElevatedButton.styleFrom(
-                      backgroundColor: const Color(0xFFFFDF00),
+                      primary: const Color(0xFFFFDF00),
+                      onPrimary: const Color(0xFFDAA520),
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(5),
                       ),
@@ -144,7 +145,8 @@ class TopUpSuccessPage extends StatelessWidget {
                       );
                     },
                     style: ElevatedButton.styleFrom(
-                      backgroundColor: const Color(0xFF393E46),
+                      primary: const Color(0xFF393E46),
+                      onPrimary: const Color(0xFFDAA520),
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(5),
                         side: const BorderSide(
