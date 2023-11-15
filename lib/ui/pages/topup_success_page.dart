@@ -1,7 +1,7 @@
 part of 'pages.dart';
 
 class TopUpSuccessPage extends StatelessWidget {
-  const TopUpSuccessPage({super.key});
+  const TopUpSuccessPage({Key? key});
 
   @override
   Widget build(BuildContext context) {
@@ -33,29 +33,31 @@ class TopUpSuccessPage extends StatelessWidget {
                     ),
                   ),
                   Container(
-                    margin: const EdgeInsets.only(top: 50), // Add a top margin of 50
+                    margin: const EdgeInsets.only(top: 50),
                     child: Container(
                       margin: const EdgeInsets.symmetric(
-                          horizontal: 52,
-                          vertical: 8), // Maintain the existing margin
+                        horizontal: 40,
+                        vertical: 8,
+                      ),
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(50),
-                        border: Border.all(color: const Color(0xFFFFDF00), width: 2),
+                        border: Border.all(
+                          color: const Color(0xFFFFDF00),
+                          width: 2,
+                        ),
                       ),
                       padding: const EdgeInsets.all(6),
                       child: Row(
                         children: [
                           ClipOval(
                             child: Container(
-                              width:
-                                  45, // Increase the size slightly for the border
-                              height: 45,
+                              width: 35,
+                              height: 35,
                               decoration: BoxDecoration(
                                 shape: BoxShape.circle,
                                 border: Border.all(
-                                  color: Colors
-                                      .yellow, // Border color set to yellow
-                                  width: 2, // Border width
+                                  color: Colors.yellow,
+                                  width: 2,
                                 ),
                               ),
                               child: ClipOval(
@@ -94,7 +96,6 @@ class TopUpSuccessPage extends StatelessWidget {
             ),
           ),
           const Divider(
-            // Divider sebagai garis pembatas
             color: Colors.white,
             height: 2,
             thickness: 1,
@@ -131,20 +132,25 @@ class TopUpSuccessPage extends StatelessWidget {
                       ),
                     ),
                   ),
-                  const SizedBox(height: 3), // jarak button
+                  const SizedBox(height: 3),
                   ElevatedButton(
                     onPressed: () {
-                      Navigator.of(context).pushReplacement(MaterialPageRoute(
-                        builder: (context) {
-                          return const Home();
-                        },
-                      ));
+                      Navigator.of(context).pushReplacement(
+                        MaterialPageRoute(
+                          builder: (context) {
+                            return const Home();
+                          },
+                        ),
+                      );
                     },
                     style: ElevatedButton.styleFrom(
                       backgroundColor: const Color(0xFF393E46),
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(5),
-                        side: const BorderSide(color: Color(0xFFFFDF00), width: 2),
+                        side: const BorderSide(
+                          color: Color(0xFFFFDF00),
+                          width: 2,
+                        ),
                       ),
                     ),
                     child: Container(

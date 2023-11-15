@@ -1,7 +1,7 @@
 part of 'pages.dart';
 
 class ProfilePage extends StatefulWidget {
-  const ProfilePage({super.key});
+  const ProfilePage({Key? key}) : super(key: key);
 
   @override
   State<ProfilePage> createState() => _ProfilePageState();
@@ -9,6 +9,7 @@ class ProfilePage extends StatefulWidget {
 
 class _ProfilePageState extends State<ProfilePage> {
   final int _index = 2;
+  int? _selectedMenuIndex; // Variabel untuk menyimpan indeks menu yang dipilih
 
   @override
   Widget build(BuildContext context) {
@@ -59,91 +60,112 @@ class _ProfilePageState extends State<ProfilePage> {
               ],
             ),
           ),
+
+          // Daftar menu profile
           Container(
             color: const Color(0xFF393E46),
-            child: const Column(
+            child: Column(
               children: [
                 Divider(
                     height: 0,
                     color: Color(0xFF888888),
-                    thickness:
-                        0.2), // Garis atas sebelum "Edit Profile" (dengan ketebalan 2)
-                MenuItem(Icons.person, 'Edit Profile'),
+                    thickness: 0.2), // Garis atas sebelum "Edit Profile" (dengan ketebalan 2)
+                MenuItem(
+                  Icons.person,
+                  'Edit Profile',
+                  isSelected: _selectedMenuIndex == 0,
+                  onPressed: () {
+                    _selectMenu(0);
+                  },
+                ),
                 Divider(
                     height: 0,
                     color: Color(0xFF888888),
                     thickness: 0.2), // Garis bawah
-                MenuItem(Icons.account_balance_wallet, 'Wallet'),
+                MenuItem(
+                  Icons.account_balance_wallet,
+                  'Wallet',
+                  isSelected: _selectedMenuIndex == 1,
+                  onPressed: () {
+                    _selectMenu(1);
+                  },
+                ),
                 Divider(
                     height: 0,
                     color: Color(0xFF888888),
                     thickness: 0.2), // Garis bawah
-                MenuItem(Icons.star, 'Rate Flutix'),
+                MenuItem(
+                  Icons.star,
+                  'Rate Flutix',
+                  isSelected: _selectedMenuIndex == 2,
+                  onPressed: () {
+                    _selectMenu(2);
+                  },
+                ),
                 Divider(
                     height: 0,
                     color: Color(0xFF888888),
                     thickness: 0.2), // Garis bawah
-                MenuItem(Icons.help, 'Help'),
+                MenuItem(
+                  Icons.help,
+                  'Help',
+                  isSelected: _selectedMenuIndex == 3,
+                  onPressed: () {
+                    _selectMenu(3);
+                  },
+                ),
               ],
             ),
           ),
-          // BottomNavigationBar(
-          //   backgroundColor: const Color(0xFFFFDF00),
-          //   items: const [
-          //     BottomNavigationBarItem(
-          //       icon: Icon(Icons.confirmation_number, color: Color(0xFF393E46)),
-          //       label: 'Tiket',
-          //     ),
-          //     BottomNavigationBarItem(
-          //       icon: Icon(Icons.home, color: Color(0xFF393E46)),
-          //       label: 'Home',
-          //     ),
-          //     BottomNavigationBarItem(
-          //       icon: Icon(Icons.person, color: Color(0xFFDAA520)),
-          //       label: 'Profile',
-          //     ),
-          //   ],
-          //   selectedItemColor: const Color(0xFF393E46), 
-          //   unselectedItemColor: const Color(0xFF393E46), 
-          //   showSelectedLabels: true, 
-          //   showUnselectedLabels: true, 
-          //   type: BottomNavigationBarType
-          //       .fixed, // Untuk menampilkan label pada semua ikon
-          // )
         ],
       ),
       bottomNavigationBar: BottomNav(index: _index),
     );
+  }
+
+  // Fungsi untuk menangani pemilihan menu
+  void _selectMenu(int index) {
+    setState(() {
+      _selectedMenuIndex = index;
+    });
   }
 }
 
 class MenuItem extends StatelessWidget {
   final IconData icon;
   final String label;
+  final bool isSelected;
+  final VoidCallback onPressed;
 
-  const MenuItem(this.icon, this.label, {Key? key}) : super(key: key);
+  const MenuItem(this.icon, this.label,
+      {Key? key, required this.isSelected, required this.onPressed})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      padding: const EdgeInsets.all(16),
-      child: Row(
-        children: [
-          Icon(
-            icon,
-            size: 40,
-            color: const Color(0xFFFFDF00),
-          ),
-          const SizedBox(width: 16),
-          Text(
-            label,
-            style: const TextStyle(
-              color: Colors.white,
-              fontSize: 14,
-              fontFamily: 'Inter',
+    return InkWell(
+      onTap: onPressed,
+      child: Container(
+        padding: const EdgeInsets.all(16),
+        color: isSelected ? const Color(0xFFDAA520) : null,
+        child: Row(
+          children: [
+            Icon(
+              icon,
+              size: 40,
+              color: isSelected ? Colors.black : const Color(0xFFFFDF00),
             ),
-          ),
-        ],
+            const SizedBox(width: 16),
+            Text(
+              label,
+              style: const TextStyle(
+                color: Colors.white,
+                fontSize: 14,
+                fontFamily: 'Inter',
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }
