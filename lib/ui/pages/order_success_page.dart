@@ -76,7 +76,11 @@ class _OrderSuccessPageState extends State<OrderSuccessPage> {
 
             ElevatedButton(
               onPressed: () {
-                Navigator.pushNamed(context, '/success');
+                Navigator.of(context).push(MaterialPageRoute(
+                  builder: (context) {
+                    return const TicketDetailPage();
+                  },
+                ));
               },
               style: ElevatedButton.styleFrom(
                 backgroundColor: Color(0xFFFFDF00), 
@@ -105,7 +109,11 @@ class _OrderSuccessPageState extends State<OrderSuccessPage> {
 
             ElevatedButton(
               onPressed: () {
-                Navigator.pushNamed(context, '/success');
+                Navigator.of(context).pushReplacement(MaterialPageRoute(
+                  builder: (context) {
+                    return const Home();
+                  },
+                ));
               },
               style: ElevatedButton.styleFrom(
                 backgroundColor: Color(0xFF393E46), 

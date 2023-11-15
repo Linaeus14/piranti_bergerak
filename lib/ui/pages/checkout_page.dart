@@ -281,23 +281,51 @@ class CheckoutPage extends StatelessWidget {
                               ),
                             ],
                           ),
-                          ClipOval(
-                            child: Container(
-                              width: 35,
-                              height: 35,
-                              decoration: const BoxDecoration(
-                                shape: BoxShape.circle,
-                                color: Colors.yellow,
-                              ),
-                              child: const Center(
-                                child: Icon(
-                                  Icons.add,
-                                  color: Color(0xFF393E46),
-                                  size: 20,
+                          GestureDetector(
+                            onTap: () {
+                              // Fungsi yang akan dijalankan ketika ikon diklik
+                              Navigator.of(context).push(MaterialPageRoute(
+                                builder: (context) {
+                                  return const MyWalletPage();
+                                },
+                              ));
+                            },
+                            child: ClipOval(
+                              child: Container(
+                                width: 35,
+                                height: 35,
+                                decoration: const BoxDecoration(
+                                  shape: BoxShape.circle,
+                                  color: Colors.yellow,
+                                ),
+                                child: const Center(
+                                  child: Icon(
+                                    Icons.add,
+                                    color: Color(0xFF393E46),
+                                    size: 20,
+                                  ),
                                 ),
                               ),
                             ),
                           ),
+
+                          // ClipOval(
+                          //   child: Container(
+                          //     width: 35,
+                          //     height: 35,
+                          //     decoration: const BoxDecoration(
+                          //       shape: BoxShape.circle,
+                          //       color: Colors.yellow,
+                          //     ),
+                          //     child: const Center(
+                          //       child: Icon(
+                          //         Icons.add,
+                          //         color: Color(0xFF393E46),
+                          //         size: 20,
+                          //       ),
+                          //     ),
+                          //   ),
+                          // ),
                         ],
                       ),
                     ),

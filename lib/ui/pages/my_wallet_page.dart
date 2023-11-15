@@ -1,5 +1,4 @@
-import 'package:flutter/material.dart';
-import 'package:intl/intl.dart';
+part of 'pages.dart';
 
 class MyWalletPage extends StatefulWidget {
   const MyWalletPage({super.key});
@@ -172,7 +171,13 @@ class _MyWalletPageState extends State<MyWalletPage> {
             Container(
               padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 60),
               child: ElevatedButton(
-                onPressed: () {},
+                onPressed: () {
+                  Navigator.of(context).push(MaterialPageRoute(
+                    builder: (context) {
+                      return const TopUpSuccessPage();
+                    },
+                  ));
+                },
                 style: ElevatedButton.styleFrom(
                   backgroundColor: const Color(0xFFFFDF00),
                   shape: RoundedRectangleBorder(

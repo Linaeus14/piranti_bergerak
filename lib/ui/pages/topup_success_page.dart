@@ -107,7 +107,9 @@ class TopUpSuccessPage extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   ElevatedButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      Navigator.of(context).pop();
+                    },
                     style: ElevatedButton.styleFrom(
                       backgroundColor: const Color(0xFFFFDF00),
                       shape: RoundedRectangleBorder(
@@ -131,7 +133,13 @@ class TopUpSuccessPage extends StatelessWidget {
                   ),
                   const SizedBox(height: 3), // jarak button
                   ElevatedButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      Navigator.of(context).pushReplacement(MaterialPageRoute(
+                        builder: (context) {
+                          return const Home();
+                        },
+                      ));
+                    },
                     style: ElevatedButton.styleFrom(
                       backgroundColor: const Color(0xFF393E46),
                       shape: RoundedRectangleBorder(

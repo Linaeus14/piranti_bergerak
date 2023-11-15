@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/gestures.dart';
+import 'package:intl/intl.dart';
+import 'package:piranti_bergerak/ui/pages/ticket_detail_page.dart';
 import 'package:piranti_bergerak/ui/widgets/widgets.dart';
 
 part 'user_profile.dart';
@@ -16,3 +18,4 @@ part 'my_ticket_page.dart';
 part 'movie_home_page.dart';
 part 'movie_detail_page.dart';
 part 'seat_page.dart';
+part 'my_wallet_page.dart';
