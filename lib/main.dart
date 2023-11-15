@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:piranti_bergerak/firebase_options.dart';
@@ -6,11 +7,11 @@ import 'package:piranti_bergerak/ui/pages/checkout_page.dart';
 import 'package:piranti_bergerak/ui/pages/pages.dart';
 import 'package:piranti_bergerak/ui/pages/ticket_detail_page.dart';
 
-void main() async{
+void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(
     name: "pirantibergerak",
-    options:  DefaultFirebaseOptions.currentPlatform,
+    options: DefaultFirebaseOptions.currentPlatform,
   );
   runApp(const MyApp());
 }
@@ -20,9 +21,22 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
+    return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: SplashPage()
+
+      // home: SplashPage()
+
+      home: StreamBuilder<User?>(
+        stream: FirebaseAuth.instance.authStateChanges(),
+        builder: (context, snapshot) {
+          if (snapshot.hasData) {
+            return const SplashPage();
+          } else {
+            return const SignIn();
+          }
+        },
+      ),
+
       // home: Scaffold(
       //     body: Center(
       //   child: Column(
