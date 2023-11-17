@@ -209,6 +209,7 @@ class _UserProfileState extends State<UserProfile> {
                                 ],
                                 onPressed: (pressIndex) {
                                   setState(() {
+                                    
                                     if (_selections2[index] == true) {
                                       _selections2[index] = false;
                                     } else {
@@ -271,6 +272,8 @@ class _UserProfileState extends State<UserProfile> {
                         foregroundColor: Colors.black,
                       ),
                       onPressed: () {
+                        selectedGenres(context);
+                        selectedLanguage(context);
                         Navigator.of(context).pushReplacement(MaterialPageRoute(
                           builder: (context) {
                             return const SuccessPage();
@@ -295,5 +298,78 @@ class _UserProfileState extends State<UserProfile> {
         ],
       ),
     );
+    
   }
+
+  Future<void> selectedGenres(BuildContext context) async {
+    List<String> selectedGenres = [];
+    for (int i = 0; i < _selections1.length; i++) {
+      if (_selections1[i]) {
+        selectedGenres.add(_genre[i]);
+      }
+    }
+
+    // String uid = FirebaseAuth.instance.currentUser!.uid;
+    String userId = Provider.of<UserIdProvider>(context, listen: false).userId;
+
+    print('user : $userId');
+
+    try {
+      await FirebaseFirestore.instance
+          .collection('users')
+          .doc(userId)
+          .update({
+            'genre': selectedGenres,
+          });
+
+    } catch (e) {
+      return;
+      // Handle error appropriately
+    }
+  }
+
+  Future<void> selectedLanguage(BuildContext context) async {
+    List<String> selectedLanguage = [];
+    for (int i = 0; i < _selections2.length; i++) {
+      if (_selections2[i]) {
+        selectedLanguage.add(_lang[i]);
+      }
+    }
+
+    // String uid = FirebaseAuth.instance.currentUser!.uid;
+    String userId = Provider.of<UserIdProvider>(context, listen: false).userId;
+
+    print('user : $userId');
+
+    try {
+      await FirebaseFirestore.instance
+          .collection('users')
+          .doc(userId)
+          .update({
+            'language': selectedLanguage,
+          });
+
+    } catch (e) {
+      return;
+      // Handle error appropriately
+    }
+  }
+
+  // Future<void> saveSelectedGenres(List<String> selectedGenres) async {
+  //   String uid = FirebaseAuth.instance.currentUser!.uid;
+
+  //   try {
+  //     await FirebaseFirestore.instance
+  //         .collection('users')
+  //         .doc(uid)
+  //         .update({
+  //           'selectedGenres': selectedGenres,
+  //         });
+
+  //   } catch (e) {
+  //     return;
+  //     // Handle error appropriately
+  //   }
+  // }
+
 }

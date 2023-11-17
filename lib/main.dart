@@ -2,10 +2,12 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:piranti_bergerak/firebase_options.dart';
+import 'package:piranti_bergerak/models/regis.dart';
 import 'package:piranti_bergerak/services/services.dart';
 import 'package:piranti_bergerak/ui/pages/checkout_page.dart';
 import 'package:piranti_bergerak/ui/pages/pages.dart';
 import 'package:piranti_bergerak/ui/pages/ticket_detail_page.dart';
+import 'package:provider/provider.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -21,52 +23,61 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
+    return MultiProvider(
+      providers: [
+        ChangeNotifierProvider(create: (context) => UserIdProvider()),
+      ],
+      child: Builder(
+        builder: (context) {
+          return MaterialApp(
+            debugShowCheckedModeBanner: false,
 
-      // home: SplashPage()
+            // home: SplashPage()
 
-      home: StreamBuilder<User?>(
-        stream: FirebaseAuth.instance.authStateChanges(),
-        builder: (context, snapshot) {
-          if (snapshot.hasData) {
-            return const SplashPage();
-          } else {
-            return const SignIn();
-          }
-        },
+            home: StreamBuilder<User?>(
+              stream: FirebaseAuth.instance.authStateChanges(),
+              builder: (context, snapshot) {
+                if (snapshot.hasData) {
+                  return const SplashPage();
+                } else {
+                  return const SignIn();
+                }
+              },
+            ),
+
+            // home: Scaffold(
+            //     body: Center(
+            //   child: Column(
+            //     mainAxisAlignment: MainAxisAlignment.center,
+            //     children: <Widget>[
+            //       ElevatedButton(
+            //         style: ElevatedButton.styleFrom(
+            //           foregroundColor: Colors.white,
+            //           backgroundColor: Colors.red, // foreground
+            //         ),
+            //         onPressed: () async {
+            //           await AutServices.signUp("tito2@gmail.com", "111111",
+            //               "tito2", ["Action", "Drama"], "English");
+            //         },
+            //         child: const Text('Sign Up'),
+            //       ),
+            //       ElevatedButton(
+            //         style: ElevatedButton.styleFrom(
+            //           foregroundColor: Colors.white,
+            //           backgroundColor:
+            //               const Color.fromARGB(255, 52, 123, 255), // foreground
+            //         ),
+            //         onPressed: () async {
+            //           await AutServices.signIn("tito2@gmail.com", "111111");
+            //         },
+            //         child: const Text('Sign In'),
+            //       )
+            //     ],
+            //   ),
+            // )),
+          );
+        }
       ),
-
-      // home: Scaffold(
-      //     body: Center(
-      //   child: Column(
-      //     mainAxisAlignment: MainAxisAlignment.center,
-      //     children: <Widget>[
-      //       ElevatedButton(
-      //         style: ElevatedButton.styleFrom(
-      //           foregroundColor: Colors.white,
-      //           backgroundColor: Colors.red, // foreground
-      //         ),
-      //         onPressed: () async {
-      //           await AutServices.signUp("tito2@gmail.com", "111111",
-      //               "tito2", ["Action", "Drama"], "English");
-      //         },
-      //         child: const Text('Sign Up'),
-      //       ),
-      //       ElevatedButton(
-      //         style: ElevatedButton.styleFrom(
-      //           foregroundColor: Colors.white,
-      //           backgroundColor:
-      //               const Color.fromARGB(255, 52, 123, 255), // foreground
-      //         ),
-      //         onPressed: () async {
-      //           await AutServices.signIn("tito2@gmail.com", "111111");
-      //         },
-      //         child: const Text('Sign In'),
-      //       )
-      //     ],
-      //   ),
-      // )),
     );
   }
 }

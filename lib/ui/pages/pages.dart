@@ -1,9 +1,17 @@
+import 'dart:io';
+import 'dart:math';
+
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/gestures.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:intl/intl.dart';
+import 'package:piranti_bergerak/models/regis.dart';
 import 'package:piranti_bergerak/services/auth.dart';
 import 'package:piranti_bergerak/ui/pages/ticket_detail_page.dart';
 import 'package:piranti_bergerak/ui/widgets/widgets.dart';
+import 'package:provider/provider.dart';
 
 part 'user_profile.dart';
 part 'success_page.dart';

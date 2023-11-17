@@ -7,7 +7,7 @@ class AutServices {
   static get user1 => null;
 
   static Future<void> signUp(String email, String password, String name,
-      List<String> selectedGenres, String selectedLanguage) async {
+    List<String> selectedGenres, String selectedLanguage) async {
     try {
       UserCredential result = await _auth.createUserWithEmailAndPassword(
           email: email, password: password);

@@ -8,6 +8,7 @@ class SignUp extends StatefulWidget {
 }
 
 class _SignUpState extends State<SignUp> {
+  String idDocument = '';
 
   final _formKey = GlobalKey<FormState>();
 
@@ -15,9 +16,45 @@ class _SignUpState extends State<SignUp> {
 
   final TextEditingController _ctrlPassword = TextEditingController();
 
+  final TextEditingController _ctrlNama = TextEditingController();
+
+  // @override
+  // void dispose() {
+  //   _ctrlEmail.dispose();
+  //   _ctrlEmail.dispose();
+  //   _ctrlNama.dispose();
+  //   super.dispose();
+  // }
+
+  // @override
+  // void initState() {
+  //   super.initState();
+  //   _ctrlEmail.addListener(_printLatestEmail);
+  //   _ctrlPassword.addListener(_printLatestPassword);
+  //   _ctrlNama.addListener(_printLatestNama);
+  // }
+
+  // void _printLatestEmail() {
+  //   print('Nama : ${_ctrlEmail.text}');
+  // }
+
+  // void _printLatestPassword() {
+  //   print('Nama : ${_ctrlPassword.text}');
+  // }
+
+  // void _printLatestNama() {
+  //   print('Usia : ${_ctrlNama.text}');
+  // }
+
+  String imagePath = '';
+  
   @override
   Widget build(BuildContext context) {
+    FirebaseFirestore firestore = FirebaseFirestore.instance;
+    // CollectionReference users = firestore.collection("data_user");
+
     bool isButtonPressed = false;
+
     return Center(
       child: Form(
         key: _formKey,
@@ -139,7 +176,7 @@ class _SignUpState extends State<SignUp> {
                     child: Material(
                       color: const Color(0xff393e46),
                       child: TextField(
-                        controller: TextEditingController(),
+                        controller: _ctrlNama,
                         decoration: const InputDecoration(
                           floatingLabelBehavior: FloatingLabelBehavior.always,
                           contentPadding: EdgeInsets.symmetric(
@@ -178,19 +215,36 @@ class _SignUpState extends State<SignUp> {
                     height: 93,
                     child: Row(
                       crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
-                        Container(
-                          margin: const EdgeInsets.fromLTRB(0, 0, 45.62, 0),
-                          width: 98.84,
-                          height: 93,
-                          decoration: BoxDecoration(
-                            image: const DecorationImage(
-                                image: AssetImage("assets/Profile.png"),
-                                fit: BoxFit.cover),
-                            border: Border.all(color: const Color(0xFFFFDF00)),
-                            borderRadius: BorderRadius.circular(70),
+                      children: <Widget> [
+                        
+                        (imagePath.isNotEmpty)
+                          ?
+                          Container(
+                            margin: const EdgeInsets.fromLTRB(0, 0, 45.62, 0),
+                            width: 98.84,
+                            height: 93,
+                            decoration: BoxDecoration(
+                              image: DecorationImage(
+                                  image: NetworkImage(imagePath),
+                                  fit: BoxFit.cover),
+                              border: Border.all(color: const Color(0xFFFFDF00)),
+                              borderRadius: BorderRadius.circular(70),
+                            ),
+                          )
+                          :
+                          Container(
+                            margin: const EdgeInsets.fromLTRB(0, 0, 45.62, 0),
+                            width: 98.84,
+                            height: 93,
+                            decoration: BoxDecoration(
+                              image: const DecorationImage(
+                                  image: AssetImage("assets/Profile.png"),
+                                  fit: BoxFit.cover),
+                              border: Border.all(color: const Color(0xFFFFDF00)),
+                              borderRadius: BorderRadius.circular(70),
+                            ),
                           ),
-                        ),
+                          
                         SizedBox(
                           // margin: const EdgeInsets.fromLTRB(0, 22.14, 0, 15.5),
                           width: 160.53,
@@ -215,7 +269,14 @@ class _SignUpState extends State<SignUp> {
                                 ),
                               ),
                               OutlinedButton(
-                                onPressed: () {},
+                                onPressed: () async {
+                                  XFile? file = await getImage();
+                                  imagePath = await Auth().uploadImage(file);
+
+                                  setState(() {
+
+                                  });
+                                },
                                 style: OutlinedButton.styleFrom(
                                   shape: RoundedRectangleBorder(
                                     borderRadius: BorderRadius.circular(5.0),
@@ -244,6 +305,15 @@ class _SignUpState extends State<SignUp> {
                   ElevatedButton(
                     onPressed: () {
                       handleSubmit();
+                      // users.add({
+                      //   'email': _ctrlEmail.text,
+                      //   'password': _ctrlPassword.text,
+                      //   'nama': _ctrlNama.text,
+                      //   'profile': imagePath,
+                      //   'genre' : [],
+                      //   'language' : [],
+                      // });
+                      addUserToFirestore();
                     },
                     style: ElevatedButton.styleFrom(
                       fixedSize: const Size(330, 40),
@@ -334,44 +404,72 @@ class _SignUpState extends State<SignUp> {
   // }
 
   handleSubmit() async {
-  if (!_formKey.currentState!.validate()) return;
+    if (!_formKey.currentState!.validate()) return;
 
-  final email = _ctrlEmail.value.text;
-  final password = _ctrlPassword.value.text;
+    final email = _ctrlEmail.value.text;
+    final password = _ctrlPassword.value.text;
 
-  bool registrationSuccess = await Auth().regis(email, password);
+    bool registrationSuccess = await Auth().regis(email, password);
 
-  if (registrationSuccess) {
-    // Jika registrasi berhasil, arahkan pengguna ke halaman profil
+    if (registrationSuccess) {
+      // Jika registrasi berhasil, arahkan pengguna ke halaman profil
 
-    // ignore: use_build_context_synchronously
-    Navigator.of(context).pushReplacement(MaterialPageRoute(
-      builder: (context) {
-        return const UserProfile();
-      },
-    ));
-  } else {
-    // Jika registrasi gagal, tampilkan AlertDialog
+      // ignore: use_build_context_synchronously
+      Navigator.of(context).pushReplacement(MaterialPageRoute(
+        builder: (context) {
+          return const UserProfile();
+        },
+      ));
+    } else {
+      // Jika registrasi gagal, tampilkan AlertDialog
 
-    // ignore: use_build_context_synchronously
-    showDialog(
-      context: context,
-      builder: (BuildContext context) {
-        return AlertDialog(
-          title: const Text("Registrasi Gagal"),
-          content: const Text("Akun sudah didaftarkan."),
-          actions: <Widget>[
-            TextButton(
-              onPressed: () {
-                Navigator.of(context).pop(); // Tutup AlertDialog
-              },
-              child: const Text("OK"),
-            ),
-          ],
-        );
-      },
-    );
+      // ignore: use_build_context_synchronously
+      showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return AlertDialog(
+            title: const Text("Registrasi Gagal"),
+            content: const Text("Akun sudah didaftarkan."),
+            actions: <Widget>[
+              TextButton(
+                onPressed: () {
+                  Navigator.of(context).pop(); // Tutup AlertDialog
+                },
+                child: const Text("OK"),
+              ),
+            ],
+          );
+        },
+      );
+    }
+  }
+
+  Future<XFile?> getImage() async {
+    return await ImagePicker().pickImage(source: ImageSource.gallery);
+  }
+
+
+  Future<void> addUserToFirestore() async {
+    CollectionReference users = FirebaseFirestore.instance.collection('users');
+
+    try {
+      DocumentReference result = await users.add({
+        'email': _ctrlEmail.text,
+        'password': _ctrlPassword.text,
+        'nama': _ctrlNama.text,
+        'profile': imagePath,
+        'genre': [],
+        'language': [],
+      });
+
+      // ignore: use_build_context_synchronously
+      Provider.of<UserIdProvider>(context, listen: false).userId = result.id;
+
+      print('Added user with ID: ${result.id}');
+    } catch (e) {
+      print('Error adding user: $e');
+    }
   }
 }
 
-}
+
