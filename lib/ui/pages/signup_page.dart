@@ -415,7 +415,8 @@ class _SignUpState extends State<SignUp> {
                       ),
                       ElevatedButton(
                         onPressed: () {
-                          handleSubmit();
+                          handleSubmit();  
+                          // addUserToFirestore(); 
                         },
                         style: ElevatedButton.styleFrom(
                           fixedSize: const Size(330, 40),
@@ -510,8 +511,8 @@ class _SignUpState extends State<SignUp> {
 
     if (registrationSuccess) {
       // Jika registrasi berhasil, arahkan pengguna ke halaman profil
-      addUserToFirestore();
-
+      await addUserToFirestore();
+      
       // ignore: use_build_context_synchronously
       Navigator.of(context).pushReplacement(MaterialPageRoute(
         builder: (context) {
