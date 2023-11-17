@@ -10,6 +10,18 @@ class SuccessPage extends StatefulWidget {
 }
 
 class _SuccessPageState extends State<SuccessPage> {
+  late ImageProvider _currentImage;
+  late String _currentNameUser;
+
+  @override
+  void initState() {
+    super.initState();
+    _loadProfilePath();
+    _loadName();
+    _currentImage = AssetImage("assets/Profile.png");
+    _currentNameUser = 'User';
+  }
+  
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -28,6 +40,7 @@ class _SuccessPageState extends State<SuccessPage> {
               textAlign: TextAlign.center,
             ),
             SizedBox(height: 80),
+
             Container(
               width: 200,
               height: 200,
@@ -38,11 +51,12 @@ class _SuccessPageState extends State<SuccessPage> {
                   width: 5,
                 ),
                 image: DecorationImage(
-                  image: AssetImage('assets/profile.jpg'),
+                  image: _currentImage,
                   fit: BoxFit.cover,
                 ),
               ),
             ),
+              
             SizedBox(height: 80),
             Text(
               'Welcome,',
@@ -53,7 +67,7 @@ class _SuccessPageState extends State<SuccessPage> {
               ),
             ),
             Text(
-              'Anatasya!',
+              '$_currentNameUser!',
               style: TextStyle(
                 color: Colors.white,
                 fontFamily: 'Raleway',
@@ -127,5 +141,43 @@ class _SuccessPageState extends State<SuccessPage> {
         ),
       ),
     );
+  }
+
+  Future<void> _loadProfilePath() async {
+    try {
+      String userId = Provider.of<UserIdProvider>(context, listen: false).userId;
+      final userDoc =
+          await FirebaseFirestore.instance.collection('users').doc(userId).get();
+
+      // Mendapatkan path gambar profil dari dokumen Firestore
+      final profilePath = userDoc.data()?['profile'];
+
+      if (profilePath != null && profilePath.isNotEmpty) {
+        setState(() {
+          _currentImage = NetworkImage(profilePath);
+        });
+      }
+    } catch (e) {
+      print('Error loading profile path: $e');
+    }
+  }
+
+  Future<void> _loadName() async {
+    try {
+      String userId = Provider.of<UserIdProvider>(context, listen: false).userId;
+      final userDoc =
+          await FirebaseFirestore.instance.collection('users').doc(userId).get();
+
+      // Mendapatkan path gambar profil dari dokumen Firestore
+      final name = userDoc.data()?['nama'];
+
+      if (name != null && name.isNotEmpty) {
+        setState(() {
+          _currentNameUser = name;
+        });
+      }
+    } catch (e) {
+      print('Error loading profile path: $e');
+    }
   }
 }

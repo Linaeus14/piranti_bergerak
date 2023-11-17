@@ -14,8 +14,8 @@ class _SignInState extends State<SignIn> {
 
   final TextEditingController _ctrlPassword = TextEditingController();
 
-  bool loginFailed = false;
 
+  bool loginFailed = false;
   @override
   Widget build(BuildContext context) {
     bool isButtonPressed = false;
