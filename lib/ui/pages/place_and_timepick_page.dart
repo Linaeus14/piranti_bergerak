@@ -8,11 +8,10 @@ class PlaceAndTimePick extends StatefulWidget {
 }
 
 class _PlaceAndTimePickState extends State<PlaceAndTimePick> {
-  
   final List<bool> _selectionsCinema = List.generate(6, (index) => false);
   final List<bool> _selectionsDay = List.generate(7, (index) => false);
   final List<bool> _selectionsTime = List.generate(8, (index) => false);
-  
+
   final List<String> _location = [
     'BIG MALL \nPREMIERE',
     'BIG MALL \nXXI',
@@ -42,7 +41,7 @@ class _PlaceAndTimePickState extends State<PlaceAndTimePick> {
     '14.00',
     '22.00',
   ];
-  
+
   final ScrollController _scrollContollerOne = ScrollController();
   final ScrollController _scrollContollerTwo = ScrollController();
   final ScrollController _scrollContollerThree = ScrollController();
@@ -69,7 +68,8 @@ class _PlaceAndTimePickState extends State<PlaceAndTimePick> {
               color: const Color(0xFF393E46),
               boxShadow: [
                 BoxShadow(
-                  color: Colors.black.withOpacity(0.3), // Warna shadow dengan tingkat transparansi
+                  color: Colors.black.withOpacity(
+                      0.3), // Warna shadow dengan tingkat transparansi
                   blurRadius: 2, // Lebar blur
                   spreadRadius: 1, // Lebar penyebaran shadow
                   offset: const Offset(0, 2), // Posisi shadow
@@ -80,7 +80,10 @@ class _PlaceAndTimePickState extends State<PlaceAndTimePick> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Padding(
-                  padding: EdgeInsets.only(left: 15.0, top: 35.0), // Ubah nilai left sesuai dengan jumlah padding yang diinginkan
+                  padding: EdgeInsets.only(
+                      left: 15.0,
+                      top:
+                          35.0), // Ubah nilai left sesuai dengan jumlah padding yang diinginkan
                   child: Text(
                     "STARS WARS : THE FORCE AWAKENS",
                     style: TextStyle(
@@ -91,7 +94,10 @@ class _PlaceAndTimePickState extends State<PlaceAndTimePick> {
                   ),
                 ),
                 Padding(
-                  padding: EdgeInsets.only(left: 15.0, top: 7.0), // Ubah nilai left sesuai dengan jumlah padding yang diinginkan
+                  padding: EdgeInsets.only(
+                      left: 15.0,
+                      top:
+                          7.0), // Ubah nilai left sesuai dengan jumlah padding yang diinginkan
                   child: Text(
                     "Action, Adventure, Sci-fi - English",
                     style: TextStyle(
@@ -107,7 +113,9 @@ class _PlaceAndTimePickState extends State<PlaceAndTimePick> {
 
           // Konten Scroll 1
           const Padding(
-            padding: EdgeInsets.only(top: 20.0), // Ubah nilai left sesuai dengan jumlah padding yang Anda inginkan
+            padding: EdgeInsets.only(
+                top:
+                    20.0), // Ubah nilai left sesuai dengan jumlah padding yang Anda inginkan
             child: Text(
               "Cinema",
               style: TextStyle(
@@ -136,20 +144,22 @@ class _PlaceAndTimePickState extends State<PlaceAndTimePick> {
                   scrollDirection: Axis.horizontal,
                   controller: _scrollContollerOne,
                   physics: const ScrollPhysics(),
-                  gridDelegate:
-                    const SliverGridDelegateWithFixedCrossAxisCount(childAspectRatio: 1, crossAxisCount: 1),
+                  gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                      childAspectRatio: 1, crossAxisCount: 1),
                   itemCount: 6,
                   itemBuilder: (BuildContext context, int index) {
                     return LayoutBuilder(builder: (context, constraints) {
                       return Stack(
                         children: [
-                          Positioned( // Positioned sebagai latar belakang
+                          Positioned(
+                            // Positioned sebagai latar belakang
                             top: 5.0,
                             left: 10.0,
                             child: Container(
                               width: constraints.maxWidth - 30,
                               height: constraints.maxHeight,
-                              color: const Color(0xFFFFDF00), // Warna latar belakang container
+                              color: const Color(
+                                  0xFFFFDF00), // Warna latar belakang container
                             ),
                           ),
                           ToggleButtons(
@@ -169,27 +179,35 @@ class _PlaceAndTimePickState extends State<PlaceAndTimePick> {
                               Container(
                                 width: constraints.maxWidth - 30,
                                 height: constraints.maxHeight,
-                                color: _selectionsCinema[index] ? const Color(0xFFDAA520) : const Color(0xFF393E46),
+                                color: _selectionsCinema[index]
+                                    ? const Color(0xFFDAA520)
+                                    : const Color(0xFF393E46),
                                 child: Center(
-                                  child: Column( // Mengganti dengan Row untuk menambahkan ikon dan teks secara horizontal
+                                  child: Column(
+                                    // Mengganti dengan Row untuk menambahkan ikon dan teks secara horizontal
                                     mainAxisAlignment: MainAxisAlignment.center,
                                     children: [
-                                      Icon(Icons.place, color: _selectionsCinema[index] ? Colors.black : Colors.white), // Ganti dengan ikon yang sesuai
-                                      
+                                      Icon(Icons.place,
+                                          color: _selectionsCinema[index]
+                                              ? Colors.black
+                                              : Colors
+                                                  .white), // Ganti dengan ikon yang sesuai
+
                                       const SizedBox(height: 7),
-                                      
+
                                       Text(
                                         _location[index],
                                         style: TextStyle(
                                           fontFamily: 'Raleway',
                                           fontSize: 10,
-                                          color: _selectionsCinema[index] ? Colors.black : Colors.white,
+                                          color: _selectionsCinema[index]
+                                              ? Colors.black
+                                              : Colors.white,
                                         ),
                                         textAlign: TextAlign.center,
                                       ),
                                     ],
                                   ),
-
                                 ),
                               ),
                             ],
@@ -198,7 +216,9 @@ class _PlaceAndTimePickState extends State<PlaceAndTimePick> {
                                 if (_selectionsCinema[index] == true) {
                                   _selectionsCinema[index] = false;
                                 } else {
-                                  for (int i = 0; i < _selectionsCinema.length; i++) {
+                                  for (int i = 0;
+                                      i < _selectionsCinema.length;
+                                      i++) {
                                     _selectionsCinema[i] = false;
                                   }
                                   _selectionsCinema[index] = true;
@@ -217,7 +237,9 @@ class _PlaceAndTimePickState extends State<PlaceAndTimePick> {
 
           // Konten Scroll 2
           const Padding(
-            padding: EdgeInsets.only(top: 20.0), // Ubah nilai left sesuai dengan jumlah padding yang Anda inginkan
+            padding: EdgeInsets.only(
+                top:
+                    20.0), // Ubah nilai left sesuai dengan jumlah padding yang Anda inginkan
             child: Text(
               "Date",
               style: TextStyle(
@@ -246,20 +268,22 @@ class _PlaceAndTimePickState extends State<PlaceAndTimePick> {
                   scrollDirection: Axis.horizontal,
                   controller: _scrollContollerTwo,
                   physics: const ScrollPhysics(),
-                  gridDelegate:
-                    const SliverGridDelegateWithFixedCrossAxisCount(childAspectRatio: 1, crossAxisCount: 1),
+                  gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                      childAspectRatio: 1, crossAxisCount: 1),
                   itemCount: 7,
                   itemBuilder: (BuildContext context, int index) {
                     return LayoutBuilder(builder: (context, constraints) {
                       return Stack(
                         children: [
-                          Positioned( // Positioned sebagai latar belakang
+                          Positioned(
+                            // Positioned sebagai latar belakang
                             top: 5.0,
                             left: 10.0,
                             child: Container(
                               width: constraints.maxWidth - 30,
                               height: constraints.maxHeight - 15,
-                              color: const Color(0xFFFFDF00), // Warna latar belakang container
+                              color: const Color(
+                                  0xFFFFDF00), // Warna latar belakang container
                             ),
                           ),
                           ToggleButtons(
@@ -279,9 +303,12 @@ class _PlaceAndTimePickState extends State<PlaceAndTimePick> {
                               Container(
                                 width: constraints.maxWidth - 30,
                                 height: constraints.maxHeight - 20,
-                                color: _selectionsDay[index] ? const Color(0xFFDAA520) : const Color(0xFF393E46),
+                                color: _selectionsDay[index]
+                                    ? const Color(0xFFDAA520)
+                                    : const Color(0xFF393E46),
                                 child: Center(
-                                  child: Column( // Mengganti dengan Row untuk menambahkan ikon dan teks secara horizontal
+                                  child: Column(
+                                    // Mengganti dengan Row untuk menambahkan ikon dan teks secara horizontal
                                     mainAxisAlignment: MainAxisAlignment.center,
                                     children: [
                                       Text(
@@ -289,26 +316,26 @@ class _PlaceAndTimePickState extends State<PlaceAndTimePick> {
                                         style: TextStyle(
                                           fontFamily: 'Raleway',
                                           fontSize: 12,
-                                          color: _selectionsDay[index] ? Colors.black : Colors.white,
+                                          color: _selectionsDay[index]
+                                              ? Colors.black
+                                              : Colors.white,
                                         ),
                                         textAlign: TextAlign.center,
                                       ),
-
                                       const SizedBox(height: 7),
-
                                       Text(
                                         "0${index + 1}", // Menampilkan angka 1 sampai 7
                                         style: TextStyle(
                                           fontFamily: 'Raleway',
                                           fontSize: 12,
-                                          color: _selectionsDay[index] ? Colors.black : Colors.white,
+                                          color: _selectionsDay[index]
+                                              ? Colors.black
+                                              : Colors.white,
                                         ),
                                         textAlign: TextAlign.center,
                                       ),
-                                  
                                     ],
                                   ),
-
                                 ),
                               ),
                             ],
@@ -317,7 +344,9 @@ class _PlaceAndTimePickState extends State<PlaceAndTimePick> {
                                 if (_selectionsDay[index] == true) {
                                   _selectionsDay[index] = false;
                                 } else {
-                                  for (int i = 0; i < _selectionsDay.length; i++) {
+                                  for (int i = 0;
+                                      i < _selectionsDay.length;
+                                      i++) {
                                     _selectionsDay[i] = false;
                                   }
                                   _selectionsDay[index] = true;
@@ -336,7 +365,9 @@ class _PlaceAndTimePickState extends State<PlaceAndTimePick> {
 
           // Konten Scroll 3
           const Padding(
-            padding: EdgeInsets.only(top: 20.0), // Ubah nilai left sesuai dengan jumlah padding yang Anda inginkan
+            padding: EdgeInsets.only(
+                top:
+                    20.0), // Ubah nilai left sesuai dengan jumlah padding yang Anda inginkan
             child: Text(
               "Screen Time",
               style: TextStyle(
@@ -365,20 +396,24 @@ class _PlaceAndTimePickState extends State<PlaceAndTimePick> {
                   scrollDirection: Axis.horizontal,
                   controller: _scrollContollerThree,
                   physics: const ScrollPhysics(),
-                  gridDelegate:
-                    const SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2, childAspectRatio: 2/4, crossAxisSpacing: 15.0),
+                  gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                      crossAxisCount: 2,
+                      childAspectRatio: 2 / 4,
+                      crossAxisSpacing: 15.0),
                   itemCount: 8,
                   itemBuilder: (BuildContext context, int index) {
                     return LayoutBuilder(builder: (context, constraints) {
                       return Stack(
                         children: [
-                          Positioned( // Positioned sebagai latar belakang
+                          Positioned(
+                            // Positioned sebagai latar belakang
                             top: 5.0,
                             left: 10.0,
                             child: Container(
                               width: constraints.maxWidth - 35,
                               height: constraints.maxHeight,
-                              color: const Color(0xFFFFDF00), // Warna latar belakang container
+                              color: const Color(
+                                  0xFFFFDF00), // Warna latar belakang container
                             ),
                           ),
                           ToggleButtons(
@@ -398,14 +433,18 @@ class _PlaceAndTimePickState extends State<PlaceAndTimePick> {
                               Container(
                                 width: constraints.maxWidth - 30,
                                 height: constraints.maxHeight - 5,
-                                color: _selectionsTime[index] ? const Color(0xFFDAA520) : const Color(0xFF393E46),
+                                color: _selectionsTime[index]
+                                    ? const Color(0xFFDAA520)
+                                    : const Color(0xFF393E46),
                                 child: Center(
                                   child: Text(
                                     _time[index],
                                     style: TextStyle(
                                       fontFamily: 'Raleway',
                                       fontSize: 13,
-                                      color: _selectionsTime[index] ? Colors.black : Colors.white,
+                                      color: _selectionsTime[index]
+                                          ? Colors.black
+                                          : Colors.white,
                                     ),
                                     textAlign: TextAlign.center,
                                   ),
@@ -417,7 +456,9 @@ class _PlaceAndTimePickState extends State<PlaceAndTimePick> {
                                 if (_selectionsTime[index] == true) {
                                   _selectionsTime[index] = false;
                                 } else {
-                                  for (int i = 0; i < _selectionsTime.length; i++) {
+                                  for (int i = 0;
+                                      i < _selectionsTime.length;
+                                      i++) {
                                     _selectionsTime[i] = false;
                                   }
                                   _selectionsTime[index] = true;
@@ -438,7 +479,7 @@ class _PlaceAndTimePickState extends State<PlaceAndTimePick> {
 
           ElevatedButton(
             style: ElevatedButton.styleFrom(
-              foregroundColor: const Color(0xFFDAA520), 
+              foregroundColor: const Color(0xFFDAA520),
               backgroundColor: const Color(0xFFFFDF00),
               padding: const EdgeInsets.symmetric(horizontal: 133.0),
             ),
@@ -452,11 +493,10 @@ class _PlaceAndTimePickState extends State<PlaceAndTimePick> {
             child: const Text(
               "Continue",
               style: TextStyle(
-                fontFamily: 'Raleway',
-                color:   Color(0xFF000000),
-                fontSize: 18,
-                fontWeight: FontWeight.bold
-              ),
+                  fontFamily: 'Raleway',
+                  color: Color(0xFF000000),
+                  fontSize: 18,
+                  fontWeight: FontWeight.bold),
             ),
           ),
 
@@ -466,34 +506,33 @@ class _PlaceAndTimePickState extends State<PlaceAndTimePick> {
             onPressed: () {
               setState(() {
                 backPressed = !backPressed;
-                  Navigator.of(context).pushReplacement(MaterialPageRoute(
-                    builder: (context) {
-                      return const MovieDetailPage();
-                    },
-                  ));
+                Navigator.of(context).pop();
               });
             },
             style: ElevatedButton.styleFrom(
-              backgroundColor: backPressed ? const Color(0xFFDAA520) : const Color(0xFF393E46),
-              foregroundColor: const Color(0xFFDAA520), 
-              
+              backgroundColor: backPressed
+                  ? const Color(0xFFDAA520)
+                  : const Color(0xFF393E46),
+              foregroundColor: const Color(0xFFDAA520),
               side: BorderSide(
-                width: 1, 
-                color: backPressed ? const Color(0xFFDAA520) : const Color(0xFFFFDF00),
+                width: 1,
+                color: backPressed
+                    ? const Color(0xFFDAA520)
+                    : const Color(0xFFFFDF00),
               ),
               padding: const EdgeInsets.symmetric(horizontal: 149.0),
             ),
             child: Text(
               "Back",
               style: TextStyle(
-                fontFamily: 'Raleway',
-                color: backPressed ? const Color(0xFF000000) : const Color(0xFFFFDF00),
-                fontSize: 18,
-                fontWeight: FontWeight.bold
-              ),
+                  fontFamily: 'Raleway',
+                  color: backPressed
+                      ? const Color(0xFF000000)
+                      : const Color(0xFFFFDF00),
+                  fontSize: 18,
+                  fontWeight: FontWeight.bold),
             ),
           ),
-
         ],
       ),
     );

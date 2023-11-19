@@ -1,3 +1,2 @@
-import 'package:equatable/equatable.dart';
-
-part 'user.dart';
+part './film.dart';
+part './cast.dart';

@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:piranti_bergerak/ui/pages/checkout_page.dart';
-
+import 'package:piranti_bergerak/models/models.dart';
 import '../pages/pages.dart';
 
 part 'ticket_used.dart';
@@ -10,3 +9,4 @@ part 'home_bottom_navbar.dart';
 part 'home_title.dart';
 part 'row_buttons.dart';
 part 'seat_appbar_title.dart';
+part './custom_card.dart';

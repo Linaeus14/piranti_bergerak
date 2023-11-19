@@ -158,7 +158,7 @@ class _SuccessPageState extends State<SuccessPage> {
         });
       }
     } catch (e) {
-      print('Error loading profile path: $e');
+      debugPrint('Error loading profile path: $e');
     }
   }
 
@@ -177,7 +177,7 @@ class _SuccessPageState extends State<SuccessPage> {
         });
       }
     } catch (e) {
-      print('Error loading profile path: $e');
+      debugPrint('Error loading profile path: $e');
     }
   }
 }

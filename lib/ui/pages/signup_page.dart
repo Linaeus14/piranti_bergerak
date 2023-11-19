@@ -13,55 +13,27 @@ class _SignUpState extends State<SignUp> {
   final _formKey = GlobalKey<FormState>();
 
   final TextEditingController _ctrlEmail = TextEditingController();
-
   final TextEditingController _ctrlPassword = TextEditingController();
-
   final TextEditingController _ctrlNama = TextEditingController();
 
-  // @override
-  // void dispose() {
-  //   _ctrlEmail.dispose();
-  //   _ctrlEmail.dispose();
-  //   _ctrlNama.dispose();
-  //   super.dispose();
-  // }
-
-  // @override
-  // void initState() {
-  //   super.initState();
-  //   _ctrlEmail.addListener(_printLatestEmail);
-  //   _ctrlPassword.addListener(_printLatestPassword);
-  //   _ctrlNama.addListener(_printLatestNama);
-  // }
-
-  // void _printLatestEmail() {
-  //   print('Nama : ${_ctrlEmail.text}');
-  // }
-
-  // void _printLatestPassword() {
-  //   print('Nama : ${_ctrlPassword.text}');
-  // }
-
-  // void _printLatestNama() {
-  //   print('Usia : ${_ctrlNama.text}');
-  // }
+  @override
+  void dispose() {
+    _ctrlEmail.dispose();
+    _ctrlEmail.dispose();
+    _ctrlNama.dispose();
+    super.dispose();
+  }
 
   String imagePath = '';
-
   bool textFieldEmptyEmail = false;
   bool textFieldEmptyPassword = false;
   bool textFieldEmptyNama = false;
-  
+
   @override
   Widget build(BuildContext context) {
-    // FirebaseFirestore firestore = FirebaseFirestore.instance;
-    // CollectionReference users = firestore.collection("data_user");
-
+    // ignore: unused_local_variable
     bool isButtonPressed = false;
-
-
     return Scaffold(
-
       backgroundColor: const Color(0xff393e46),
       body: Center(
         child: Form(
@@ -70,7 +42,6 @@ class _SignUpState extends State<SignUp> {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-              
                 Container(
                   padding: const EdgeInsets.fromLTRB(23, 0, 23, 0),
                   width: double.infinity,
@@ -97,13 +68,13 @@ class _SignUpState extends State<SignUp> {
                           ),
                         ),
                       ),
-          
                       Visibility(
                         visible: textFieldEmptyEmail,
                         child: const Align(
                           alignment: Alignment.centerRight,
                           child: Padding(
-                            padding: EdgeInsets.only(right: 10.0, left: 10.0, bottom: 10.0),
+                            padding: EdgeInsets.only(
+                                right: 10.0, left: 10.0, bottom: 10.0),
                             child: Text(
                               'Email Tidak Boleh Kosong',
                               style: TextStyle(
@@ -115,7 +86,6 @@ class _SignUpState extends State<SignUp> {
                           ),
                         ),
                       ),
-              
                       Container(
                         margin: const EdgeInsets.fromLTRB(5, 0, 5, 22),
                         width: double.infinity,
@@ -127,7 +97,8 @@ class _SignUpState extends State<SignUp> {
                             // controller: TextEditingController(),
                             decoration: const InputDecoration(
                               filled: true,
-                              floatingLabelBehavior: FloatingLabelBehavior.always,
+                              floatingLabelBehavior:
+                                  FloatingLabelBehavior.always,
                               contentPadding: EdgeInsets.symmetric(
                                   horizontal: 20.0, vertical: 20.0),
                               labelText: 'Email Address',
@@ -156,29 +127,25 @@ class _SignUpState extends State<SignUp> {
                               ),
                             ),
                             validator: (value) {
-
                               setState(() {
-
                                 if (value!.isEmpty) {
                                   // return 'Email tidak boleh kosong';
                                   textFieldEmptyEmail = true;
                                 }
-
                               });
 
                               return null;
-                              
                             },
                           ),
                         ),
                       ),
-
                       Visibility(
                         visible: textFieldEmptyPassword,
                         child: const Align(
                           alignment: Alignment.centerRight,
                           child: Padding(
-                            padding: EdgeInsets.only(right: 10.0, left: 10.0, bottom: 10.0),
+                            padding: EdgeInsets.only(
+                                right: 10.0, left: 10.0, bottom: 10.0),
                             child: Text(
                               'Password Tidak Boleh Kosong',
                               style: TextStyle(
@@ -190,7 +157,6 @@ class _SignUpState extends State<SignUp> {
                           ),
                         ),
                       ),
-
                       Container(
                         margin: const EdgeInsets.fromLTRB(5, 0, 5, 22),
                         width: double.infinity,
@@ -201,7 +167,8 @@ class _SignUpState extends State<SignUp> {
                             // controller: TextEditingController(),
                             controller: _ctrlPassword,
                             decoration: const InputDecoration(
-                              floatingLabelBehavior: FloatingLabelBehavior.always,
+                              floatingLabelBehavior:
+                                  FloatingLabelBehavior.always,
                               contentPadding: EdgeInsets.symmetric(
                                   horizontal: 20.0, vertical: 20.0),
                               labelText: 'Password',
@@ -230,29 +197,25 @@ class _SignUpState extends State<SignUp> {
                               ),
                             ),
                             validator: (value) {
-
                               setState(() {
-
                                 if (value!.isEmpty) {
                                   // return 'Email tidak boleh kosong';
                                   textFieldEmptyPassword = true;
                                 }
-
                               });
 
                               return null;
-                              
                             },
                           ),
                         ),
                       ),
-
                       Visibility(
                         visible: textFieldEmptyNama,
                         child: const Align(
                           alignment: Alignment.centerRight,
                           child: Padding(
-                            padding: EdgeInsets.only(right: 10.0, left: 10.0, bottom: 10.0),
+                            padding: EdgeInsets.only(
+                                right: 10.0, left: 10.0, bottom: 10.0),
                             child: Text(
                               'Nama Tidak Boleh Kosong',
                               style: TextStyle(
@@ -264,7 +227,6 @@ class _SignUpState extends State<SignUp> {
                           ),
                         ),
                       ),
-
                       Container(
                         margin: const EdgeInsets.fromLTRB(5, 0, 5, 22),
                         width: double.infinity,
@@ -274,7 +236,8 @@ class _SignUpState extends State<SignUp> {
                           child: TextFormField(
                             controller: _ctrlNama,
                             decoration: const InputDecoration(
-                              floatingLabelBehavior: FloatingLabelBehavior.always,
+                              floatingLabelBehavior:
+                                  FloatingLabelBehavior.always,
                               contentPadding: EdgeInsets.symmetric(
                                   horizontal: 20.0, vertical: 20.0),
                               labelText: 'Name',
@@ -303,59 +266,55 @@ class _SignUpState extends State<SignUp> {
                               ),
                             ),
                             validator: (value) {
-
                               setState(() {
-
                                 if (value!.isEmpty) {
                                   // return 'Nama tidak boleh kosong';
                                   textFieldEmptyNama = true;
                                 }
-
                               });
 
                               return null;
-
                             },
                           ),
                         ),
                       ),
-
                       Container(
                         margin: const EdgeInsets.fromLTRB(16, 0, 16, 36),
                         width: double.infinity,
                         height: 93,
                         child: Row(
                           crossAxisAlignment: CrossAxisAlignment.center,
-                          children: <Widget> [
-                            
+                          children: <Widget>[
                             (imagePath.isNotEmpty)
-                              ?
-                              Container(
-                                margin: const EdgeInsets.fromLTRB(0, 0, 45.62, 0),
-                                width: 98.84,
-                                height: 93,
-                                decoration: BoxDecoration(
-                                  image: DecorationImage(
-                                      image: NetworkImage(imagePath),
-                                      fit: BoxFit.cover),
-                                  border: Border.all(color: const Color(0xFFFFDF00)),
-                                  borderRadius: BorderRadius.circular(70),
-                                ),
-                              )
-                              :
-                              Container(
-                                margin: const EdgeInsets.fromLTRB(0, 0, 45.62, 0),
-                                width: 98.84,
-                                height: 93,
-                                decoration: BoxDecoration(
-                                  image: const DecorationImage(
-                                      image: AssetImage("assets/Profile.png"),
-                                      fit: BoxFit.cover),
-                                  border: Border.all(color: const Color(0xFFFFDF00)),
-                                  borderRadius: BorderRadius.circular(70),
-                                ),
-                              ),
-                              
+                                ? Container(
+                                    margin: const EdgeInsets.fromLTRB(
+                                        0, 0, 45.62, 0),
+                                    width: 98.84,
+                                    height: 93,
+                                    decoration: BoxDecoration(
+                                      image: DecorationImage(
+                                          image: NetworkImage(imagePath),
+                                          fit: BoxFit.cover),
+                                      border: Border.all(
+                                          color: const Color(0xFFFFDF00)),
+                                      borderRadius: BorderRadius.circular(70),
+                                    ),
+                                  )
+                                : Container(
+                                    margin: const EdgeInsets.fromLTRB(
+                                        0, 0, 45.62, 0),
+                                    width: 98.84,
+                                    height: 93,
+                                    decoration: BoxDecoration(
+                                      image: const DecorationImage(
+                                          image:
+                                              AssetImage("assets/Profile.png"),
+                                          fit: BoxFit.cover),
+                                      border: Border.all(
+                                          color: const Color(0xFFFFDF00)),
+                                      borderRadius: BorderRadius.circular(70),
+                                    ),
+                                  ),
                             SizedBox(
                               // margin: const EdgeInsets.fromLTRB(0, 22.14, 0, 15.5),
                               width: 160.53,
@@ -364,8 +323,8 @@ class _SignUpState extends State<SignUp> {
                                 crossAxisAlignment: CrossAxisAlignment.center,
                                 children: [
                                   Container(
-                                    margin:
-                                        const EdgeInsets.fromLTRB(1.09, 0, 0, 4.71),
+                                    margin: const EdgeInsets.fromLTRB(
+                                        1.09, 0, 0, 4.71),
                                     child: const Text(
                                       'Pick a Photo!',
                                       textAlign: TextAlign.center,
@@ -381,16 +340,20 @@ class _SignUpState extends State<SignUp> {
                                   ),
                                   OutlinedButton(
                                     onPressed: () async {
-                                      XFile? file = await getImage();
-                                      imagePath = await Auth().uploadImage(file);
-              
-                                        setState(() {
-              
-                                        });
+                                      XFile? file =
+                                          await Provider.of<UserIdProvider>(
+                                                  context,
+                                                  listen: false)
+                                              .getImage();
+                                      imagePath =
+                                          await Auth().uploadImage(file);
+
+                                      setState(() {});
                                     },
                                     style: OutlinedButton.styleFrom(
                                       shape: RoundedRectangleBorder(
-                                        borderRadius: BorderRadius.circular(5.0),
+                                        borderRadius:
+                                            BorderRadius.circular(5.0),
                                       ),
                                       side: const BorderSide(
                                           color: Color(0xffffdf00), width: 2.0),
@@ -415,14 +378,14 @@ class _SignUpState extends State<SignUp> {
                       ),
                       ElevatedButton(
                         onPressed: () {
-                          handleSubmit();  
-                          // addUserToFirestore(); 
+                          handleSubmit();
                         },
                         style: ElevatedButton.styleFrom(
                           fixedSize: const Size(330, 40),
                         ).merge(
                           ButtonStyle(
-                            backgroundColor: MaterialStateProperty.resolveWith<Color>(
+                            backgroundColor:
+                                MaterialStateProperty.resolveWith<Color>(
                               (Set<MaterialState> states) {
                                 if (states.contains(MaterialState.pressed)) {
                                   isButtonPressed = true;
@@ -507,67 +470,46 @@ class _SignUpState extends State<SignUp> {
     final email = _ctrlEmail.value.text;
     final password = _ctrlPassword.value.text;
 
-    bool registrationSuccess = await Auth().regis(email, password);
+    Map<String, dynamic> registrationSuccess =
+        await Auth().regis(email, password);
 
-    if (registrationSuccess) {
+    if (registrationSuccess['success']) {
       // Jika registrasi berhasil, arahkan pengguna ke halaman profil
-      await addUserToFirestore();
-      
-      // ignore: use_build_context_synchronously
+      if (!context.mounted) return;
+      await Provider.of<UserIdProvider>(context, listen: false)
+          .addUserToFirestore(registrationSuccess['userId'], _ctrlEmail.text,
+              _ctrlNama.text, imagePath);
+
+      if (!context.mounted) return;
       Navigator.of(context).pushReplacement(MaterialPageRoute(
         builder: (context) {
           return const UserProfile();
         },
       ));
-    } else {
-      // Jika registrasi gagal, tampilkan AlertDialog
-
-      // ignore: use_build_context_synchronously
-      showDialog(
-        context: context,
-        builder: (BuildContext context) {
-          return AlertDialog(
-            title: const Text("Registrasi Gagal"),
-            actions: <Widget>[
-              TextButton(
-                onPressed: () {
-                  Navigator.of(context).pop(); // Tutup AlertDialog
-                },
-                child: const Text("OK"),
-              ),
-            ],
-          );
-        },
-      );
+    }
+    // Jika registrasi gagal, tampilkan AlertDialog
+    else {
+      if (!context.mounted) return;
+      dialog("Registrasi Gagal");
     }
   }
 
-  Future<XFile?> getImage() async {
-    return await ImagePicker().pickImage(source: ImageSource.gallery);
-  }
-
-
-  Future<void> addUserToFirestore() async {
-    CollectionReference users = FirebaseFirestore.instance.collection('users');
-
-    try {
-      DocumentReference result = await users.add({
-        'email': _ctrlEmail.text,
-        'password': _ctrlPassword.text,
-        'nama': _ctrlNama.text,
-        'profile': imagePath,
-        'genre': [],
-        'language': [],
-      });
-
-      // ignore: use_build_context_synchronously
-      Provider.of<UserIdProvider>(context, listen: false).userId = result.id;
-
-      print('Added user with ID: ${result.id}');
-    } catch (e) {
-      print('Error adding user: $e');
-    }
+  void dialog(String text) {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: Text(text),
+          actions: <Widget>[
+            TextButton(
+              onPressed: () {
+                Navigator.of(context).pop(); // Tutup AlertDialog
+              },
+              child: const Text("OK"),
+            ),
+          ],
+        );
+      },
+    );
   }
 }
-
-

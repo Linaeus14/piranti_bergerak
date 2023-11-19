@@ -312,7 +312,7 @@ class _UserProfileState extends State<UserProfile> {
     // String uid = FirebaseAuth.instance.currentUser!.uid;
     String userId = Provider.of<UserIdProvider>(context, listen: false).userId;
 
-    print('user : $userId');
+    debugPrint('user : $userId');
 
     try {
       await FirebaseFirestore.instance
@@ -339,7 +339,7 @@ class _UserProfileState extends State<UserProfile> {
     // String uid = FirebaseAuth.instance.currentUser!.uid;
     String userId = Provider.of<UserIdProvider>(context, listen: false).userId;
 
-    print('user : $userId');
+    debugPrint('user : $userId');
 
     try {
       await FirebaseFirestore.instance

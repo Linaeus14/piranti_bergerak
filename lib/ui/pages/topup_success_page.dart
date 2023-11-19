@@ -1,7 +1,7 @@
 part of 'pages.dart';
 
 class TopUpSuccessPage extends StatelessWidget {
-  const TopUpSuccessPage({Key? key});
+  const TopUpSuccessPage({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -112,8 +112,8 @@ class TopUpSuccessPage extends StatelessWidget {
                       Navigator.of(context).pop();
                     },
                     style: ElevatedButton.styleFrom(
-                      primary: const Color(0xFFFFDF00),
-                      onPrimary: const Color(0xFFDAA520),
+                      backgroundColor: const Color(0xFFFFDF00),
+                      foregroundColor: const Color(0xFFDAA520),
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(5),
                       ),
@@ -145,8 +145,8 @@ class TopUpSuccessPage extends StatelessWidget {
                       );
                     },
                     style: ElevatedButton.styleFrom(
-                      primary: const Color(0xFF393E46),
-                      onPrimary: const Color(0xFFDAA520),
+                      backgroundColor: const Color(0xFF393E46),
+                      foregroundColor: const Color(0xFFDAA520),
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(5),
                         side: const BorderSide(

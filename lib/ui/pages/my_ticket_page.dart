@@ -131,26 +131,6 @@ class _TicketPageState extends State<TicketPage> {
           ),
         ],
       ),
-      // bottomNavigationBar: BottomNavigationBar(
-      //   type: BottomNavigationBarType.fixed,
-      //   backgroundColor: const Color(0xFFFFDF00),
-      //   unselectedItemColor: const Color(0xFF393E46),
-      //   selectedItemColor: const Color(0xFFDAA520),
-      //   items: const [
-      //     BottomNavigationBarItem(
-      //       icon: Icon(Icons.confirmation_number_sharp),
-      //       label: "Ticket",
-      //     ),
-      //     BottomNavigationBarItem(
-      //       icon: Icon(Icons.home),
-      //       label: "Home",
-      //     ),
-      //     BottomNavigationBarItem(
-      //       icon: Icon(Icons.person),
-      //       label: "Profile",
-      //     ),
-      //   ],
-      // ),
       bottomNavigationBar: BottomNav(index: _index),
     );
   }

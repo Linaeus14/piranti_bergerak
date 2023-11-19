@@ -202,9 +202,8 @@ class _EditProfilePageState extends State<EditProfilePage> {
                   style: ElevatedButton.styleFrom(
                     backgroundColor: backPressed ? const Color(0xFFDAA520) : const Color(0xFF393E46),
                     foregroundColor: const Color(0xFFDAA520), 
-                    
                     side: BorderSide(
-                      width: 1, 
+                      width: 1,
                       color: backPressed ? const Color(0xFFDAA520) : const Color(0xFFFFDF00),
                     ),
                     padding: const EdgeInsets.symmetric(horizontal: 149.0),

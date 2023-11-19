@@ -1,5 +1,4 @@
-import 'package:flutter/material.dart';
-import 'package:piranti_bergerak/ui/pages/pages.dart';
+part of './pages.dart';
 
 class CheckoutPage extends StatelessWidget {
   const CheckoutPage({super.key});
@@ -308,24 +307,6 @@ class CheckoutPage extends StatelessWidget {
                               ),
                             ),
                           ),
-
-                          // ClipOval(
-                          //   child: Container(
-                          //     width: 35,
-                          //     height: 35,
-                          //     decoration: const BoxDecoration(
-                          //       shape: BoxShape.circle,
-                          //       color: Colors.yellow,
-                          //     ),
-                          //     child: const Center(
-                          //       child: Icon(
-                          //         Icons.add,
-                          //         color: Color(0xFF393E46),
-                          //         size: 20,
-                          //       ),
-                          //     ),
-                          //   ),
-                          // ),
                         ],
                       ),
                     ),

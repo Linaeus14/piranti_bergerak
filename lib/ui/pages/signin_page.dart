@@ -11,13 +11,12 @@ class _SignInState extends State<SignIn> {
   final _formKey = GlobalKey<FormState>();
 
   final TextEditingController _ctrlEmail = TextEditingController();
-
   final TextEditingController _ctrlPassword = TextEditingController();
-
 
   bool loginFailed = false;
   @override
   Widget build(BuildContext context) {
+    // ignore: unused_local_variable
     bool isButtonPressed = false;
 
     return Material(
@@ -29,7 +28,8 @@ class _SignInState extends State<SignIn> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Container(
-                padding: const EdgeInsets.fromLTRB(24, 98, 24, 104),
+                margin: const EdgeInsets.only(left: 16, right: 16),
+                padding: const EdgeInsets.all(8.0),
                 width: double.infinity,
                 decoration: const BoxDecoration(
                   color: Color(0xff393e46),
@@ -80,16 +80,14 @@ class _SignInState extends State<SignIn> {
                               color: Color(0xffffdf00),
                               width: 2,
                             ),
-                            borderRadius: BorderRadius.circular(
-                                5),
+                            borderRadius: BorderRadius.circular(5),
                           ),
                           enabledBorder: OutlineInputBorder(
                             borderSide: const BorderSide(
                               color: Color(0xffffdf00),
                               width: 1,
                             ),
-                            borderRadius: BorderRadius.circular(
-                                5),
+                            borderRadius: BorderRadius.circular(5),
                           ),
                         ),
                       ),
@@ -100,38 +98,35 @@ class _SignInState extends State<SignIn> {
                       height: 69,
                       child: Stack(
                         children: [
-                          SizedBox(
-                            width: 335,
-                            height: 58.98,
-                            child: TextField(
-                              controller: _ctrlPassword,
-                              decoration: const InputDecoration(
-                                floatingLabelBehavior: FloatingLabelBehavior.always,
-                                contentPadding: EdgeInsets.symmetric(
-                                    horizontal: 20.0, vertical: 20.0),
-                                labelText: 'Password',
-                                labelStyle: TextStyle(
-                                  fontSize: 14,
-                                  fontWeight: FontWeight.w400,
+                          TextField(
+                            controller: _ctrlPassword,
+                            decoration: const InputDecoration(
+                              floatingLabelBehavior:
+                                  FloatingLabelBehavior.always,
+                              contentPadding: EdgeInsets.symmetric(
+                                  horizontal: 20.0, vertical: 20.0),
+                              labelText: 'Password',
+                              labelStyle: TextStyle(
+                                fontSize: 14,
+                                fontWeight: FontWeight.w400,
+                                color: Color(0xffffdf00),
+                              ),
+                              hintText: 'Input Password',
+                              hintStyle: TextStyle(
+                                fontSize: 14,
+                                fontWeight: FontWeight.w400,
+                                color: Color(0xffcccccc),
+                              ),
+                              focusedBorder: OutlineInputBorder(
+                                borderSide: BorderSide(
                                   color: Color(0xffffdf00),
+                                  width: 2,
                                 ),
-                                hintText: 'Input Password',
-                                hintStyle: TextStyle(
-                                  fontSize: 14,
-                                  fontWeight: FontWeight.w400,
-                                  color: Color(0xffcccccc),
-                                ),
-                                focusedBorder: OutlineInputBorder(
-                                  borderSide: BorderSide(
-                                    color: Color(0xffffdf00),
-                                    width: 2,
-                                  ),
-                                ),
-                                enabledBorder: OutlineInputBorder(
-                                  borderSide: BorderSide(
-                                    color: Color(0xffffdf00),
-                                    width: 1,
-                                  ),
+                              ),
+                              enabledBorder: OutlineInputBorder(
+                                borderSide: BorderSide(
+                                  color: Color(0xffffdf00),
+                                  width: 1,
                                 ),
                               ),
                             ),
@@ -139,7 +134,6 @@ class _SignInState extends State<SignIn> {
                         ],
                       ),
                     ),
-
                     Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 5.0),
                       child: Visibility(
@@ -157,43 +151,42 @@ class _SignInState extends State<SignIn> {
                         ),
                       ),
                     ),
-
                     const SizedBox(
                       height: 114,
                     ),
-
                     ElevatedButton(
-                    onPressed: () {
-                      handleSubmit();
-                    },
-                    style: ElevatedButton.styleFrom(
-                      fixedSize: const Size(330, 40), 
-                    ).merge(
-                      ButtonStyle(
-                        backgroundColor: MaterialStateProperty.resolveWith<Color>(
-                          (Set<MaterialState> states) {
-                            if (states.contains(MaterialState.pressed)) {
-                              isButtonPressed = true;
-                              return const Color(0xFFDAA520); 
-                            } else {
-                              isButtonPressed = false;
-                              return const Color(0xffffdf00);
-                            }
-                          },
+                      onPressed: () {
+                        handleSubmit();
+                      },
+                      style: ElevatedButton.styleFrom(
+                        fixedSize: const Size(330, 40),
+                      ).merge(
+                        ButtonStyle(
+                          backgroundColor:
+                              MaterialStateProperty.resolveWith<Color>(
+                            (Set<MaterialState> states) {
+                              if (states.contains(MaterialState.pressed)) {
+                                isButtonPressed = true;
+                                return const Color(0xFFDAA520);
+                              } else {
+                                isButtonPressed = false;
+                                return const Color(0xffffdf00);
+                              }
+                            },
+                          ),
+                        ),
+                      ),
+                      child: const Text(
+                        'Sign In',
+                        style: TextStyle(
+                          fontFamily: 'Raleway',
+                          fontSize: 16,
+                          fontWeight: FontWeight.w700,
+                          height: 1.175,
+                          color: Color(0xff000000),
                         ),
                       ),
                     ),
-                    child: const Text(
-                      'Sign In',
-                      style: TextStyle(
-                        fontFamily: 'Raleway',
-                        fontSize: 16,
-                        fontWeight: FontWeight.w700,
-                        height: 1.175,
-                        color: Color(0xff000000),
-                      ),
-                    ),
-                  ),
                     const SizedBox(height: 8),
                     RichText(
                       textAlign: TextAlign.center,
@@ -239,19 +232,18 @@ class _SignInState extends State<SignIn> {
   }
 
   handleSubmit() async {
-    if (!_formKey.currentState!.validate()) return;
+    if (!_formKey.currentState!.validate()) return false;
     final email = _ctrlEmail.value.text;
     final password = _ctrlPassword.value.text;
-    
-    bool loginSuccess = await Auth().login(email, password);
+    Map<String, dynamic> loginSucces = await Auth().login(email, password);
 
     setState(() {
-      if (loginSuccess) {
+      if (loginSucces['success']) {
         loginFailed = false;
-
         // Jika login berhasil, arahkan pengguna ke halaman home
 
-        // ignore: use_build_context_synchronously
+        Provider.of<UserIdProvider>(context, listen: false).userId =
+            loginSucces['userId'];
         Navigator.of(context).pushReplacement(MaterialPageRoute(
           builder: (context) {
             return const Home();
@@ -259,9 +251,10 @@ class _SignInState extends State<SignIn> {
         ));
       } else {
         // Jika login gagal
-
         loginFailed = true;
       }
     });
+
+    return true;
   }
 }
