@@ -66,10 +66,10 @@ class TopUpSuccessPage extends StatelessWidget {
                             ),
                           ),
                           const SizedBox(width: 16),
-                          const Column(
+                          Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              Text(
+                              const Text(
                                 'My Wallet',
                                 style: TextStyle(
                                   color: Color(0xFFFFDF00),
@@ -78,8 +78,8 @@ class TopUpSuccessPage extends StatelessWidget {
                                 ),
                               ),
                               Text(
-                                'Rp. 1,400,000',
-                                style: TextStyle(
+                                "Rp. ${NumberFormat("#,##0", "id_ID").format(Provider.of<UserData>(context, listen: false).data.wallet)}",
+                                style: const TextStyle(
                                   color: Color(0xFFFFDF00),
                                   fontFamily: 'Roboto',
                                   fontSize: 11,

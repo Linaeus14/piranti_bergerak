@@ -8,6 +8,7 @@ import 'package:piranti_bergerak/providers/providers.dart';
 import 'package:piranti_bergerak/ui/pages/ticket_detail_page.dart';
 import 'package:piranti_bergerak/ui/widgets/widgets.dart';
 import 'package:provider/provider.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import '../../services/services.dart';
 
 part 'user_profile.dart';
@@ -26,3 +27,4 @@ part 'movie_detail_page.dart';
 part 'seat_page.dart';
 part 'my_wallet_page.dart';
 part './checkout_page.dart';
+part './loading_screen.dart';

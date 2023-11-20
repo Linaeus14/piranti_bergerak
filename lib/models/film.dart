@@ -9,15 +9,6 @@ class Film {
   String? backdropUrl;
   double? rating; // Add the rating field
 
-  Film(
-      {this.id,
-      this.title,
-      this.desc,
-      this.genres,
-      this.thumbnailUrl,
-      this.backdropUrl,
-      this.rating});
-
   Film.fromJson(Map<String, dynamic> json, Map<int, String> genreMap) {
     id = json['id'];
     title = json['title'];

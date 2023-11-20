@@ -51,7 +51,38 @@ class _UserProfileState extends State<UserProfile> {
     var w = MediaQuery.of(context).size.width - 50;
     var h = MediaQuery.of(context).size.height - 257;
     return Scaffold(
-      backgroundColor: const Color(0xFF393E46),
+      appBar: AppBar(
+        backgroundColor: const Color(0xff393e46),
+        centerTitle: true,
+        title: const Text(
+          "Account Registered!",
+          style: TextStyle(
+            color: Color(0xFFFFDF00),
+            fontSize: 18,
+            fontFamily: 'Raleway',
+            fontWeight: FontWeight.w500,
+          ),
+        ),
+        actions: [
+          TextButton(
+              onPressed: () {
+                Navigator.of(context).pushReplacement(MaterialPageRoute(
+                  builder: (context) {
+                    return const SuccessPage();
+                  },
+                ));
+              },
+              child: const Text(
+                "Skip",
+                style: TextStyle(
+                  color: Color(0xFFFFDF00),
+                  fontSize: 16,
+                  fontFamily: 'Raleway',
+                  fontWeight: FontWeight.w500,
+                ),
+              ))
+        ],
+      ),
       body: Column(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
@@ -59,7 +90,7 @@ class _UserProfileState extends State<UserProfile> {
             Container(
               width: w,
               height: h * 2 / 5,
-              margin: const EdgeInsets.fromLTRB(25, 63, 25, 23.5),
+              margin: const EdgeInsets.fromLTRB(25, 35, 25, 23.5),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
@@ -209,7 +240,6 @@ class _UserProfileState extends State<UserProfile> {
                                 ],
                                 onPressed: (pressIndex) {
                                   setState(() {
-                                    
                                     if (_selections2[index] == true) {
                                       _selections2[index] = false;
                                     } else {
@@ -247,9 +277,10 @@ class _UserProfileState extends State<UserProfile> {
                               width: 1, color: Color(0xFFFFDF00)),
                         ),
                         onPressed: () {
-                          Navigator.of(context).pushReplacement(MaterialPageRoute(
+                          Navigator.of(context)
+                              .pushReplacement(MaterialPageRoute(
                             builder: (context) {
-                              return const SignUp();
+                              return const SignIn();
                             },
                           ));
                         },
@@ -298,7 +329,6 @@ class _UserProfileState extends State<UserProfile> {
         ],
       ),
     );
-    
   }
 
   Future<void> selectedGenres(BuildContext context) async {
@@ -310,18 +340,14 @@ class _UserProfileState extends State<UserProfile> {
     }
 
     // String uid = FirebaseAuth.instance.currentUser!.uid;
-    String userId = Provider.of<UserIdProvider>(context, listen: false).userId;
+    String userId = Provider.of<UserData>(context, listen: false).userId;
 
     debugPrint('user : $userId');
 
     try {
-      await FirebaseFirestore.instance
-          .collection('users')
-          .doc(userId)
-          .update({
-            'genre': selectedGenres,
-          });
-
+      await FirebaseFirestore.instance.collection('users').doc(userId).update({
+        'genre': selectedGenres,
+      });
     } catch (e) {
       return;
       // Handle error appropriately
@@ -337,39 +363,17 @@ class _UserProfileState extends State<UserProfile> {
     }
 
     // String uid = FirebaseAuth.instance.currentUser!.uid;
-    String userId = Provider.of<UserIdProvider>(context, listen: false).userId;
+    String userId = Provider.of<UserData>(context, listen: false).userId;
 
     debugPrint('user : $userId');
 
     try {
-      await FirebaseFirestore.instance
-          .collection('users')
-          .doc(userId)
-          .update({
-            'language': selectedLanguage,
-          });
-
+      await FirebaseFirestore.instance.collection('users').doc(userId).update({
+        'language': selectedLanguage,
+      });
     } catch (e) {
       return;
       // Handle error appropriately
     }
   }
-
-  // Future<void> saveSelectedGenres(List<String> selectedGenres) async {
-  //   String uid = FirebaseAuth.instance.currentUser!.uid;
-
-  //   try {
-  //     await FirebaseFirestore.instance
-  //         .collection('users')
-  //         .doc(uid)
-  //         .update({
-  //           'selectedGenres': selectedGenres,
-  //         });
-
-  //   } catch (e) {
-  //     return;
-  //     // Handle error appropriately
-  //   }
-  // }
-
 }

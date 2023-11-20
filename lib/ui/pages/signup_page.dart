@@ -340,11 +340,10 @@ class _SignUpState extends State<SignUp> {
                                   ),
                                   OutlinedButton(
                                     onPressed: () async {
-                                      XFile? file =
-                                          await Provider.of<UserIdProvider>(
-                                                  context,
-                                                  listen: false)
-                                              .getImage();
+                                      XFile? file = await Provider.of<UserData>(
+                                              context,
+                                              listen: false)
+                                          .getImage();
                                       imagePath =
                                           await Auth().uploadImage(file);
 
@@ -469,16 +468,18 @@ class _SignUpState extends State<SignUp> {
 
     final email = _ctrlEmail.value.text;
     final password = _ctrlPassword.value.text;
+    final UserData userData = Provider.of<UserData>(context, listen: false);
 
     Map<String, dynamic> registrationSuccess =
         await Auth().regis(email, password);
+    String uid = registrationSuccess['userId'];
 
     if (registrationSuccess['success']) {
       // Jika registrasi berhasil, arahkan pengguna ke halaman profil
       if (!context.mounted) return;
-      await Provider.of<UserIdProvider>(context, listen: false)
-          .addUserToFirestore(registrationSuccess['userId'], _ctrlEmail.text,
-              _ctrlNama.text, imagePath);
+      userData.userId = uid;
+      await userData.addUserToFirestore(
+          uid, _ctrlEmail.text, _ctrlNama.text, imagePath);
 
       if (!context.mounted) return;
       Navigator.of(context).pushReplacement(MaterialPageRoute(

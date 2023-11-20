@@ -233,6 +233,7 @@ class _SignInState extends State<SignIn> {
 
   handleSubmit() async {
     if (!_formKey.currentState!.validate()) return false;
+    UserData user = Provider.of<UserData>(context, listen: false);
     final email = _ctrlEmail.value.text;
     final password = _ctrlPassword.value.text;
     Map<String, dynamic> loginSucces = await Auth().login(email, password);
@@ -242,8 +243,7 @@ class _SignInState extends State<SignIn> {
         loginFailed = false;
         // Jika login berhasil, arahkan pengguna ke halaman home
 
-        Provider.of<UserIdProvider>(context, listen: false).userId =
-            loginSucces['userId'];
+        user.userId = loginSucces['userId'];
         Navigator.of(context).pushReplacement(MaterialPageRoute(
           builder: (context) {
             return const Home();
@@ -254,7 +254,7 @@ class _SignInState extends State<SignIn> {
         loginFailed = true;
       }
     });
-
+    if (!loginFailed) await user.getData();
     return true;
   }
 }

@@ -1,8 +1,6 @@
 part of './services.dart';
 
 class Auth {
-  String uid = '';
-
   final FirebaseAuth _auth = FirebaseAuth.instance;
 
   Future<Map<String, dynamic>> regis(String email, String password) async {
@@ -37,6 +35,10 @@ class Auth {
     } catch (e) {
       return {'success': false, 'userId': null};
     }
+  }
+
+  Future<void> signOut() async {
+    await _auth.signOut();
   }
 
   Future<String> uploadImage(XFile? imageFile) async {

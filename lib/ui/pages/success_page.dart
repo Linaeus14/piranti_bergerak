@@ -21,7 +21,7 @@ class _SuccessPageState extends State<SuccessPage> {
     _currentImage = AssetImage("assets/Profile.png");
     _currentNameUser = 'User';
   }
-  
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -31,7 +31,7 @@ class _SuccessPageState extends State<SuccessPage> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Text(
-              'Your account has \n been created!',
+              'Your account preferance has \n been saved!',
               style: TextStyle(
                 color: Color(0xFFFFDF00),
                 fontFamily: 'Raleway',
@@ -40,7 +40,6 @@ class _SuccessPageState extends State<SuccessPage> {
               textAlign: TextAlign.center,
             ),
             SizedBox(height: 80),
-
             Container(
               width: 200,
               height: 200,
@@ -56,7 +55,6 @@ class _SuccessPageState extends State<SuccessPage> {
                 ),
               ),
             ),
-              
             SizedBox(height: 80),
             Text(
               'Welcome,',
@@ -76,7 +74,9 @@ class _SuccessPageState extends State<SuccessPage> {
             ),
             SizedBox(height: 70),
             ElevatedButton(
-              onPressed: () {
+              onPressed: () async {
+                Provider.of<UserData>(context, listen: false).getData();
+                if (!context.mounted) return;
                 Navigator.of(context).pushReplacement(MaterialPageRoute(
                   builder: (context) {
                     return const Home();
@@ -110,12 +110,12 @@ class _SuccessPageState extends State<SuccessPage> {
               onPressed: () {
                 Navigator.of(context).pushReplacement(MaterialPageRoute(
                   builder: (context) {
-                    return const UserProfile();
+                    return const SignIn();
                   },
                 ));
               },
               style: ElevatedButton.styleFrom(
-                backgroundColor: Color(0xFF393E46), 
+                backgroundColor: Color(0xFF393E46),
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(5),
                   side: BorderSide(color: Color(0xFFFFDF00), width: 1),
@@ -145,9 +145,11 @@ class _SuccessPageState extends State<SuccessPage> {
 
   Future<void> _loadProfilePath() async {
     try {
-      String userId = Provider.of<UserIdProvider>(context, listen: false).userId;
-      final userDoc =
-          await FirebaseFirestore.instance.collection('users').doc(userId).get();
+      String userId = Provider.of<UserData>(context, listen: false).userId;
+      final userDoc = await FirebaseFirestore.instance
+          .collection('users')
+          .doc(userId)
+          .get();
 
       // Mendapatkan path gambar profil dari dokumen Firestore
       final profilePath = userDoc.data()?['profile'];
@@ -164,9 +166,11 @@ class _SuccessPageState extends State<SuccessPage> {
 
   Future<void> _loadName() async {
     try {
-      String userId = Provider.of<UserIdProvider>(context, listen: false).userId;
-      final userDoc =
-          await FirebaseFirestore.instance.collection('users').doc(userId).get();
+      String userId = Provider.of<UserData>(context, listen: false).userId;
+      final userDoc = await FirebaseFirestore.instance
+          .collection('users')
+          .doc(userId)
+          .get();
 
       // Mendapatkan path gambar profil dari dokumen Firestore
       final name = userDoc.data()?['nama'];

@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:piranti_bergerak/models/models.dart';
 import '../pages/pages.dart';
@@ -10,3 +11,4 @@ part 'home_title.dart';
 part 'row_buttons.dart';
 part 'seat_appbar_title.dart';
 part './custom_card.dart';
+part './auth_check.dart';
