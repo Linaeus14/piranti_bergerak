@@ -32,7 +32,9 @@ class SuccessPage extends StatelessWidget {
                   width: 5,
                 ),
                 image: DecorationImage(
-                  image: NetworkImage(userData.data.profile!),
+                  image: userData.data.profile != ""
+                  ? NetworkImage(userData.data.profile!)
+                  : const AssetImage('assets/Profile.png') as ImageProvider<Object>,
                   fit: BoxFit.cover,
                 ),
               ),

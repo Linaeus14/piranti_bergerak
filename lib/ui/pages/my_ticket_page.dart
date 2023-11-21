@@ -19,6 +19,7 @@ class _TicketPageState extends State<TicketPage> {
 
   @override
   Widget build(BuildContext context) {
+    UserData userData = Provider.of<UserData>(context, listen: false);
     final screenSize = MediaQuery.of(context).size;
     return Scaffold(
       backgroundColor: const Color(0xFF393E46),
@@ -26,25 +27,30 @@ class _TicketPageState extends State<TicketPage> {
         toolbarHeight: 100,
         backgroundColor: const Color(0xFFFFDF00),
         automaticallyImplyLeading: false,
-        title: const Row(
+        title: Row(
           children: [
             CircleAvatar(
               radius: 30,
-              backgroundImage: AssetImage('assets/profile_pic.png'),
+              backgroundColor: const Color(0xFF393E46),
+              backgroundImage: 
+                  userData.data.profile != ""
+                  ? NetworkImage(userData.data.profile!)
+                  : const AssetImage('assets/Profile.png') as ImageProvider<Object>,
+              // NetworkImage(userData.data.profile!),
             ),
-            SizedBox(width: 10),
+            const SizedBox(width: 10),
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  'Anatasya',
-                  style: TextStyle(
+                  userData.data.nama!,
+                  style: const TextStyle(
                     fontSize: 13,
                   ),
                 ),
                 Text(
-                  'IDR 999.000.00',
-                  style: TextStyle(
+                  "Rp. ${NumberFormat("#,##0", "id_ID").format(userData.data.wallet)}",
+                  style: const TextStyle(
                     fontSize: 13,
                   ),
                 ),

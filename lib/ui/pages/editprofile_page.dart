@@ -11,8 +11,24 @@ class _EditProfilePageState extends State<EditProfilePage> {
   bool uploadPressed = false;
   bool backPressed = false;
 
+  String imagePath = '';
+  
+  final TextEditingController _nameController = TextEditingController();
+  final TextEditingController _passwordController = TextEditingController();
+
+  bool _isPasswordHidden = true;
+
+  @override
+  void initState() {
+    super.initState();
+    UserData userData = Provider.of<UserData>(context, listen: false);
+    _nameController.text = userData.data.nama!;
+  }
+
   @override
   Widget build(BuildContext context) {
+    UserData userData = Provider.of<UserData>(context, listen: false);
+
     return Scaffold(
       backgroundColor:  const Color(0xFF393E46),
       body: Center(
@@ -38,6 +54,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 25.0),
                   child: TextFormField(
+                    controller: _nameController,
                     decoration: InputDecoration(
                       hintText: "Input Username",
                       labelText: "Username",
@@ -71,8 +88,10 @@ class _EditProfilePageState extends State<EditProfilePage> {
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 25.0),
                   child: TextFormField(
+                    controller: _passwordController,
+                    obscureText: _isPasswordHidden,
                     decoration: InputDecoration(
-                      hintText: "Input Password",
+                      hintText: "Input New Password",
                       labelText: "Password",
                       floatingLabelBehavior: FloatingLabelBehavior.always,
 
@@ -93,6 +112,17 @@ class _EditProfilePageState extends State<EditProfilePage> {
                         borderRadius: BorderRadius.circular(7.0),
                         borderSide: const BorderSide(color: Color(0xFFFFDF00)), // Mengubah warna border saat dalam fokus
                       ),
+                      suffixIcon: IconButton(
+                        icon: Icon(
+                          _isPasswordHidden ? Icons.visibility_off : Icons.visibility,
+                          color: const Color(0xFFFFDF00),
+                        ),
+                        onPressed: () {
+                          setState(() {
+                            _isPasswordHidden = !_isPasswordHidden;
+                          });
+                        },
+                      ),
                     ),
                     style: const TextStyle(color: Color(0xFFFFFFFF)),
                     onChanged: (String value) {},
@@ -103,15 +133,33 @@ class _EditProfilePageState extends State<EditProfilePage> {
 
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Padding(
+                  children: <Widget> [
+                    (imagePath.isNotEmpty)
+                    ? Padding(
                       padding: const EdgeInsets.only(right: 56.0),
                       child: Container(
                         width: 120,
                         height: 120,
                         decoration: BoxDecoration(
-                          image: const DecorationImage(
-                            image : AssetImage("assets/Profile.png"),
+                          image: DecorationImage(
+                            image : NetworkImage(imagePath),
+                            fit: BoxFit.cover
+                          ),
+                          border: Border.all(color: const Color(0xFFFFDF00)),
+                          borderRadius: BorderRadius.circular(70), // Menjadikan container menjadi bulat
+                        ),
+                      ),
+                    )
+                    : Padding(
+                      padding: const EdgeInsets.only(right: 56.0),
+                      child: Container(
+                        width: 120,
+                        height: 120,
+                        decoration: BoxDecoration(
+                          image: DecorationImage(
+                            image : userData.data.profile != ""
+                                    ? NetworkImage(userData.data.profile!)
+                                    : const AssetImage('assets/Profile.png') as ImageProvider<Object>,
                             fit: BoxFit.cover
                           ),
                           border: Border.all(color: const Color(0xFFFFDF00)),
@@ -133,7 +181,13 @@ class _EditProfilePageState extends State<EditProfilePage> {
                         ),
 
                         ElevatedButton(
-                          onPressed: () {
+                          onPressed: () async {
+                            XFile? file = await Provider.of<UserData>(
+                                    context,
+                                    listen: false)
+                                .getImage();
+                            imagePath =
+                                await Auth().uploadImage(file);
                             setState(() {
                               uploadPressed = !uploadPressed;
                             });
@@ -176,8 +230,31 @@ class _EditProfilePageState extends State<EditProfilePage> {
                     backgroundColor: const Color(0xFFFFDF00),
                     padding: const EdgeInsets.symmetric(horizontal: 138.0),
                   ),
-                  onPressed: () {
-                    Navigator.of(context).pop();
+                  onPressed: () async {
+                    if (_passwordController.text.isEmpty) { 
+                      await userData.updateName("nama", _nameController.text);
+                      if (imagePath != ""){
+                        await userData.updateProfile("profile", imagePath);
+                      }
+                      if (!context.mounted) return;
+                      Navigator.of(context).push(MaterialPageRoute(
+                        builder: (context) {
+                          return const ProfilePage();
+                        },
+                      ));
+                    }else{
+                      await userData.updateName("nama", _nameController.text);
+                      if (imagePath != ""){
+                        await userData.updateProfile("profile", imagePath);
+                      }
+                      await userData.changePassword(_passwordController.text);
+                      if (!context.mounted) return;
+                      Navigator.of(context).push(MaterialPageRoute(
+                        builder: (context) {
+                          return const ProfilePage();
+                        },
+                      ));
+                    }
                   },
                   child: const Text(
                     "Update",
@@ -197,7 +274,11 @@ class _EditProfilePageState extends State<EditProfilePage> {
                     setState(() {
                       backPressed = !backPressed;
                     });
-                    Navigator.of(context).pop();
+                    Navigator.of(context).push(MaterialPageRoute(
+                      builder: (context) {
+                        return const ProfilePage();
+                      },
+                    ));
                   },
                   style: ElevatedButton.styleFrom(
                     backgroundColor: backPressed ? const Color(0xFFDAA520) : const Color(0xFF393E46),
