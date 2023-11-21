@@ -12,6 +12,7 @@ class _SignInState extends State<SignIn> {
 
   final TextEditingController _ctrlEmail = TextEditingController();
   final TextEditingController _ctrlPassword = TextEditingController();
+  bool _isPasswordHidden = true;
 
   bool loginFailed = false;
   @override
@@ -100,6 +101,7 @@ class _SignInState extends State<SignIn> {
                         children: [
                           TextField(
                             controller: _ctrlPassword,
+                            obscureText: _isPasswordHidden,
                             decoration: const InputDecoration(
                               floatingLabelBehavior:
                                   FloatingLabelBehavior.always,
@@ -129,6 +131,22 @@ class _SignInState extends State<SignIn> {
                                   width: 1,
                                 ),
                               ),
+                            ),
+                          ),
+                          Positioned(
+                            right: 0,
+                            bottom: 15,
+                            child: IconButton(
+                              icon: Icon(
+                                _isPasswordHidden ? Icons.visibility_off : Icons.visibility,
+                                color: const Color(0xffffdf00),
+                              ),
+                              onPressed: () {
+                                // Toggle the visibility of the password
+                                setState(() {
+                                  _isPasswordHidden = !_isPasswordHidden;
+                                });
+                              },
                             ),
                           ),
                         ],
