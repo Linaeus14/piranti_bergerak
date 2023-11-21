@@ -94,7 +94,13 @@ class _MyWalletPageState extends State<MyWalletPage> {
                             ),
                           ),
                           child: ClipOval(
-                            child: Image.network(userDataListen.data.profile!),
+                            child: Image(
+                            // Image.network(userDataListen.data.profile!),
+                            image : userData.data.profile != ""
+                                    ? NetworkImage(userDataListen.data.profile!)
+                                    : const AssetImage('assets/Profile.png') as ImageProvider<Object>,
+                            ),
+                            // child: Image.network(userData.data.profile!),
                           ),
                         ),
                       ),

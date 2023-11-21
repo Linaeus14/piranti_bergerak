@@ -31,7 +31,12 @@ class _TicketPageState extends State<TicketPage> {
           children: [
             CircleAvatar(
               radius: 30,
-              backgroundImage: NetworkImage(userData.data.profile!),
+              backgroundColor: const Color(0xFF393E46),
+              backgroundImage: 
+                  userData.data.profile != ""
+                  ? NetworkImage(userData.data.profile!)
+                  : const AssetImage('assets/Profile.png') as ImageProvider<Object>,
+              // NetworkImage(userData.data.profile!),
             ),
             const SizedBox(width: 10),
             Column(

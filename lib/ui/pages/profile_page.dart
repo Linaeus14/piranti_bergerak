@@ -35,8 +35,12 @@ class _ProfilePageState extends State<ProfilePage> {
                         ),
                         child: CircleAvatar(
                           radius: 80,
-                          backgroundColor: Colors.white,
-                          backgroundImage: NetworkImage(userData.data.profile!),
+                          backgroundColor: const Color(0xFF393E46),
+                          backgroundImage: 
+                          // NetworkImage(userData.data.profile!),
+                          userData.data.profile != ""
+                            ? NetworkImage(userData.data.profile!)
+                            : const AssetImage('assets/Profile.png') as ImageProvider<Object>,
                         ),
                       ),
                       const SizedBox(height: 210),

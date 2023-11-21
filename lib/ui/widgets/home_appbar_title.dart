@@ -14,13 +14,18 @@ class HomeAppbarTitle extends StatelessWidget {
           width: 50,
           height: 50,
           decoration: BoxDecoration(
+              color: const Color(0xFF393E46),
               border: Border.all(
                 color: const Color(0xFF000000),
                 width: 1,
               ),
               borderRadius: const BorderRadius.all(Radius.circular(50)),
               image: DecorationImage(
-                  image: NetworkImage(userData.data.profile!),
+                  image: 
+                  // NetworkImage(userData.data.profile!),
+                  userData.data.profile != ""
+                  ? NetworkImage(userData.data.profile!)
+                  : const AssetImage('assets/Profile.png') as ImageProvider<Object>,
                   fit: BoxFit.cover)),
         ),
         Container(
