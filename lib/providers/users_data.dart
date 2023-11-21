@@ -60,11 +60,10 @@ class UserData extends ChangeNotifier {
     }
   }
 
-  Future<void> updateName(String fieldName, dynamic newValue) async{
+  Future<void> updateName(String fieldName, dynamic newValue) async {
     try {
       DocumentReference documentReference =
           FirebaseFirestore.instance.collection('users').doc(userId);
-                  
       // Update the specified field with the new value
       await documentReference.update({fieldName: newValue});
       _data.nama = newValue;
@@ -80,7 +79,6 @@ class UserData extends ChangeNotifier {
     final user = FirebaseAuth.instance.currentUser;
 
     if (user != null) {
-
       debugPrint('password has been changed');
       await user.updatePassword(newPassword);
     } else {
@@ -89,11 +87,10 @@ class UserData extends ChangeNotifier {
     }
   }
 
-  Future<void> updateProfile(String fieldName, dynamic newValue) async{
+  Future<void> updateProfile(String fieldName, dynamic newValue) async {
     try {
       DocumentReference documentReference =
           FirebaseFirestore.instance.collection('users').doc(userId);
-                  
       // Update the specified field with the new value
       await documentReference.update({fieldName: newValue});
       _data.profile = newValue;
@@ -138,29 +135,6 @@ class UserData extends ChangeNotifier {
       // Handle errors
       debugPrint('Error getting document: $e');
       return null;
-    }
-  }
-
-  dynamic getFieldFromDocument(String fieldName) async {
-    try {
-      // Reference to the document you want to retrieve
-      DocumentReference documentReference =
-          FirebaseFirestore.instance.collection('users').doc(userId);
-
-      // Get the document snapshot
-      DocumentSnapshot snapshot = await documentReference.get();
-
-      // Check if the document exists
-      if (snapshot.exists) {
-        // Retrieve the value of the specified field
-        dynamic fieldValue = snapshot.get(fieldName);
-
-        return fieldValue;
-      } else {
-        debugPrint('Document does not exist.');
-      }
-    } catch (e) {
-      debugPrint('Error getting document field: $e');
     }
   }
 }

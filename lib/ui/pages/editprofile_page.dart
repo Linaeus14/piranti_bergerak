@@ -194,8 +194,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
                           },
                           style: OutlinedButton.styleFrom(
                             backgroundColor: uploadPressed ? const Color(0xFFDAA520) : const Color(0xFF393E46),
-                            foregroundColor: const Color(0xFFDAA520), 
-                            
+                            foregroundColor: const Color(0xFFDAA520),
                             side: BorderSide(
                               width: 1, 
                               color: uploadPressed ? const Color(0xFFDAA520) : const Color(0xFFFFDF00),
@@ -204,7 +203,6 @@ class _EditProfilePageState extends State<EditProfilePage> {
                             shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(5.0),
                             ),
-                            
                           ),
                           child: Text(
                             'Upload',
@@ -216,7 +214,6 @@ class _EditProfilePageState extends State<EditProfilePage> {
                             ),
                           ),
                         ),
-                        
                       ],
                     ),
                   ],
@@ -301,7 +298,6 @@ class _EditProfilePageState extends State<EditProfilePage> {
                 ),
               ],
             ),
-
           ],
         ),
       ),
