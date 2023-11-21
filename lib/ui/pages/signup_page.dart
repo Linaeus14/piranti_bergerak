@@ -472,9 +472,9 @@ class _SignUpState extends State<SignUp> {
 
     Map<String, dynamic> registrationSuccess =
         await Auth().regis(email, password);
-    String uid = registrationSuccess['userId'];
 
     if (registrationSuccess['success']) {
+      String uid = registrationSuccess['userId'];
       // Jika registrasi berhasil, arahkan pengguna ke halaman profil
 
       userData.userId = uid;
