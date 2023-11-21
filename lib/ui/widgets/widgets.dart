@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:piranti_bergerak/models/models.dart';
 import 'package:piranti_bergerak/providers/providers.dart';
 import 'package:provider/provider.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import '../pages/pages.dart';
 
 part 'ticket_used.dart';
@@ -13,4 +14,4 @@ part 'home_title.dart';
 part 'row_buttons.dart';
 part 'seat_appbar_title.dart';
 part './custom_card.dart';
-part './auth_check.dart';
+part 'launcher.dart';

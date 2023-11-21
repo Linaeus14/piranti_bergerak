@@ -233,7 +233,7 @@ class _SignInState extends State<SignIn> {
 
   handleSubmit() async {
     if (!_formKey.currentState!.validate()) return false;
-    UserData user = Provider.of<UserData>(context, listen: false);
+    UserData userData = Provider.of<UserData>(context, listen: false);
     final email = _ctrlEmail.value.text;
     final password = _ctrlPassword.value.text;
     Map<String, dynamic> loginSucces = await Auth().login(email, password);
@@ -241,20 +241,21 @@ class _SignInState extends State<SignIn> {
     setState(() {
       if (loginSucces['success']) {
         loginFailed = false;
-        // Jika login berhasil, arahkan pengguna ke halaman home
-
-        user.userId = loginSucces['userId'];
-        Navigator.of(context).pushReplacement(MaterialPageRoute(
-          builder: (context) {
-            return const Home();
-          },
-        ));
       } else {
-        // Jika login gagal
         loginFailed = true;
       }
     });
-    if (!loginFailed) await user.getData();
+
+    if (!loginFailed) {
+      userData.userId = loginSucces['userId'];
+      await userData.getData();
+      if (!context.mounted) return;
+      Navigator.of(context).pushReplacement(MaterialPageRoute(
+        builder: (context) {
+          return const Home();
+        },
+      ));
+    }
     return true;
   }
 }

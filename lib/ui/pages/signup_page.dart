@@ -480,7 +480,7 @@ class _SignUpState extends State<SignUp> {
       userData.userId = uid;
       await userData.addUserToFirestore(
           uid, _ctrlEmail.text, _ctrlNama.text, imagePath);
-      userData.getData();
+      await userData.getData();
 
       if (!context.mounted) return;
       Navigator.of(context).pushReplacement(MaterialPageRoute(

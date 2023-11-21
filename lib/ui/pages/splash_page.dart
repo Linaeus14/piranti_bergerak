@@ -11,12 +11,6 @@ class _MyWidgetState extends State<SplashPage> {
   bool signinPressed = false;
 
   @override
-  void initState() {
-    super.initState();
-    checkFirstLaunch();
-  }
-
-  @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: const Color(0xFF393E46),
@@ -118,21 +112,5 @@ class _MyWidgetState extends State<SplashPage> {
         ],
       )),
     );
-  }
-
-  Future<void> checkFirstLaunch() async {
-    SharedPreferences prefs = await SharedPreferences.getInstance();
-    bool isFirstLaunch = prefs.getBool('firstLaunch') ?? true;
-
-    if (isFirstLaunch) {
-      await prefs.setBool('firstLaunch', false);
-    } else {
-      // If it's not the first launch, directly navigate to the home screen
-      if (!context.mounted) return;
-      Navigator.pushReplacement(
-        context,
-        MaterialPageRoute(builder: (context) => const AuthCheck()),
-      );
-    }
   }
 }

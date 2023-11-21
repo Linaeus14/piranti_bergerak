@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:piranti_bergerak/firebase_options.dart';
 import 'package:piranti_bergerak/providers/providers.dart';
-import 'package:piranti_bergerak/ui/pages/pages.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:piranti_bergerak/ui/widgets/widgets.dart';
 import 'package:provider/provider.dart';
 
 void main() async {
@@ -19,12 +19,14 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MultiProvider(
-        providers: [
-          ChangeNotifierProvider(create: (context) => UserData()),
-        ],
-        child: MaterialApp(
-            theme: ThemeData(scaffoldBackgroundColor: const Color(0xff393e46)),
-            debugShowCheckedModeBanner: false,
-            home: const SplashPage()));
+      providers: [
+        ChangeNotifierProvider(create: (context) => UserData()),
+      ],
+      child: MaterialApp(
+        theme: ThemeData(scaffoldBackgroundColor: const Color(0xff393e46)),
+        debugShowCheckedModeBanner: false,
+        home: const LaunchApp(),
+      ),
+    );
   }
 }
