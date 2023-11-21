@@ -5,7 +5,6 @@ class BottomNav extends StatefulWidget {
     super.key,
     required index,
   }) : _index = index;
-  
   final int _index;
 
   @override

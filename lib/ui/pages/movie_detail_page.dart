@@ -23,215 +23,235 @@ class _MovieDetailPageState extends State<MovieDetailPage> {
     String desc = widget.film.desc ?? "";
 
     return Scaffold(
-      body: CustomScrollView(
-        slivers: [
-          SliverAppBar(
-            expandedHeight:
-                height * 0.36, // Adjust based on your UI requirements
-            pinned: true,
-            flexibleSpace: Stack(
-              children: [
-                Image.network(
-                  widget.film.backdropUrl ?? '',
-                  fit: BoxFit.cover,
-                  width: width,
-                ),
-                Ink(
-                  decoration: const ShapeDecoration(
-                    color: Color(0xFFFFDF00),
-                    shape: CircleBorder(),
+        body: SingleChildScrollView(
+      child: Column(
+        children: [
+          Stack(
+            children: [
+              Column(
+                children: [
+                  Image.network(
+                    widget.film.backdropUrl ?? '',
+                    fit: BoxFit.cover,
+                    width: width,
                   ),
-                  child: IconButton(
-                    icon: Icon(
-                      Icons.arrow_back,
-                      color: Colors.black,
-                    ),
-                    onPressed: () {
-                      Navigator.of(context).pushReplacement(MaterialPageRoute(
-                        builder: (context) {
-                          return const Home();
-                        },
-                      ));
-                    },
-                    iconSize: 40,
-                  ),
-                ),
-                Positioned(
-                  bottom: 0,
-                  left: 0,
-                  right: 0,
-                  child: Container(
-                    height: height * 0.05,
+                  Container(
+                    height: height * 0.06,
                     width: width,
                     decoration: BoxDecoration(
                       gradient: LinearGradient(
                         begin: Alignment.topCenter,
-                        end: Alignment.bottomCenter,
+                        end: Alignment.center,
                         colors: [
-                          Colors.black,
+                          Colors.black54,
                           Color(0xFF393E46),
                         ],
                       ),
                     ),
                   ),
-                )
-              ],
-            ),
+                ],
+              ),
+              Container(
+                color: Colors.transparent,
+                padding: const EdgeInsets.all(10),
+                alignment: Alignment.topLeft,
+                child: Container(
+                  margin: const EdgeInsets.only(top: 25, left: 10),
+                  decoration: const BoxDecoration(
+                    shape: BoxShape.circle,
+                    color: Color(0xFF393E46),
+                  ),
+                  width: 40,
+                  height: 40,
+                  child: IconButton(
+                    icon: Icon(
+                      Icons.arrow_back,
+                      color: Color(0xFFFFDF00),
+                    ),
+                    onPressed: () {
+                      Navigator.of(context).pop();
+                    },
+                  ),
+                ),
+              ),
+            ],
           ),
-          SliverList(
-            delegate: SliverChildListDelegate(
-              [
-                SizedBox(height: height * 0.02),
-                Container(
-                  margin: EdgeInsets.symmetric(horizontal: width * 0.05),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.center,
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Text(
+                    title,
+                    style: TextStyle(
+                      color: Color(0xFFFFDF00),
+                      fontFamily: 'Raleway',
+                      fontSize: width * 0.07,
+                      fontWeight: FontWeight.normal,
+                    ),
+                    textAlign: TextAlign.center,
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Text(
+                    genre.join(', '),
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontFamily: 'Raleway',
+                      fontSize: width * 0.04,
+                      fontWeight: FontWeight.normal,
+                    ),
+                    textAlign: TextAlign.center,
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
                     children: <Widget>[
+                      for (int i = 0; i < 5; i++)
+                        Icon(
+                          Icons.star,
+                          color: i < (widget.film.rating ?? 0).round()
+                              ? Color(0xFFFFDF00)
+                              : Colors.grey,
+                        ),
                       Text(
-                        title,
+                        '\t\t${(widget.film.rating ?? 0).round()}',
                         style: TextStyle(
                           color: Color(0xFFFFDF00),
-                          fontFamily: 'Raleway',
-                          fontSize: width * 0.07,
-                          fontWeight: FontWeight.normal,
+                          fontSize: width * 0.05,
                         ),
-                        textAlign: TextAlign.center,
-                      ),
-                      SizedBox(height: height * 0.01),
-                      Text(
-                        genre.join(', '),
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontFamily: 'Raleway',
-                          fontSize: width * 0.04,
-                          fontWeight: FontWeight.normal,
-                        ),
-                        textAlign: TextAlign.center,
-                      ),
-                      SizedBox(height: height * 0.02),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: <Widget>[
-                          for (int i = 0; i < 5; i++)
-                            Icon(
-                              Icons.star,
-                              color: i < (widget.film.rating ?? 0).round()
-                                  ? Color(0xFFFFDF00)
-                                  : Colors.grey,
-                            ),
-                          Text(
-                            '\t\t${(widget.film.rating ?? 0).round()}',
-                            style: TextStyle(
-                              color: Color(0xFFFFDF00),
-                              fontSize: width * 0.05,
-                            ),
-                          ),
-                        ],
-                      ),
-                      SizedBox(height: height * 0.01),
-                      Text(
-                        'Storyline',
-                        style: TextStyle(
-                          color: Color(0xFFFFDF00),
-                          fontFamily: 'Raleway',
-                          fontSize: width * 0.07,
-                          fontWeight: FontWeight.normal,
-                        ),
-                        textAlign: TextAlign.center,
-                      ),
-                      SizedBox(height: height * 0.01),
-                      Text(
-                        desc,
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontFamily: 'Raleway',
-                          fontSize: width * 0.04,
-                          fontWeight: FontWeight.normal,
-                        ),
-                        textAlign: TextAlign.justify,
-                      ),
-                      SizedBox(height: height * 0.01),
-                      Text(
-                        'Cast',
-                        style: TextStyle(
-                          color: Color(0xFFFFDF00),
-                          fontFamily: 'Raleway',
-                          fontSize: width * 0.07,
-                          fontWeight: FontWeight.normal,
-                        ),
-                        textAlign: TextAlign.center,
                       ),
                     ],
                   ),
                 ),
-                FutureBuilder<List<Cast>>(
-                  future: Api.getCastList(widget.film.id.toString()),
-                  builder: (context, snapshot) {
-                    if (snapshot.connectionState == ConnectionState.waiting) {
-                      // While data is being fetched, show a loading indicator
-                      return Center(
-                        child: CircularProgressIndicator(
-                          color: Color(0xFFFFDF00),
-                        ),
-                      );
-                    } else if (snapshot.hasError) {
-                      // If there is an error, display an error message
-                      return Center(
-                        child: Text('Error: ${snapshot.error}'),
-                      );
-                    } else {
-                      // If data is successfully fetched, build the UI with the cast information
-                      List<Cast> cast = snapshot.data ?? [];
-
-                      return SizedBox(
-                        height: height * 0.25,
-                        child: ListView.builder(
-                          scrollDirection: Axis.horizontal,
-                          itemCount: cast.length,
-                          itemBuilder: (context, index) {
-                            return CustomCard(cast: cast[index]);
-                          },
-                        ),
-                      );
-                    }
-                  },
-                ),
-                SizedBox(height: height * 0.02),
-                ElevatedButton(
-                  onPressed: () {
-                    Navigator.of(context).pushReplacement(MaterialPageRoute(
-                      builder: (context) {
-                        return const PlaceAndTimePick();
-                      },
-                    ));
-                  },
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: Color(0xFFFFDF00),
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(5),
+              ],
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Text(
+                    'Storyline',
+                    style: TextStyle(
+                      color: Color(0xFFFFDF00),
+                      fontFamily: 'Raleway',
+                      fontSize: width * 0.07,
+                      fontWeight: FontWeight.normal,
                     ),
+                    textAlign: TextAlign.center,
                   ),
-                  child: Container(
-                    width: width * 0.7,
-                    padding: EdgeInsets.all(height * 0.015),
-                    margin: EdgeInsets.symmetric(horizontal: width * 0.15),
-                    alignment: Alignment.center,
-                    child: Text(
-                      'Book',
-                      style: TextStyle(
-                        color: Colors.black,
-                        fontFamily: 'Raleway',
-                        fontSize: width * 0.05,
-                        fontWeight: FontWeight.bold,
-                      ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Text(
+                    desc,
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontFamily: 'Raleway',
+                      fontSize: width * 0.04,
+                      fontWeight: FontWeight.normal,
                     ),
+                    textAlign: TextAlign.justify,
                   ),
                 ),
               ],
             ),
           ),
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Text(
+                    'Cast',
+                    style: TextStyle(
+                      color: Color(0xFFFFDF00),
+                      fontFamily: 'Raleway',
+                      fontSize: width * 0.07,
+                      fontWeight: FontWeight.normal,
+                    ),
+                    textAlign: TextAlign.center,
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: FutureBuilder<List<Cast>>(
+                    future: Api.getCastList(widget.film.id.toString()),
+                    builder: (context, snapshot) {
+                      if (snapshot.connectionState == ConnectionState.waiting) {
+                        // While data is being fetched, show a loading indicator
+                        return Center(
+                          child: CircularProgressIndicator(
+                            color: Color(0xFFFFDF00),
+                          ),
+                        );
+                      } else if (snapshot.hasError) {
+                        // If there is an error, display an error message
+                        return Center(
+                          child: Text('Error: ${snapshot.error}'),
+                        );
+                      } else {
+                        // If data is successfully fetched, build the UI with the cast information
+                        List<Cast> cast = snapshot.data ?? [];
+                        return SizedBox(
+                          height: height * 0.25,
+                          child: ListView.builder(
+                            scrollDirection: Axis.horizontal,
+                            itemCount: cast.length,
+                            itemBuilder: (context, index) {
+                              return CustomCard(cast: cast[index]);
+                            },
+                          ),
+                        );
+                      }
+                    },
+                  ),
+                ),
+              ],
+            ),
+          ),
+          Container(
+            margin: const EdgeInsets.only(bottom: 25),
+            padding: const EdgeInsets.all(8.0),
+            width: width * 0.95,
+            child: ElevatedButton(
+              onPressed: () {
+                Navigator.of(context).pushReplacement(MaterialPageRoute(
+                  builder: (context) {
+                    return const PlaceAndTimePick();
+                  },
+                ));
+              },
+              style: ElevatedButton.styleFrom(
+                backgroundColor: Color(0xFFFFDF00),
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(5),
+                ),
+              ),
+              child: Text(
+                'Book',
+                style: TextStyle(
+                  color: Colors.black,
+                  fontFamily: 'Raleway',
+                  fontSize: width * 0.05,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+            ),
+          ),
         ],
       ),
-    );
+    ));
   }
 }

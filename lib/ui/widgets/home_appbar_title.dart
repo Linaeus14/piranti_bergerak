@@ -41,11 +41,11 @@ class HomeAppbarTitle extends StatelessWidget {
                   textAlign: TextAlign.left,
                 ),
               ),
-              const Padding(
-                padding: EdgeInsets.only(top: 5, bottom: 5),
+              Padding(
+                padding: const EdgeInsets.only(top: 5, bottom: 5),
                 child: Text(
-                  "IDR 999.000.00",
-                  style: TextStyle(
+                  "Rp. ${NumberFormat("#,##0", "id_ID").format(userData.data.wallet)}",
+                  style: const TextStyle(
                       color: Color(0xFF1E1E1E),
                       fontFamily: "Roboto",
                       fontSize: 12,
