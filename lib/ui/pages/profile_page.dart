@@ -13,6 +13,7 @@ class _ProfilePageState extends State<ProfilePage> {
 
   @override
   Widget build(BuildContext context) {
+    UserData userData = Provider.of<UserData>(context, listen: false);
     return Scaffold(
       backgroundColor: const Color(0xFF393E46),
       body: Column(
@@ -32,20 +33,20 @@ class _ProfilePageState extends State<ProfilePage> {
                           shape: BoxShape.circle,
                           color: Color(0xFFFFDF00),
                         ),
-                        child: const CircleAvatar(
+                        child: CircleAvatar(
                           radius: 80,
                           backgroundColor: Colors.white,
-                          backgroundImage: AssetImage('assets/profile.jpg'),
+                          backgroundImage: NetworkImage(userData.data.profile!),
                         ),
                       ),
                       const SizedBox(height: 210),
-                      const Positioned(
+                      Positioned(
                         bottom: 0,
                         left: 0,
                         right: 0,
                         child: Text(
-                          'Anatasya',
-                          style: TextStyle(
+                          userData.data.nama!,
+                          style: const TextStyle(
                             fontFamily: 'Raleway',
                             fontSize: 20,
                             fontWeight: FontWeight.w500,
