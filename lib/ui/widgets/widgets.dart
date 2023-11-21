@@ -1,5 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import 'package:piranti_bergerak/models/models.dart';
 import 'package:piranti_bergerak/providers/providers.dart';
 import 'package:piranti_bergerak/shared/shared.dart';

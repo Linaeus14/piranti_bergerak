@@ -94,7 +94,7 @@ class _MyWalletPageState extends State<MyWalletPage> {
                             ),
                           ),
                           child: ClipOval(
-                            child: Image.asset('assets/profile.jpg'),
+                            child: Image.network(userDataListen.data.profile!),
                           ),
                         ),
                       ),
