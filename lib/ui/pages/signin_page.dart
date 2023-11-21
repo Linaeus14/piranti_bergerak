@@ -237,6 +237,7 @@ class _SignInState extends State<SignIn> {
     final email = _ctrlEmail.value.text;
     final password = _ctrlPassword.value.text;
     Map<String, dynamic> loginSucces = await Auth().login(email, password);
+    String uid = loginSucces['userId'];
 
     setState(() {
       if (loginSucces['success']) {
@@ -247,7 +248,7 @@ class _SignInState extends State<SignIn> {
     });
 
     if (!loginFailed) {
-      userData.userId = loginSucces['userId'];
+      userData.userId = uid;
       await userData.getData();
       if (!context.mounted) return;
       Navigator.of(context).pushReplacement(MaterialPageRoute(

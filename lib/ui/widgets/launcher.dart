@@ -2,13 +2,13 @@ part of './widgets.dart';
 
 class LaunchApp extends StatelessWidget {
   const LaunchApp({
-    super.key,
-  });
+    Key? key,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return FutureBuilder<Widget>(
-      future: checkFirstLaunch(),
+      future: checkFirstLaunch(context),
       builder: (context, snapshot) {
         if (snapshot.connectionState == ConnectionState.waiting) {
           return const LoadingScreen();
@@ -21,27 +21,33 @@ class LaunchApp extends StatelessWidget {
     );
   }
 
-  Future<Widget> checkFirstLaunch() async {
-    SharedPreferences prefs = await SharedPreferences.getInstance();
-    bool isFirstLaunch = prefs.getBool('firstLaunch') ?? true;
+  Future<Widget> checkFirstLaunch(BuildContext context) async {
+    Shared saveData = Shared();
+    await saveData.open();
+    bool isFirstLaunch = saveData.file.getBool('firstLaunch') ?? true;
 
     if (isFirstLaunch) {
-      await prefs.setBool('firstLaunch', false);
+      await saveData.file.setBool('firstLaunch', false);
       return const SplashPage();
     } else {
-      return StreamBuilder<User?>(
-        stream: FirebaseAuth.instance.authStateChanges(),
-        builder: (context, snapshot) {
-          if (snapshot.connectionState == ConnectionState.waiting) {
-            return const LoadingScreen(); // Loading indicator if authentication state is still being determined
-          } else if (snapshot.hasData) {
-            return const Home(); // User is logged in, navigate to the home screen
-          } else {
-            return const SignIn(); // User is not logged in, navigate to the sign-in screen
-          }
-        },
-      );
+      if (!context.mounted) {
+        return const Center(
+          child: Text("Error Build"),
+        );
+      }
+      return checkAuthenticationState(context);
+    }
+  }
+
+  Future<Widget> checkAuthenticationState(BuildContext context) async {
+    User? user = FirebaseAuth.instance.currentUser;
+    if (user != null) {
+      UserData userData = Provider.of<UserData>(context, listen: false);
+      userData.userId = user.uid;
+      await userData.getData();
+      return const Home();
+    } else {
+      return const SignIn();
     }
   }
 }
-

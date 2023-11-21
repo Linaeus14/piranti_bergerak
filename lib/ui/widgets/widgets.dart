@@ -2,8 +2,8 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:piranti_bergerak/models/models.dart';
 import 'package:piranti_bergerak/providers/providers.dart';
+import 'package:piranti_bergerak/shared/shared.dart';
 import 'package:provider/provider.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 import '../pages/pages.dart';
 
 part 'ticket_used.dart';
