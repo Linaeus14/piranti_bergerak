@@ -134,6 +134,7 @@ class _ProfilePageState extends State<ProfilePage> {
                   'Sign Out',
                   isSelected: _selectedMenuIndex == 4,
                   onPressed: () {
+                    _selectMenu(4);
                     Auth().signOut();
                     Navigator.of(context).pushReplacement(MaterialPageRoute(
                       builder: (context) {

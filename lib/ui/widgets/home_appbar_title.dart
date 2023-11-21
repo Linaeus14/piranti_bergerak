@@ -7,6 +7,7 @@ class HomeAppbarTitle extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    UserData userData = Provider.of<UserData>(context, listen: false);
     return Row(
       children: [
         Container(
@@ -18,20 +19,20 @@ class HomeAppbarTitle extends StatelessWidget {
                 width: 1,
               ),
               borderRadius: const BorderRadius.all(Radius.circular(50)),
-              image: const DecorationImage(
-                  image: AssetImage("assets/profile_pic.png"),
+              image: DecorationImage(
+                  image: NetworkImage(userData.data.profile!),
                   fit: BoxFit.cover)),
         ),
         Container(
           margin: const EdgeInsets.only(left: 15, right: 15),
-          child: const Column(
+          child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Padding(
-                padding: EdgeInsets.only(top: 5, bottom: 5),
+                padding: const EdgeInsets.only(top: 5, bottom: 5),
                 child: Text(
-                  "Anatasya",
-                  style: TextStyle(
+                  userData.data.nama!,
+                  style: const TextStyle(
                       color: Color(0xFF1E1E1E),
                       fontFamily: "Inter",
                       fontSize: 12,
@@ -40,7 +41,7 @@ class HomeAppbarTitle extends StatelessWidget {
                   textAlign: TextAlign.left,
                 ),
               ),
-              Padding(
+              const Padding(
                 padding: EdgeInsets.only(top: 5, bottom: 5),
                 child: Text(
                   "IDR 999.000.00",
