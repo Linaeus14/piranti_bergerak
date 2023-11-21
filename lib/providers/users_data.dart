@@ -60,6 +60,51 @@ class UserData extends ChangeNotifier {
     }
   }
 
+  Future<void> updateName(String fieldName, dynamic newValue) async{
+    try {
+      DocumentReference documentReference =
+          FirebaseFirestore.instance.collection('users').doc(userId);
+                  
+      // Update the specified field with the new value
+      await documentReference.update({fieldName: newValue});
+      _data.nama = newValue;
+
+      debugPrint('Document field updated successfully.');
+      notifyListeners();
+    } catch (e) {
+      debugPrint('Error updating document field: $e');
+    }
+  }
+
+  Future<void> changePassword(String newPassword) async {
+    final user = FirebaseAuth.instance.currentUser;
+
+    if (user != null) {
+
+      debugPrint('password has been changed');
+      await user.updatePassword(newPassword);
+    } else {
+      debugPrint("password hasnt been changed");
+      // No user is signed in.
+    }
+  }
+
+  Future<void> updateProfile(String fieldName, dynamic newValue) async{
+    try {
+      DocumentReference documentReference =
+          FirebaseFirestore.instance.collection('users').doc(userId);
+                  
+      // Update the specified field with the new value
+      await documentReference.update({fieldName: newValue});
+      _data.profile = newValue;
+
+      debugPrint('Document field updated successfully.');
+      notifyListeners();
+    } catch (e) {
+      debugPrint('Error updating document field: $e');
+    }
+  }
+
   Future<void> getData() async {
     Map<String, dynamic>? userData = await _getDocumentData();
     _data = UserClass(
