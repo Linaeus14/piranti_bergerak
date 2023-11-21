@@ -49,9 +49,10 @@ class _UserProfileState extends State<UserProfile> {
   @override
   Widget build(BuildContext context) {
     var w = MediaQuery.of(context).size.width - 50;
-    var h = MediaQuery.of(context).size.height - 257;
+    var h = MediaQuery.of(context).size.height - 260;
     return Scaffold(
       appBar: AppBar(
+        automaticallyImplyLeading: false,
         backgroundColor: const Color(0xff393e46),
         centerTitle: true,
         title: const Text(
@@ -175,7 +176,7 @@ class _UserProfileState extends State<UserProfile> {
             Container(
               width: w,
               height: h * 2 / 5,
-              margin: const EdgeInsets.fromLTRB(25, 23.5, 25, 86),
+              margin: const EdgeInsets.fromLTRB(25, 20, 25, 86),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
@@ -277,6 +278,7 @@ class _UserProfileState extends State<UserProfile> {
                               width: 1, color: Color(0xFFFFDF00)),
                         ),
                         onPressed: () {
+                          Auth().signOut();
                           Navigator.of(context)
                               .pushReplacement(MaterialPageRoute(
                             builder: (context) {

@@ -69,7 +69,8 @@ class _ProfilePageState extends State<ProfilePage> {
                 const Divider(
                     height: 0,
                     color: Color(0xFF888888),
-                    thickness: 0.2), // Garis atas sebelum "Edit Profile" (dengan ketebalan 2)
+                    thickness:
+                        0.2), // Garis atas sebelum "Edit Profile" (dengan ketebalan 2)
                 MenuItem(
                   Icons.person,
                   'Edit Profile',
@@ -122,6 +123,23 @@ class _ProfilePageState extends State<ProfilePage> {
                   isSelected: _selectedMenuIndex == 3,
                   onPressed: () {
                     _selectMenu(3);
+                  },
+                ),
+                const Divider(
+                    height: 0,
+                    color: Color(0xFF888888),
+                    thickness: 0.2), // Garis bawah
+                MenuItem(
+                  Icons.exit_to_app_outlined,
+                  'Sign Out',
+                  isSelected: _selectedMenuIndex == 4,
+                  onPressed: () {
+                    Auth().signOut();
+                    Navigator.of(context).pushReplacement(MaterialPageRoute(
+                      builder: (context) {
+                        return const SignIn();
+                      },
+                    ));
                   },
                 ),
               ],

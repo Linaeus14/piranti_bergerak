@@ -74,9 +74,7 @@ class _SuccessPageState extends State<SuccessPage> {
             ),
             SizedBox(height: 70),
             ElevatedButton(
-              onPressed: () async {
-                Provider.of<UserData>(context, listen: false).getData();
-                if (!context.mounted) return;
+              onPressed: () {
                 Navigator.of(context).pushReplacement(MaterialPageRoute(
                   builder: (context) {
                     return const Home();
@@ -110,6 +108,7 @@ class _SuccessPageState extends State<SuccessPage> {
               onPressed: () {
                 Navigator.of(context).pushReplacement(MaterialPageRoute(
                   builder: (context) {
+                    Auth().signOut();
                     return const SignIn();
                   },
                 ));

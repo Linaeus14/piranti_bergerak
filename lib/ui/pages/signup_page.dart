@@ -19,7 +19,7 @@ class _SignUpState extends State<SignUp> {
   @override
   void dispose() {
     _ctrlEmail.dispose();
-    _ctrlEmail.dispose();
+    _ctrlPassword.dispose();
     _ctrlNama.dispose();
     super.dispose();
   }
@@ -476,10 +476,11 @@ class _SignUpState extends State<SignUp> {
 
     if (registrationSuccess['success']) {
       // Jika registrasi berhasil, arahkan pengguna ke halaman profil
-      if (!context.mounted) return;
+
       userData.userId = uid;
       await userData.addUserToFirestore(
           uid, _ctrlEmail.text, _ctrlNama.text, imagePath);
+      userData.getData();
 
       if (!context.mounted) return;
       Navigator.of(context).pushReplacement(MaterialPageRoute(
