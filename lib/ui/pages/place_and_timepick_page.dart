@@ -1,7 +1,8 @@
 part of 'pages.dart';
 
 class PlaceAndTimePick extends StatefulWidget {
-  const PlaceAndTimePick({super.key});
+  final Film film;
+  const PlaceAndTimePick({super.key, required this.film});
 
   @override
   State<PlaceAndTimePick> createState() => _PlaceAndTimePickState();
@@ -484,7 +485,7 @@ class _PlaceAndTimePickState extends State<PlaceAndTimePick> {
               padding: const EdgeInsets.symmetric(horizontal: 133.0),
             ),
             onPressed: () {
-              Navigator.of(context).pushReplacement(MaterialPageRoute(
+              Navigator.of(context).push(MaterialPageRoute(
                 builder: (context) {
                   return const Seat();
                 },

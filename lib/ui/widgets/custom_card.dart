@@ -8,6 +8,7 @@ class CustomCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     double width = MediaQuery.of(context).size.width;
+      double height = MediaQuery.of(context).size.height;
     return Card(
       color: const Color(0xFFFFDF00),
       // Add your card properties here
@@ -18,18 +19,18 @@ class CustomCard extends StatelessWidget {
           cast.picture != null
               ? Image.network(
                   width: width * 0.3,
-                  height: width * 0.32,
+                  height: height * 0.21,
                   cast.picture!,
                   fit: BoxFit.fill,
                 )
               : SizedBox(
                   width: width * 0.3,
-                  height: width * 0.35,
+                  height: height * 0.21,
                   child: const Icon(Icons.person_3_rounded)),
           Container(
             padding: const EdgeInsets.all(10.0),
             width: width * 0.3,
-            height: width * 0.1,
+            height: height * 0.05,
             child: Text(
               // Check if cast.name is not null before using it
               cast.name ?? 'Unknown',

@@ -4,4 +4,5 @@ import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:piranti_bergerak/models/models.dart';
 
-part 'users_data.dart';
+part './user_data.dart';
+part './tickets_data.dart';

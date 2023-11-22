@@ -205,7 +205,7 @@ class _MovieDetailPageState extends State<MovieDetailPage> {
                         // If data is successfully fetched, build the UI with the cast information
                         List<Cast> cast = snapshot.data ?? [];
                         return SizedBox(
-                          height: height * 0.25,
+                          height: height * 0.285,
                           child: ListView.builder(
                             scrollDirection: Axis.horizontal,
                             itemCount: cast.length,
@@ -222,14 +222,16 @@ class _MovieDetailPageState extends State<MovieDetailPage> {
             ),
           ),
           Container(
-            margin: const EdgeInsets.only(bottom: 25),
+            margin: const EdgeInsets.only(bottom: 25, left: 5, right: 5),
             padding: const EdgeInsets.all(8.0),
             width: width * 0.95,
             child: ElevatedButton(
               onPressed: () {
-                Navigator.of(context).pushReplacement(MaterialPageRoute(
+                Navigator.of(context).push(MaterialPageRoute(
                   builder: (context) {
-                    return const PlaceAndTimePick();
+                    return PlaceAndTimePick(
+                      film: widget.film,
+                    );
                   },
                 ));
               },

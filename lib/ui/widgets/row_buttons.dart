@@ -1,14 +1,18 @@
 part of 'widgets.dart';
 
 class RowButtons extends StatelessWidget {
+  final double width;
+  final double height;
+  final VoidCallback onPressedContinue;
+  final VoidCallback onPressedBack;
+
   const RowButtons({
     super.key,
     required this.width,
     required this.height,
+    required this.onPressedContinue,
+     required this.onPressedBack,
   });
-
-  final double width;
-  final double height;
 
   @override
   Widget build(BuildContext context) {
@@ -25,15 +29,10 @@ class RowButtons extends StatelessWidget {
               child: OutlinedButton(
                   style: OutlinedButton.styleFrom(
                     foregroundColor: const Color(0xFFFFDF00),
-                    side: const BorderSide(
-                        width: 1, color: Color(0xFFFFDF00)),
+                    side: const BorderSide(width: 1, color: Color(0xFFFFDF00)),
                   ),
                   onPressed: () {
-                    Navigator.of(context).pushReplacement(MaterialPageRoute(
-                      builder: (context) {
-                        return const PlaceAndTimePick();
-                      },
-                    ));
+                    onPressedBack();
                   },
                   child: const Text(
                     'Back',
@@ -54,11 +53,7 @@ class RowButtons extends StatelessWidget {
                   foregroundColor: Colors.black,
                 ),
                 onPressed: () {
-                  Navigator.of(context).pushReplacement(MaterialPageRoute(
-                    builder: (context) {
-                      return const CheckoutPage();
-                    },
-                  ));
+                  onPressedContinue();
                 },
                 child: const Text(
                   'Continue',

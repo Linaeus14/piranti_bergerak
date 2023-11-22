@@ -215,7 +215,17 @@ class _SeatState extends State<Seat> {
                   ),
                 ],
               ),
-              RowButtons(width: width, height: height)
+              RowButtons(
+                width: width,
+                height: height,
+                onPressedBack: () => Navigator.pop(context),
+                onPressedContinue: () =>
+                    Navigator.push(context, MaterialPageRoute(
+                  builder: (context) {
+                    return const CheckoutPage();
+                  },
+                )),
+              )
             ],
           )
         ],

@@ -27,7 +27,7 @@ class _BottomNavState extends State<BottomNav> {
           // Tambahkan logika atau tindakan sesuai kebutuhan
           switch (tappedIndex) {
             case 0:
-              Navigator.of(context).push(MaterialPageRoute(
+              Navigator.of(context).pushReplacement(MaterialPageRoute(
                 builder: (context) {
                   return const TicketPage();
                 },
@@ -35,7 +35,7 @@ class _BottomNavState extends State<BottomNav> {
               break;
             case 1:
               // Tindakan saat ikon Home diklik
-              Navigator.of(context).push(MaterialPageRoute(
+              Navigator.of(context).pushReplacement(MaterialPageRoute(
                 builder: (context) {
                   return const Home();
                 },
@@ -43,7 +43,7 @@ class _BottomNavState extends State<BottomNav> {
               break;
             case 2:
               // Tindakan saat ikon Profile diklik
-              Navigator.of(context).push(MaterialPageRoute(
+              Navigator.of(context).pushReplacement(MaterialPageRoute(
                 builder: (context) {
                   return const ProfilePage();
                 },
