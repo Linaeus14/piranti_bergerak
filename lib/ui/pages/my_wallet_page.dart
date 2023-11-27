@@ -36,7 +36,7 @@ class _MyWalletPageState extends State<MyWalletPage> {
               margin: const EdgeInsets.only(top: 25, left: 10),
               decoration: const BoxDecoration(
                 shape: BoxShape.circle,
-                color: Color(0xFFFFDF00),
+                color: Color.fromARGB(120, 255, 221, 0),
               ),
               width: 40,
               height: 40,

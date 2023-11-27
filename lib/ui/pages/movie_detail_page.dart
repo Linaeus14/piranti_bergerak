@@ -59,14 +59,14 @@ class _MovieDetailPageState extends State<MovieDetailPage> {
                   margin: const EdgeInsets.only(top: 25, left: 10),
                   decoration: const BoxDecoration(
                     shape: BoxShape.circle,
-                    color: Color(0xFF393E46),
+                    color: Color.fromARGB(120, 255, 221, 0),
                   ),
                   width: 40,
                   height: 40,
                   child: IconButton(
                     icon: Icon(
                       Icons.arrow_back,
-                      color: Color(0xFFFFDF00),
+                      color: Color(0xFF393E46),
                     ),
                     onPressed: () {
                       Navigator.of(context).pop();
@@ -227,7 +227,8 @@ class _MovieDetailPageState extends State<MovieDetailPage> {
             width: width * 0.95,
             child: ElevatedButton(
               onPressed: () {
-                Provider.of<TicketData>(context, listen: false).ticket.film = widget.film;
+                Provider.of<TicketData>(context, listen: false).ticket.film =
+                    widget.film;
                 Navigator.of(context).push(MaterialPageRoute(
                   builder: (context) {
                     return PlaceAndTimePick();

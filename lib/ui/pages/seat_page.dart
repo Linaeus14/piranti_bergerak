@@ -13,6 +13,16 @@ class _SeatState extends State<Seat> {
   final List<List<String>> _seat = [[], []];
   bool checkSelected = false;
 
+  final ScrollController _scrollController = ScrollController();
+  final ScrollController _scrollController2 = ScrollController();
+
+  @override
+  void dispose() {
+    _scrollController.dispose();
+    _scrollController2.dispose();
+    super.dispose();
+  }
+
   @override
   void initState() {
     for (var i = 65; i < 74; i++) {
@@ -105,109 +115,115 @@ class _SeatState extends State<Seat> {
                         SizedBox(
                           width: width / 2 - 20,
                           height: height * 7 / 10,
-                          child: GridView.builder(
-                            physics: const NeverScrollableScrollPhysics(),
-                            gridDelegate:
-                                const SliverGridDelegateWithFixedCrossAxisCount(
-                              childAspectRatio: 1.5,
-                              mainAxisSpacing: 5,
-                              crossAxisSpacing: 5,
-                              crossAxisCount: 3,
-                            ),
-                            itemCount: 27,
-                            itemBuilder: (BuildContext context, int index) {
-                              return Stack(
-                                alignment: Alignment.center,
-                                children: [
-                                  Container(
-                                    margin:
-                                        const EdgeInsets.only(top: 2, left: 2),
-                                    color: const Color(0xFFFFDF00),
-                                  ),
-                                  Container(
-                                    padding: EdgeInsets.zero,
-                                    decoration: BoxDecoration(
-                                        color: _reservations[index]
-                                            ? const Color(0xFF969696)
-                                            : Colors.white,
-                                        border: Border.all(
-                                            color: const Color(0xFF969696),
-                                            width: 1)),
-                                    child: ToggleButtons(
-                                      fillColor: const Color(0xFFDAA520),
-                                      selectedColor: Colors.black,
-                                      isSelected: [_selections[index]],
-                                      children: [
-                                        Text(_seat[0][index],
-                                            textAlign: TextAlign.center,
-                                            style: const TextStyle(
-                                                fontSize: 10,
-                                                fontFamily: "Roboto",
-                                                fontStyle: FontStyle.normal,
-                                                fontWeight: FontWeight.w400))
-                                      ],
-                                      onPressed: (pressIndex) {
-                                        seatToggle(index);
-                                      },
+                          child: Scrollbar(
+                            controller: _scrollController,
+                            child: GridView.builder(
+                              controller: _scrollController,
+                              gridDelegate:
+                                  const SliverGridDelegateWithFixedCrossAxisCount(
+                                childAspectRatio: 1.5,
+                                mainAxisSpacing: 5,
+                                crossAxisSpacing: 5,
+                                crossAxisCount: 3,
+                              ),
+                              itemCount: 27,
+                              itemBuilder: (BuildContext context, int index) {
+                                return Stack(
+                                  alignment: Alignment.center,
+                                  children: [
+                                    Container(
+                                      margin: const EdgeInsets.only(
+                                          top: 2, left: 2),
+                                      color: const Color(0xFFFFDF00),
                                     ),
-                                  ),
-                                ],
-                              );
-                            },
+                                    Container(
+                                      padding: EdgeInsets.zero,
+                                      decoration: BoxDecoration(
+                                          color: _reservations[index]
+                                              ? const Color(0xFF969696)
+                                              : Colors.white,
+                                          border: Border.all(
+                                              color: const Color(0xFF969696),
+                                              width: 1)),
+                                      child: ToggleButtons(
+                                        fillColor: const Color(0xFFDAA520),
+                                        selectedColor: Colors.black,
+                                        isSelected: [_selections[index]],
+                                        children: [
+                                          Text(_seat[0][index],
+                                              textAlign: TextAlign.center,
+                                              style: const TextStyle(
+                                                  fontSize: 10,
+                                                  fontFamily: "Roboto",
+                                                  fontStyle: FontStyle.normal,
+                                                  fontWeight: FontWeight.w400))
+                                        ],
+                                        onPressed: (pressIndex) {
+                                          seatToggle(index);
+                                        },
+                                      ),
+                                    ),
+                                  ],
+                                );
+                              },
+                            ),
                           ),
                         ),
                         SizedBox(
                           width: width / 2 - 20,
                           height: height * 7 / 10,
-                          child: GridView.builder(
-                            physics: const NeverScrollableScrollPhysics(),
-                            gridDelegate:
-                                const SliverGridDelegateWithFixedCrossAxisCount(
-                              childAspectRatio: 1.5,
-                              mainAxisSpacing: 5,
-                              crossAxisSpacing: 5,
-                              crossAxisCount: 3,
-                            ),
-                            itemCount: 27,
-                            itemBuilder: (BuildContext context, int index) {
-                              return Stack(
-                                alignment: Alignment.center,
-                                children: [
-                                  Container(
-                                    margin:
-                                        const EdgeInsets.only(top: 2, left: 2),
-                                    color: const Color(0xFFFFDF00),
-                                  ),
-                                  Container(
-                                    padding: EdgeInsets.zero,
-                                    decoration: BoxDecoration(
-                                        color: _reservations[index + 27]
-                                            ? const Color(0xFF969696)
-                                            : Colors.white,
-                                        border: Border.all(
-                                            color: const Color(0xFF969696),
-                                            width: 1)),
-                                    child: ToggleButtons(
-                                      fillColor: const Color(0xFFDAA520),
-                                      selectedColor: Colors.black,
-                                      isSelected: [_selections[index + 27]],
-                                      children: [
-                                        Text(_seat[1][index],
-                                            textAlign: TextAlign.center,
-                                            style: const TextStyle(
-                                                fontSize: 10,
-                                                fontFamily: "Roboto",
-                                                fontStyle: FontStyle.normal,
-                                                fontWeight: FontWeight.w400))
-                                      ],
-                                      onPressed: (pressIndex) {
-                                        seatToggle(index + 27);
-                                      },
+                          child: Scrollbar(
+                            controller: _scrollController2,
+                            child: GridView.builder(
+                              controller: _scrollController2,
+                              gridDelegate:
+                                  const SliverGridDelegateWithFixedCrossAxisCount(
+                                childAspectRatio: 1.5,
+                                mainAxisSpacing: 5,
+                                crossAxisSpacing: 5,
+                                crossAxisCount: 3,
+                              ),
+                              itemCount: 27,
+                              itemBuilder: (BuildContext context, int index) {
+                                return Stack(
+                                  alignment: Alignment.center,
+                                  children: [
+                                    Container(
+                                      margin: const EdgeInsets.only(
+                                          top: 2, left: 2),
+                                      color: const Color(0xFFFFDF00),
                                     ),
-                                  ),
-                                ],
-                              );
-                            },
+                                    Container(
+                                      padding: EdgeInsets.zero,
+                                      decoration: BoxDecoration(
+                                          color: _reservations[index + 27]
+                                              ? const Color(0xFF969696)
+                                              : Colors.white,
+                                          border: Border.all(
+                                              color: const Color(0xFF969696),
+                                              width: 1)),
+                                      child: ToggleButtons(
+                                        fillColor: const Color(0xFFDAA520),
+                                        selectedColor: Colors.black,
+                                        isSelected: [_selections[index + 27]],
+                                        children: [
+                                          Text(_seat[1][index],
+                                              textAlign: TextAlign.center,
+                                              style: const TextStyle(
+                                                  fontSize: 10,
+                                                  fontFamily: "Roboto",
+                                                  fontStyle: FontStyle.normal,
+                                                  fontWeight: FontWeight.w400))
+                                        ],
+                                        onPressed: (pressIndex) {
+                                          seatToggle(index + 27);
+                                        },
+                                      ),
+                                    ),
+                                  ],
+                                );
+                              },
+                            ),
                           ),
                         )
                       ],

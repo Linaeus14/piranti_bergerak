@@ -33,17 +33,17 @@ class TicketDetailPage extends StatelessWidget {
                   Container(
                     width: 393,
                     height: 257.49,
-                    decoration: const BoxDecoration(
+                    decoration: BoxDecoration(
                       image: DecorationImage(
-                        image: NetworkImage('assets/starwar.png'),
+                        image: NetworkImage(ticket.film.backdropUrl!),
                         fit: BoxFit.fill,
                       ),
-                      border: Border(
+                      border: const Border(
                         bottom: BorderSide(
                           width: 35,
                         ),
                       ),
-                      boxShadow: [
+                      boxShadow: const [
                         BoxShadow(
                           color: Color(0x3F000000),
                           blurRadius: 4,
@@ -82,13 +82,13 @@ class TicketDetailPage extends StatelessWidget {
                       ),
                     ),
                   ),
-                  const Positioned(
+                  Positioned(
                     left: 284,
                     top: 412,
                     child: Text(
-                      'Lorem',
+                      ticket.cinema,
                       textAlign: TextAlign.right,
-                      style: TextStyle(
+                      style: const TextStyle(
                         color: Color(0xFFFFDF00),
                         fontSize: 13,
                       ),
@@ -105,13 +105,13 @@ class TicketDetailPage extends StatelessWidget {
                       ),
                     ),
                   ),
-                  const Positioned(
+                  Positioned(
                     left: 244,
                     top: 439,
                     child: Text(
-                      'Day 30, 22:00',
+                      ticket.time,
                       textAlign: TextAlign.right,
-                      style: TextStyle(
+                      style: const TextStyle(
                         color: Color(0xFFFFDF00),
                         fontSize: 13,
                       ),
@@ -140,11 +140,12 @@ class TicketDetailPage extends StatelessWidget {
                       ),
                     ),
                   ),
-                  const Positioned(
+                  Positioned(
                     left: 23,
                     top: 556,
                     child: Text(
-                      'Anatasya',
+                      Provider.of<UserData>(context).data.nama!,
+                      // ignore: prefer_const_constructors
                       style: TextStyle(
                         color: Colors.white,
                         fontSize: 13,
@@ -163,12 +164,12 @@ class TicketDetailPage extends StatelessWidget {
                       ),
                     ),
                   ),
-                  const Positioned(
+                  Positioned(
                     left: 23,
                     top: 611,
                     child: Text(
-                      'Rp.600.000',
-                      style: TextStyle(
+                      "Rp. ${NumberFormat("#,##0", "id_ID").format(ticket.harga)}",
+                      style: const TextStyle(
                         color: Colors.white,
                         fontSize: 13,
                       ),
@@ -185,30 +186,30 @@ class TicketDetailPage extends StatelessWidget {
                       ),
                     ),
                   ),
-                  const Positioned(
+                  Positioned(
                     left: 227,
                     top: 696,
                     child: Text(
-                      '123456789101112',
-                      style: TextStyle(
+                      ticket.id,
+                      style: const TextStyle(
                         color: Colors.white,
                         fontSize: 13,
                       ),
                     ),
                   ),
-                  const Positioned(
+                  Positioned(
                     left: 260,
                     top: 466,
                     child: Text(
-                      'A1, A2, A3',
+                      ticket.seats.join(", "),
                       textAlign: TextAlign.right,
-                      style: TextStyle(
+                      style: const TextStyle(
                         color: Color(0xFFFFDF00),
                         fontSize: 13,
                       ),
                     ),
                   ),
-                  const Positioned(
+                  Positioned(
                     left: 66,
                     top: 300,
                     child: Column(
@@ -217,18 +218,18 @@ class TicketDetailPage extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
                         Text(
-                          'STAR WARS : THE FORCE AWAKENS ',
-                          style: TextStyle(
+                          ticket.film.title!,
+                          style: const TextStyle(
                             color: Color(0xFFFFDF00),
                             fontSize: 16,
                           ),
                         ),
-                        SizedBox(
+                        const SizedBox(
                           height: 10,
                         ),
                         Text(
-                          'Action, Adventure, Sci-Fi - English',
-                          style: TextStyle(
+                          ticket.film.genres!.join(", "),
+                          style: const TextStyle(
                             color: Colors.white,
                             fontSize: 13,
                           ),

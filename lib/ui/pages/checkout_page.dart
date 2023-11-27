@@ -15,7 +15,7 @@ class _CheckoutPageState extends State<CheckoutPage> {
     int price = 200000 * ticketData.ticket.seats.length;
     Ticket ticket = ticketData.ticket;
     Color payColor =
-        userData.data.wallet! <= price ? Colors.red : const Color(0xFFFFDF00);
+        userData.data.wallet! < price ? Colors.red : const Color(0xFFFFDF00);
     return Scaffold(
       backgroundColor: const Color(0xFF393E46),
       body: ListView(
@@ -41,20 +41,22 @@ class _CheckoutPageState extends State<CheckoutPage> {
                       left: 10,
 
                       // Tombol Back
-                      child: Ink(
+                      child: Container(
+                        width: 40,
+                        height: 40,
                         decoration: const ShapeDecoration(
-                          color: Color(0xFFFFDF00),
+                          color: Color.fromARGB(120, 255, 221, 0),
                           shape: CircleBorder(),
                         ),
                         child: IconButton(
                           icon: const Icon(
                             Icons.arrow_back,
-                            color: Colors.black,
+                            color: Color(0xFF393E46),
                           ),
                           onPressed: () {
                             Navigator.of(context).pop();
                           },
-                          iconSize: 40,
+                          iconSize: 20,
                         ),
                       ),
                     ),

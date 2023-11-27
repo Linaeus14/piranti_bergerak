@@ -24,10 +24,12 @@ class _HomeState extends State<Home> {
     'Musical'
   ];
   final ScrollController _scrollController = ScrollController();
+  final ScrollController _scrollController2 = ScrollController();
 
   @override
   void dispose() {
     _scrollController.dispose();
+    _scrollController2.dispose();
     super.dispose();
   }
 
@@ -59,7 +61,8 @@ class _HomeState extends State<Home> {
               if (snapshot.connectionState == ConnectionState.waiting) {
                 // Data is still loading
                 return Padding(
-                  padding: EdgeInsets.fromLTRB(width/2.15, 50, width/2.15, 50),
+                  padding:
+                      EdgeInsets.fromLTRB(width / 2.15, 50, width / 2.15, 50),
                   child: const CircularProgressIndicator(
                     color: Color(0xFFFFDF00),
                   ),
@@ -91,38 +94,45 @@ class _HomeState extends State<Home> {
                   width: width,
                   height: height * 2 / 8,
                   color: Colors.transparent,
-                  child: ListView.builder(
-                    scrollDirection: Axis.horizontal,
-                    itemCount: films.length,
-                    itemBuilder: (BuildContext context, int index) {
-                      Film film = films[index];
-                      return GestureDetector(
-                        onTap: () {
-                          Navigator.of(context).push(MaterialPageRoute(
-                            builder: (context) {
-                              return MovieDetailPage(
-                                film: film,
-                              );
-                            },
-                          ));
-                        },
-                        child: Container(
-                          alignment: Alignment.center,
-                          margin:
-                              const EdgeInsets.only(left: 12.5, right: 12.5),
-                          width: (height * 2 / 8 - 45) / 1.1,
-                          height: height * 2 / 8 - 45,
-                          decoration: BoxDecoration(
-                            borderRadius:
-                                const BorderRadius.all(Radius.circular(15)),
-                            image: DecorationImage(
-                              image: NetworkImage(film.thumbnailUrl!),
-                              fit: BoxFit.cover,
+                  child: RawScrollbar(
+                    controller: _scrollController,
+                    thumbColor: const Color(0xFFFFDF00),
+                    thumbVisibility: true,
+                    trackVisibility: false,
+                    child: ListView.builder(
+                      controller: _scrollController,
+                      scrollDirection: Axis.horizontal,
+                      itemCount: films.length,
+                      itemBuilder: (BuildContext context, int index) {
+                        Film film = films[index];
+                        return GestureDetector(
+                          onTap: () {
+                            Navigator.of(context).push(MaterialPageRoute(
+                              builder: (context) {
+                                return MovieDetailPage(
+                                  film: film,
+                                );
+                              },
+                            ));
+                          },
+                          child: Container(
+                            alignment: Alignment.center,
+                            margin: const EdgeInsets.only(
+                                left: 12.5, right: 12.5, bottom: 15),
+                            width: (height * 2 / 8 - 45) / 1.1,
+                            height: height * 2 / 8 - 45,
+                            decoration: BoxDecoration(
+                              borderRadius:
+                                  const BorderRadius.all(Radius.circular(15)),
+                              image: DecorationImage(
+                                image: NetworkImage(film.thumbnailUrl!),
+                                fit: BoxFit.cover,
+                              ),
                             ),
                           ),
-                        ),
-                      );
-                    },
+                        );
+                      },
+                    ),
                   ),
                 );
               }
@@ -219,7 +229,8 @@ class _HomeState extends State<Home> {
                 if (snapshot.connectionState == ConnectionState.waiting) {
                   // While data is being fetched, show a loading indicator
                   return Padding(
-                    padding: EdgeInsets.fromLTRB(width/2.2, 100, width/2.2, 100),
+                    padding:
+                        EdgeInsets.fromLTRB(width / 2.2, 100, width / 2.2, 100),
                     child: const CircularProgressIndicator(
                       color: Color(0xFFFFDF00),
                     ),
@@ -232,12 +243,12 @@ class _HomeState extends State<Home> {
                   List<Film> films = snapshot.data ?? [];
 
                   return RawScrollbar(
-                    controller: _scrollController,
+                    controller: _scrollController2,
                     thumbColor: const Color(0xFFFFDF00),
                     thumbVisibility: true,
                     trackVisibility: false,
                     child: ListView.builder(
-                      controller: _scrollController,
+                      controller: _scrollController2,
                       scrollDirection: Axis.horizontal,
                       itemCount: films.length,
                       itemBuilder: (BuildContext context, int index) {
@@ -279,7 +290,7 @@ class _HomeState extends State<Home> {
                                   style: const TextStyle(
                                     color: Colors.black,
                                     fontFamily: "Raleway",
-                                    fontSize: 12,
+                                    fontSize: 13,
                                     fontStyle: FontStyle.normal,
                                     fontWeight: FontWeight.w500,
                                   ),

@@ -58,8 +58,12 @@ class _SignInState extends State<SignIn> {
                       width: double.infinity,
                       height: 69,
                       child: TextField(
-                        // controller: TextEditingController(),
                         controller: _ctrlEmail,
+                        style: const TextStyle(
+                          fontSize: 14,
+                          fontWeight: FontWeight.w400,
+                          color: Colors.white,
+                        ),
                         decoration: InputDecoration(
                           floatingLabelBehavior: FloatingLabelBehavior.always,
                           contentPadding: const EdgeInsets.symmetric(
@@ -102,51 +106,54 @@ class _SignInState extends State<SignIn> {
                           TextField(
                             controller: _ctrlPassword,
                             obscureText: _isPasswordHidden,
-                            decoration: const InputDecoration(
+                            style: const TextStyle(
+                              fontSize: 14,
+                              fontWeight: FontWeight.w400,
+                              color: Colors.white,
+                            ),
+                            decoration: InputDecoration(
                               floatingLabelBehavior:
                                   FloatingLabelBehavior.always,
-                              contentPadding: EdgeInsets.symmetric(
+                              contentPadding: const EdgeInsets.symmetric(
                                   horizontal: 20.0, vertical: 20.0),
                               labelText: 'Password',
-                              labelStyle: TextStyle(
+                              labelStyle: const TextStyle(
                                 fontSize: 14,
                                 fontWeight: FontWeight.w400,
                                 color: Color(0xffffdf00),
                               ),
                               hintText: 'Input Password',
-                              hintStyle: TextStyle(
+                              hintStyle: const TextStyle(
                                 fontSize: 14,
                                 fontWeight: FontWeight.w400,
                                 color: Color(0xffcccccc),
                               ),
-                              focusedBorder: OutlineInputBorder(
+                              focusedBorder: const OutlineInputBorder(
                                 borderSide: BorderSide(
                                   color: Color(0xffffdf00),
                                   width: 2,
                                 ),
                               ),
-                              enabledBorder: OutlineInputBorder(
+                              enabledBorder: const OutlineInputBorder(
                                 borderSide: BorderSide(
                                   color: Color(0xffffdf00),
                                   width: 1,
                                 ),
                               ),
-                            ),
-                          ),
-                          Positioned(
-                            right: 0,
-                            bottom: 15,
-                            child: IconButton(
-                              icon: Icon(
-                                _isPasswordHidden ? Icons.visibility_off : Icons.visibility,
-                                color: const Color(0xffffdf00),
+                              suffixIcon: IconButton(
+                                icon: Icon(
+                                  _isPasswordHidden
+                                      ? Icons.visibility_off
+                                      : Icons.visibility,
+                                  color: const Color(0xffffdf00),
+                                ),
+                                onPressed: () {
+                                  // Toggle the visibility of the password
+                                  setState(() {
+                                    _isPasswordHidden = !_isPasswordHidden;
+                                  });
+                                },
                               ),
-                              onPressed: () {
-                                // Toggle the visibility of the password
-                                setState(() {
-                                  _isPasswordHidden = !_isPasswordHidden;
-                                });
-                              },
                             ),
                           ),
                         ],

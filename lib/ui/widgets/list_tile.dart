@@ -4,15 +4,12 @@ class TicketTile extends StatefulWidget {
   const TicketTile(
       {super.key,
       required double width,
-      required double height,
       required this.ticket,
       required this.onPressed,
       this.leading = false})
-      : _width = width,
-        _height = height;
+      : _width = width;
 
   final double _width;
-  final double _height;
   final Ticket ticket;
   final VoidCallback onPressed;
   final bool leading;

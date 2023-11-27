@@ -2,16 +2,12 @@
 
 part of 'pages.dart';
 
-class OrderSuccessPage extends StatefulWidget {
+class OrderSuccessPage extends StatelessWidget {
   const OrderSuccessPage({super.key});
 
   @override
-  State<OrderSuccessPage> createState() => _OrderSuccessPageState();
-}
-
-class _OrderSuccessPageState extends State<OrderSuccessPage> {
-  @override
   Widget build(BuildContext context) {
+    Ticket ticket = Provider.of<TicketData>(context).ticket;
     return Scaffold(
       backgroundColor: Color(0xFF393E46),
       body: Center(
@@ -42,8 +38,8 @@ class _OrderSuccessPageState extends State<OrderSuccessPage> {
                       topLeft: Radius.circular(15), // Radius sudut kiri atas
                       topRight: Radius.circular(15), // Radius sudut kanan atas
                     ),
-                    child: Image.asset(
-                      'assets/film2.jpg',
+                    child: Image.network(
+                      ticket.film.backdropUrl!,
                       fit: BoxFit.cover,
                       height: 200,
                       width: double.infinity,
@@ -54,7 +50,7 @@ class _OrderSuccessPageState extends State<OrderSuccessPage> {
                     left: 0,
                     right: 0,
                     child: Text(
-                      'STAR WARS : THE \n FORCE AWAKENS',
+                      ticket.film.title!,
                       style: TextStyle(
                           color: Colors.black,
                           fontFamily: 'Raleway',
@@ -72,7 +68,7 @@ class _OrderSuccessPageState extends State<OrderSuccessPage> {
                 Navigator.of(context).push(MaterialPageRoute(
                   builder: (context) {
                     return TicketDetailPage(
-                      ticket: Provider.of<TicketData>(context).ticket,
+                      ticket: ticket,
                     );
                   },
                 ));

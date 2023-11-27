@@ -9,6 +9,7 @@ class SignUp extends StatefulWidget {
 
 class _SignUpState extends State<SignUp> {
   String idDocument = '';
+  bool _isPasswordHidden = true;
 
   final _formKey = GlobalKey<FormState>();
 
@@ -94,7 +95,11 @@ class _SignUpState extends State<SignUp> {
                           color: const Color(0xff393e46),
                           child: TextFormField(
                             controller: _ctrlEmail,
-                            // controller: TextEditingController(),
+                            style: const TextStyle(
+                              fontSize: 14,
+                              fontWeight: FontWeight.w400,
+                              color: Colors.white,
+                            ),
                             decoration: const InputDecoration(
                               filled: true,
                               floatingLabelBehavior:
@@ -166,34 +171,54 @@ class _SignUpState extends State<SignUp> {
                           child: TextFormField(
                             // controller: TextEditingController(),
                             controller: _ctrlPassword,
-                            decoration: const InputDecoration(
+                            obscureText: _isPasswordHidden,
+                            style: const TextStyle(
+                              fontSize: 14,
+                              fontWeight: FontWeight.w400,
+                              color: Colors.white,
+                            ),
+                            decoration: InputDecoration(
                               floatingLabelBehavior:
                                   FloatingLabelBehavior.always,
-                              contentPadding: EdgeInsets.symmetric(
+                              contentPadding: const EdgeInsets.symmetric(
                                   horizontal: 20.0, vertical: 20.0),
                               labelText: 'Password',
-                              labelStyle: TextStyle(
+                              labelStyle: const TextStyle(
                                 color: Color(0xffffdf00),
                                 fontSize: 16,
                                 fontWeight: FontWeight.w400,
                               ),
                               hintText: 'Input Password',
-                              hintStyle: TextStyle(
+                              hintStyle: const TextStyle(
                                 fontSize: 14,
                                 fontWeight: FontWeight.w400,
                                 color: Color(0xffcccccc),
                               ),
-                              focusedBorder: OutlineInputBorder(
+                              focusedBorder: const OutlineInputBorder(
                                 borderSide: BorderSide(
                                   color: Color(0xffffdf00),
                                   width: 2,
                                 ),
                               ),
-                              enabledBorder: OutlineInputBorder(
+                              enabledBorder: const OutlineInputBorder(
                                 borderSide: BorderSide(
                                   color: Color(0xffffdf00),
                                   width: 1,
                                 ),
+                              ),
+                              suffixIcon: IconButton(
+                                icon: Icon(
+                                  _isPasswordHidden
+                                      ? Icons.visibility_off
+                                      : Icons.visibility,
+                                  color: const Color(0xffffdf00),
+                                ),
+                                onPressed: () {
+                                  // Toggle the visibility of the password
+                                  setState(() {
+                                    _isPasswordHidden = !_isPasswordHidden;
+                                  });
+                                },
                               ),
                             ),
                             validator: (value) {
@@ -235,6 +260,11 @@ class _SignUpState extends State<SignUp> {
                           color: const Color(0xff393e46),
                           child: TextFormField(
                             controller: _ctrlNama,
+                            style: const TextStyle(
+                              fontSize: 14,
+                              fontWeight: FontWeight.w400,
+                              color: Colors.white,
+                            ),
                             decoration: const InputDecoration(
                               floatingLabelBehavior:
                                   FloatingLabelBehavior.always,

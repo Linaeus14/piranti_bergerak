@@ -11,6 +11,14 @@ class _TicketPageState extends State<TicketPage> {
   final int _index = 0;
   bool isUsedButtonActive = true;
 
+  final ScrollController _scrollController = ScrollController();
+
+  @override
+  void dispose() {
+    _scrollController.dispose();
+    super.dispose();
+  }
+
   void toggleButtons() {
     setState(() {
       isUsedButtonActive = !isUsedButtonActive;
@@ -33,8 +41,14 @@ class _TicketPageState extends State<TicketPage> {
         children: [
           Expanded(
               child: isUsedButtonActive
-                  ? TicketList(userData: userData, screenSize: screenSize)
-                  : TicketList(userData: userData, screenSize: screenSize)),
+                  ? TicketList(
+                      userData: userData,
+                      screenSize: screenSize,
+                      controller: _scrollController)
+                  : TicketList(
+                      userData: userData,
+                      screenSize: screenSize,
+                      controller: _scrollController)),
           Row(
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
@@ -94,14 +108,15 @@ class _TicketPageState extends State<TicketPage> {
 }
 
 class TicketList extends StatelessWidget {
-  const TicketList({
-    super.key,
-    required this.userData,
-    required this.screenSize,
-  });
+  const TicketList(
+      {super.key,
+      required this.userData,
+      required this.screenSize,
+      required this.controller});
 
   final UserData userData;
   final Size screenSize;
+  final ScrollController controller;
 
   @override
   Widget build(BuildContext context) {
@@ -113,7 +128,10 @@ class TicketList extends StatelessWidget {
           // Data is still loading
           return Padding(
             padding: EdgeInsets.fromLTRB(
-                screenSize.width / 2.15, screenSize.height / 2.9, screenSize.width / 3, screenSize.height / 2.9),
+                screenSize.width / 2.15,
+                screenSize.height / 2.9,
+                screenSize.width / 3,
+                screenSize.height / 2.9),
             child: const CircularProgressIndicator(
               color: Color(0xFFFFDF00),
             ),
@@ -140,21 +158,30 @@ class TicketList extends StatelessWidget {
         } else {
           // Data is available
           List<Ticket> tickets = snapshot.data as List<Ticket>;
-          return ListView.builder(
-              itemCount: tickets.length,
-              itemBuilder: (context, index) {
-                return TicketTile(
-                    width: screenSize.width,
-                    height: screenSize.height,
-                    ticket: tickets[index],
-                    onPressed: () {
-                      Navigator.of(context).push(MaterialPageRoute(
-                        builder: (context) {
-                          return TicketDetailPage(ticket: tickets[index]);
-                        },
-                      ));
-                    });
-              });
+          return RawScrollbar(
+            controller: controller,
+            thumbColor: const Color(0xFFFFDF00),
+            thumbVisibility: true,
+            trackVisibility: false,
+            child: ListView.builder(
+                itemCount: tickets.length,
+                itemBuilder: (context, index) {
+                  return Padding(
+                    padding: const EdgeInsets.only(
+                        left: 8.0, right: 16.0, bottom: 2.0),
+                    child: TicketTile(
+                        width: screenSize.width,
+                        ticket: tickets[index],
+                        onPressed: () {
+                          Navigator.of(context).push(MaterialPageRoute(
+                            builder: (context) {
+                              return TicketDetailPage(ticket: tickets[index]);
+                            },
+                          ));
+                        }),
+                  );
+                }),
+          );
         }
       },
     );
