@@ -24,120 +24,139 @@ class _TicketPageState extends State<TicketPage> {
     return Scaffold(
       backgroundColor: const Color(0xFF393E46),
       appBar: AppBar(
-        toolbarHeight: 100,
+        toolbarHeight: 80,
+        title: const HomeAppbarTitle(),
         backgroundColor: const Color(0xFFFFDF00),
         automaticallyImplyLeading: false,
-        title: Row(
-          children: [
-            CircleAvatar(
-              radius: 30,
-              backgroundColor: const Color(0xFF393E46),
-              backgroundImage: 
-                  userData.data.profile != ""
-                  ? NetworkImage(userData.data.profile!)
-                  : const AssetImage('assets/Profile.png') as ImageProvider<Object>,
-              // NetworkImage(userData.data.profile!),
-            ),
-            const SizedBox(width: 10),
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  userData.data.nama!,
-                  style: const TextStyle(
-                    fontSize: 13,
-                  ),
-                ),
-                Text(
-                  "Rp. ${NumberFormat("#,##0", "id_ID").format(userData.data.wallet)}",
-                  style: const TextStyle(
-                    fontSize: 13,
-                  ),
-                ),
-              ],
-            ),
-          ],
-        ),
       ),
       body: Column(
         children: [
           Expanded(
-            child: ListView(
-              padding: const EdgeInsets.only(left: 10),
-              children: List.generate(
-                12,
-                (index) {
-                  if (isUsedButtonActive) {
-                    return GestureDetector(
-                      onTap: () {},
-                      child: TicketUpcoming(screenSize: screenSize),
-                      // onVerticalDragUpdate: (details) {},
-                    );
-                  } else {
-                    return GestureDetector(
-                      onTap: () {},
-                      child: TicketUsed(screenSize: screenSize),
-                      // onVerticalDragUpdate: (details) {},
-                    );
+              child: isUsedButtonActive
+                  ? TicketList(userData: userData, screenSize: screenSize)
+                  : TicketList(userData: userData, screenSize: screenSize)),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: [
+              ElevatedButton(
+                onPressed: () {
+                  if (!isUsedButtonActive) {
+                    toggleButtons();
                   }
                 },
+                style: ElevatedButton.styleFrom(
+                  fixedSize: const Size(196, 50),
+                  backgroundColor: isUsedButtonActive
+                      ? const Color(0xFFFFDF00)
+                      : const Color(0xFFFFDF00),
+                  shape: const RoundedRectangleBorder(
+                    side: BorderSide(color: Colors.black, width: 0.5),
+                  ),
+                ),
+                child: Text(
+                  'Upcoming',
+                  style: TextStyle(
+                    color: isUsedButtonActive ? Colors.black : Colors.grey,
+                    fontSize: 12,
+                  ),
+                ),
               ),
-            ),
-          ),
-          Row(
-              mainAxisAlignment: MainAxisAlignment.start,
-              children: [
-                ElevatedButton(
-                  onPressed: () {
-                    if (!isUsedButtonActive) {
-                      toggleButtons();
-                    }
-                  },
-                  style: ElevatedButton.styleFrom(
-                    fixedSize: const Size(196, 50),
-                    backgroundColor: isUsedButtonActive
-                        ? const Color(0xFFFFDF00)
-                        : const Color(0xFFFFDF00),
-                    shape: const RoundedRectangleBorder(
-                      side: BorderSide(color: Colors.black, width: 0.5),
-                    ),
-                  ),
-                  child: Text(
-                    'Upcoming',
-                    style: TextStyle(
-                      color: isUsedButtonActive ? Colors.black : Colors.grey,
-                      fontSize: 12,
-                    ),
+              ElevatedButton(
+                onPressed: () {
+                  if (isUsedButtonActive) {
+                    toggleButtons();
+                  }
+                },
+                style: ElevatedButton.styleFrom(
+                  fixedSize: const Size(196, 50),
+                  backgroundColor: !isUsedButtonActive
+                      ? const Color(0xFFFFDF00)
+                      : const Color(0xFFFFDF00),
+                  shape: const RoundedRectangleBorder(
+                    side: BorderSide(color: Colors.black, width: 0.5),
                   ),
                 ),
-                ElevatedButton(
-                  onPressed: () {
-                    if (isUsedButtonActive) {
-                      toggleButtons();
-                    }
-                  },
-                  style: ElevatedButton.styleFrom(
-                    fixedSize: const Size(196, 50),
-                    backgroundColor: !isUsedButtonActive
-                        ? const Color(0xFFFFDF00)
-                        : const Color(0xFFFFDF00),
-                    shape: const RoundedRectangleBorder(
-                      side: BorderSide(color: Colors.black, width: 0.5),
-                    ),
-                  ),
-                  child: Text(
-                    'Used',
-                    style: TextStyle(
-                      color: !isUsedButtonActive ? Colors.black : Colors.grey,
-                      fontSize: 12,
-                    ),
+                child: Text(
+                  'Used',
+                  style: TextStyle(
+                    color: !isUsedButtonActive ? Colors.black : Colors.grey,
+                    fontSize: 12,
                   ),
                 ),
-              ],
+              ),
+            ],
           ),
         ],
       ),
       bottomNavigationBar: BottomNav(index: _index),
+    );
+  }
+}
+
+class TicketList extends StatelessWidget {
+  const TicketList({
+    super.key,
+    required this.userData,
+    required this.screenSize,
+  });
+
+  final UserData userData;
+  final Size screenSize;
+
+  @override
+  Widget build(BuildContext context) {
+    return FutureBuilder(
+      future: Provider.of<TicketData>(context, listen: false)
+          .getTicketsFromFirestore(userData.userId),
+      builder: (context, snapshot) {
+        if (snapshot.connectionState == ConnectionState.waiting) {
+          // Data is still loading
+          return Padding(
+            padding: EdgeInsets.fromLTRB(
+                screenSize.width / 2.15, screenSize.height / 2.9, screenSize.width / 3, screenSize.height / 2.9),
+            child: const CircularProgressIndicator(
+              color: Color(0xFFFFDF00),
+            ),
+          );
+        } else if (snapshot.hasError) {
+          // Error occurred
+          debugPrint("Load failed: ${snapshot.error}");
+          return Container(
+            alignment: Alignment.center,
+            child: const Text(
+              'Failed to load data. Please try again later.',
+              style: TextStyle(color: Colors.red),
+            ),
+          );
+        } else if (!snapshot.hasData || (snapshot.data as List).isEmpty) {
+          // No data available
+          return Container(
+            alignment: Alignment.center,
+            child: const Text(
+              'No Ticket available.',
+              style: TextStyle(color: Colors.grey),
+            ),
+          );
+        } else {
+          // Data is available
+          List<Ticket> tickets = snapshot.data as List<Ticket>;
+          return ListView.builder(
+              itemCount: tickets.length,
+              itemBuilder: (context, index) {
+                return TicketTile(
+                    width: screenSize.width,
+                    height: screenSize.height,
+                    ticket: tickets[index],
+                    onPressed: () {
+                      Navigator.of(context).push(MaterialPageRoute(
+                        builder: (context) {
+                          return TicketDetailPage(ticket: tickets[index]);
+                        },
+                      ));
+                    });
+              });
+        }
+      },
     );
   }
 }

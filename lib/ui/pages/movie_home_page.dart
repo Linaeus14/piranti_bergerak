@@ -58,8 +58,8 @@ class _HomeState extends State<Home> {
             builder: (context, snapshot) {
               if (snapshot.connectionState == ConnectionState.waiting) {
                 // Data is still loading
-                return Container(
-                  margin: EdgeInsets.only(left: width / 3, right: width / 3),
+                return Padding(
+                  padding: EdgeInsets.fromLTRB(width/2.15, 50, width/2.15, 50),
                   child: const CircularProgressIndicator(
                     color: Color(0xFFFFDF00),
                   ),
@@ -218,8 +218,8 @@ class _HomeState extends State<Home> {
               builder: (context, snapshot) {
                 if (snapshot.connectionState == ConnectionState.waiting) {
                   // While data is being fetched, show a loading indicator
-                  return Container(
-                    margin: EdgeInsets.only(left: width / 3, right: width / 3),
+                  return Padding(
+                    padding: EdgeInsets.fromLTRB(width/2.2, 100, width/2.2, 100),
                     child: const CircularProgressIndicator(
                       color: Color(0xFFFFDF00),
                     ),

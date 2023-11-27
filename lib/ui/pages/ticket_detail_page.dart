@@ -1,11 +1,8 @@
-import 'package:flutter/material.dart';
-
-void main() {
-  runApp(const TicketDetailPage());
-}
+part of './pages.dart';
 
 class TicketDetailPage extends StatelessWidget {
-  const TicketDetailPage({super.key});
+  final Ticket ticket;
+  const TicketDetailPage({super.key, required this.ticket});
 
   @override
   Widget build(BuildContext context) {
@@ -38,13 +35,12 @@ class TicketDetailPage extends StatelessWidget {
                     height: 257.49,
                     decoration: const BoxDecoration(
                       image: DecorationImage(
-                        image: AssetImage('assets/starwar.png'),
+                        image: NetworkImage('assets/starwar.png'),
                         fit: BoxFit.fill,
                       ),
                       border: Border(
                         bottom: BorderSide(
-                           width: 35,
-                          
+                          width: 35,
                         ),
                       ),
                       boxShadow: [
@@ -65,7 +61,8 @@ class TicketDetailPage extends StatelessWidget {
                         Navigator.of(context).pop();
                       },
                       style: ElevatedButton.styleFrom(
-                        shape: const CircleBorder(), backgroundColor: const Color(0x99FFDF00),
+                        shape: const CircleBorder(),
+                        backgroundColor: const Color(0x99FFDF00),
                       ),
                       child: const Row(
                         children: [
@@ -74,7 +71,6 @@ class TicketDetailPage extends StatelessWidget {
                       ),
                     ),
                   ),
-                  
                   const Positioned(
                     left: 66,
                     top: 412,
@@ -227,7 +223,9 @@ class TicketDetailPage extends StatelessWidget {
                             fontSize: 16,
                           ),
                         ),
-                        SizedBox(height: 10,),
+                        SizedBox(
+                          height: 10,
+                        ),
                         Text(
                           'Action, Adventure, Sci-Fi - English',
                           style: TextStyle(
@@ -255,18 +253,15 @@ class TicketDetailPage extends StatelessWidget {
                     child: Container(
                       width: 260,
                       height: 1,
-                      color:
-                          const Color(0xFFFFDF00), 
+                      color: const Color(0xFFFFDF00),
                     ),
                   ),
-
                   Positioned(
                     top: 512,
                     child: Container(
                       width: 395,
                       height: 1,
-                      color:
-                          const Color(0xFFFFDF00), 
+                      color: const Color(0xFFFFDF00),
                     ),
                   ),
                   const Positioned(

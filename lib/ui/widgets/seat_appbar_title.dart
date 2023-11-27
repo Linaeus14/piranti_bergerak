@@ -7,6 +7,7 @@ class SeatAppbar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    Ticket ticket = Provider.of<TicketData>(context, listen: false).ticket;
     return Row(
       mainAxisAlignment: MainAxisAlignment.start,
       crossAxisAlignment: CrossAxisAlignment.center,
@@ -16,19 +17,20 @@ class SeatAppbar extends StatelessWidget {
           width: 53,
           height: 80,
           decoration: BoxDecoration(
-              image: const DecorationImage(
-                  image: AssetImage("assets/image2.png"), fit: BoxFit.cover),
+              image: DecorationImage(
+                  image: NetworkImage(ticket.film.thumbnailUrl!),
+                  fit: BoxFit.cover),
               borderRadius: BorderRadius.circular(10)),
         ),
         Container(
           margin: const EdgeInsets.only(top: 29, bottom: 29),
-          child: const Column(
+          child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                "Suzume",
+                ticket.film.title!,
                 textAlign: TextAlign.left,
-                style: TextStyle(
+                style: const TextStyle(
                     color: Color(0xFFFFDF00),
                     fontFamily: "Raleway",
                     fontSize: 12,
@@ -36,11 +38,11 @@ class SeatAppbar extends StatelessWidget {
                     fontWeight: FontWeight.w600),
               ),
               Padding(
-                padding: EdgeInsets.only(top: 5, bottom: 5),
+                padding: const EdgeInsets.only(top: 5, bottom: 5),
                 child: Text(
-                  "Animation - Japan",
+                  ticket.film.genres!.join(", "),
                   textAlign: TextAlign.left,
-                  style: TextStyle(
+                  style: const TextStyle(
                       color: Colors.white,
                       fontFamily: "Raleway",
                       fontSize: 12,
@@ -49,9 +51,9 @@ class SeatAppbar extends StatelessWidget {
                 ),
               ),
               Text(
-                "Theatre A - 22.00",
+                "${ticket.cinema} - ${ticket.time}",
                 textAlign: TextAlign.left,
-                style: TextStyle(
+                style: const TextStyle(
                     color: Colors.white,
                     fontFamily: "Raleway",
                     fontSize: 12,

@@ -21,6 +21,7 @@ class MyApp extends StatelessWidget {
     return MultiProvider(
       providers: [
         ChangeNotifierProvider(create: (context) => UserData()),
+         ChangeNotifierProvider(create: (context) => TicketData()),
       ],
       child: MaterialApp(
         theme: ThemeData(scaffoldBackgroundColor: const Color(0xff393e46)),

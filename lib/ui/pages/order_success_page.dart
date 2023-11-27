@@ -27,9 +27,7 @@ class _OrderSuccessPageState extends State<OrderSuccessPage> {
               ),
               textAlign: TextAlign.center,
             ),
-
             SizedBox(height: 70),
-
             Container(
               width: 200,
               height: 300,
@@ -37,7 +35,6 @@ class _OrderSuccessPageState extends State<OrderSuccessPage> {
                 color: Color(0xFFFFDF00),
                 borderRadius: BorderRadius.circular(15),
               ),
-
               child: Stack(
                 children: [
                   ClipRRect(
@@ -48,11 +45,10 @@ class _OrderSuccessPageState extends State<OrderSuccessPage> {
                     child: Image.asset(
                       'assets/film2.jpg',
                       fit: BoxFit.cover,
-                      height: 200, 
+                      height: 200,
                       width: double.infinity,
                     ),
                   ),
-
                   Positioned(
                     bottom: 30, // Geser teks ke atas sejauh 20px
                     left: 0,
@@ -60,30 +56,29 @@ class _OrderSuccessPageState extends State<OrderSuccessPage> {
                     child: Text(
                       'STAR WARS : THE \n FORCE AWAKENS',
                       style: TextStyle(
-                        color: Colors.black,
-                        fontFamily: 'Raleway',
-                        fontSize: 16,
-                        fontWeight: FontWeight.w900
-                      ),
+                          color: Colors.black,
+                          fontFamily: 'Raleway',
+                          fontSize: 16,
+                          fontWeight: FontWeight.w900),
                       textAlign: TextAlign.center,
                     ),
                   ),
                 ],
               ),
             ),
-
             SizedBox(height: 70),
-
             ElevatedButton(
               onPressed: () {
                 Navigator.of(context).push(MaterialPageRoute(
                   builder: (context) {
-                    return const TicketDetailPage();
+                    return TicketDetailPage(
+                      ticket: Provider.of<TicketData>(context).ticket,
+                    );
                   },
                 ));
               },
               style: ElevatedButton.styleFrom(
-                backgroundColor: Color(0xFFFFDF00), 
+                backgroundColor: Color(0xFFFFDF00),
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(5),
                 ),
@@ -104,9 +99,7 @@ class _OrderSuccessPageState extends State<OrderSuccessPage> {
                 ),
               ),
             ),
-
             SizedBox(height: 10),
-
             ElevatedButton(
               onPressed: () {
                 Navigator.of(context).pushReplacement(MaterialPageRoute(
@@ -116,7 +109,7 @@ class _OrderSuccessPageState extends State<OrderSuccessPage> {
                 ));
               },
               style: ElevatedButton.styleFrom(
-                backgroundColor: Color(0xFF393E46), 
+                backgroundColor: Color(0xFF393E46),
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(5),
                   side: BorderSide(color: Color(0xFFFFDF00), width: 1),

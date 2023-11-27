@@ -1,8 +1,7 @@
 part of 'pages.dart';
 
 class PlaceAndTimePick extends StatefulWidget {
-  final Film film;
-  const PlaceAndTimePick({super.key, required this.film});
+  const PlaceAndTimePick({super.key});
 
   @override
   State<PlaceAndTimePick> createState() => _PlaceAndTimePickState();
@@ -14,11 +13,11 @@ class _PlaceAndTimePickState extends State<PlaceAndTimePick> {
   final List<bool> _selectionsTime = List.generate(8, (index) => false);
 
   final List<String> _location = [
-    'BIG MALL \nPREMIERE',
-    'BIG MALL \nXXI',
-    'SCP \nPREMIERE',
-    'SCP \nXXI',
-    'PLAZA \nMULIA CGV',
+    'BIG MALL PREMIERE',
+    'BIG MALL XXI',
+    'SCP PREMIERE',
+    'SCP XXI',
+    'PLAZA MULIA CGV',
     'CITY CENTRUM XXI',
   ];
 
@@ -49,13 +48,14 @@ class _PlaceAndTimePickState extends State<PlaceAndTimePick> {
 
   bool uploadPressed = false;
   bool backPressed = false;
+  bool checkSelected = false;
 
   @override
   Widget build(BuildContext context) {
     var lebar = MediaQuery.of(context).size.width;
-
     var w = MediaQuery.of(context).size.width - 50;
     var h = MediaQuery.of(context).size.height - 257;
+    Ticket ticket = Provider.of<TicketData>(context, listen: false).ticket;
 
     return Scaffold(
       backgroundColor: const Color(0xFF393E46),
@@ -77,17 +77,17 @@ class _PlaceAndTimePickState extends State<PlaceAndTimePick> {
                 ),
               ],
             ),
-            child: const Column(
+            child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Padding(
-                  padding: EdgeInsets.only(
+                  padding: const EdgeInsets.only(
                       left: 15.0,
                       top:
                           35.0), // Ubah nilai left sesuai dengan jumlah padding yang diinginkan
                   child: Text(
-                    "STARS WARS : THE FORCE AWAKENS",
-                    style: TextStyle(
+                    ticket.film.title!,
+                    style: const TextStyle(
                       fontFamily: 'Raleway',
                       color: Color(0xFFFFDF00),
                       fontSize: 15,
@@ -95,13 +95,13 @@ class _PlaceAndTimePickState extends State<PlaceAndTimePick> {
                   ),
                 ),
                 Padding(
-                  padding: EdgeInsets.only(
+                  padding: const EdgeInsets.only(
                       left: 15.0,
                       top:
                           7.0), // Ubah nilai left sesuai dengan jumlah padding yang diinginkan
                   child: Text(
-                    "Action, Adventure, Sci-fi - English",
-                    style: TextStyle(
+                    ticket.film.genres!.join(", "),
+                    style: const TextStyle(
                       fontFamily: 'Raleway',
                       color: Color(0xFFFFFFFF),
                       fontSize: 14,
@@ -196,16 +196,19 @@ class _PlaceAndTimePickState extends State<PlaceAndTimePick> {
 
                                       const SizedBox(height: 7),
 
-                                      Text(
-                                        _location[index],
-                                        style: TextStyle(
-                                          fontFamily: 'Raleway',
-                                          fontSize: 10,
-                                          color: _selectionsCinema[index]
-                                              ? Colors.black
-                                              : Colors.white,
+                                      Padding(
+                                        padding: const EdgeInsets.all(8.0),
+                                        child: Text(
+                                          _location[index],
+                                          style: TextStyle(
+                                            fontFamily: 'Raleway',
+                                            fontSize: 10,
+                                            color: _selectionsCinema[index]
+                                                ? Colors.black
+                                                : Colors.white,
+                                          ),
+                                          textAlign: TextAlign.center,
                                         ),
-                                        textAlign: TextAlign.center,
                                       ),
                                     ],
                                   ),
@@ -485,11 +488,41 @@ class _PlaceAndTimePickState extends State<PlaceAndTimePick> {
               padding: const EdgeInsets.symmetric(horizontal: 133.0),
             ),
             onPressed: () {
-              Navigator.of(context).push(MaterialPageRoute(
-                builder: (context) {
-                  return const Seat();
-                },
-              ));
+              late String cinema;
+              late String time;
+              List<bool> check = [false, false, false];
+              for (int i = 0; i < _selectionsCinema.length; i++) {
+                if (_selectionsCinema[i] == true) {
+                  cinema = _location[i];
+                  check[0] = true;
+                  break;
+                }
+              }
+              for (int i = 0; i < _selectionsDay.length; i++) {
+                if (_selectionsDay[i] == true) {
+                  time = _day[i];
+                  check[1] = true;
+                  break;
+                }
+              }
+              for (int i = 0; i < _selectionsTime.length; i++) {
+                if (_selectionsTime[i] == true) {
+                  time += ", ${_time[i]}";
+                  check[2] = true;
+                  break;
+                }
+              }
+              if (!check.contains(false)) {
+                ticket.cinema = cinema;
+                ticket.time = time;
+                Navigator.of(context).push(MaterialPageRoute(
+                  builder: (context) {
+                    return const Seat();
+                  },
+                ));
+              } else {
+                setState(() => checkSelected = true);
+              }
             },
             child: const Text(
               "Continue",
@@ -532,6 +565,23 @@ class _PlaceAndTimePickState extends State<PlaceAndTimePick> {
                       : const Color(0xFFFFDF00),
                   fontSize: 18,
                   fontWeight: FontWeight.bold),
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 5.0),
+            child: Visibility(
+              visible: checkSelected,
+              child: const Align(
+                alignment: Alignment.center,
+                child: Text(
+                  'Pleaase Select First!',
+                  style: TextStyle(
+                    fontFamily: 'Raleway',
+                    fontSize: 15,
+                    color: Color(0xffDAA520),
+                  ),
+                ),
+              ),
             ),
           ),
         ],

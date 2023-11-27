@@ -11,14 +11,14 @@ class RowButtons extends StatelessWidget {
     required this.width,
     required this.height,
     required this.onPressedContinue,
-     required this.onPressedBack,
+    required this.onPressedBack,
   });
 
   @override
   Widget build(BuildContext context) {
     return SizedBox(
       width: width,
-      height: height / 6,
+      height: height / 8,
       child: Center(
         child: Row(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -31,9 +31,7 @@ class RowButtons extends StatelessWidget {
                     foregroundColor: const Color(0xFFFFDF00),
                     side: const BorderSide(width: 1, color: Color(0xFFFFDF00)),
                   ),
-                  onPressed: () {
-                    onPressedBack();
-                  },
+                  onPressed: () => onPressedBack(),
                   child: const Text(
                     'Back',
                     textAlign: TextAlign.center,
@@ -52,9 +50,7 @@ class RowButtons extends StatelessWidget {
                   backgroundColor: const Color(0xFFFFDF00),
                   foregroundColor: Colors.black,
                 ),
-                onPressed: () {
-                  onPressedContinue();
-                },
+                onPressed: () => onPressedContinue(),
                 child: const Text(
                   'Continue',
                   textAlign: TextAlign.center,

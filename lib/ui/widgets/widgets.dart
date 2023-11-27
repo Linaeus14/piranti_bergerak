@@ -15,4 +15,5 @@ part 'home_title.dart';
 part 'row_buttons.dart';
 part 'seat_appbar_title.dart';
 part './custom_card.dart';
-part 'launcher.dart';
+part './launcher.dart';
+part './list_tile.dart';

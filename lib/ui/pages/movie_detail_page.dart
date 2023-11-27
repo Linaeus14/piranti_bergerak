@@ -88,7 +88,7 @@ class _MovieDetailPageState extends State<MovieDetailPage> {
                     style: TextStyle(
                       color: Color(0xFFFFDF00),
                       fontFamily: 'Raleway',
-                      fontSize: width * 0.07,
+                      fontSize: 18,
                       fontWeight: FontWeight.normal,
                     ),
                     textAlign: TextAlign.center,
@@ -101,7 +101,7 @@ class _MovieDetailPageState extends State<MovieDetailPage> {
                     style: TextStyle(
                       color: Colors.white,
                       fontFamily: 'Raleway',
-                      fontSize: width * 0.04,
+                      fontSize: 16,
                       fontWeight: FontWeight.normal,
                     ),
                     textAlign: TextAlign.center,
@@ -144,7 +144,7 @@ class _MovieDetailPageState extends State<MovieDetailPage> {
                     style: TextStyle(
                       color: Color(0xFFFFDF00),
                       fontFamily: 'Raleway',
-                      fontSize: width * 0.07,
+                      fontSize: 18,
                       fontWeight: FontWeight.normal,
                     ),
                     textAlign: TextAlign.center,
@@ -157,7 +157,7 @@ class _MovieDetailPageState extends State<MovieDetailPage> {
                     style: TextStyle(
                       color: Colors.white,
                       fontFamily: 'Raleway',
-                      fontSize: width * 0.04,
+                      fontSize: 16,
                       fontWeight: FontWeight.normal,
                     ),
                     textAlign: TextAlign.justify,
@@ -178,7 +178,7 @@ class _MovieDetailPageState extends State<MovieDetailPage> {
                     style: TextStyle(
                       color: Color(0xFFFFDF00),
                       fontFamily: 'Raleway',
-                      fontSize: width * 0.07,
+                      fontSize: 18,
                       fontWeight: FontWeight.normal,
                     ),
                     textAlign: TextAlign.center,
@@ -205,7 +205,7 @@ class _MovieDetailPageState extends State<MovieDetailPage> {
                         // If data is successfully fetched, build the UI with the cast information
                         List<Cast> cast = snapshot.data ?? [];
                         return SizedBox(
-                          height: height * 0.285,
+                          height: height * 0.232,
                           child: ListView.builder(
                             scrollDirection: Axis.horizontal,
                             itemCount: cast.length,
@@ -227,11 +227,10 @@ class _MovieDetailPageState extends State<MovieDetailPage> {
             width: width * 0.95,
             child: ElevatedButton(
               onPressed: () {
+                Provider.of<TicketData>(context, listen: false).ticket.film = widget.film;
                 Navigator.of(context).push(MaterialPageRoute(
                   builder: (context) {
-                    return PlaceAndTimePick(
-                      film: widget.film,
-                    );
+                    return PlaceAndTimePick();
                   },
                 ));
               },
@@ -246,7 +245,7 @@ class _MovieDetailPageState extends State<MovieDetailPage> {
                 style: TextStyle(
                   color: Colors.black,
                   fontFamily: 'Raleway',
-                  fontSize: width * 0.05,
+                  fontSize: 18,
                   fontWeight: FontWeight.bold,
                 ),
               ),
