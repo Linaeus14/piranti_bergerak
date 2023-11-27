@@ -1,14 +1,18 @@
 part of './providers.dart';
 
 class TicketData with ChangeNotifier {
-  Ticket ticket = Ticket();
-  late List<Ticket> ticketList;
+  Ticket _ticket = Ticket();
+  List<Ticket>? _ticketList;
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
+
+  Ticket? get ticket => _ticket;
+  List<Ticket>? get ticketList => _ticketList;
 
   Future<void> addToFirestore(
       String id,
       String title,
-      String image,
+      String imagePotrait,
+      String imageLandscape,
       String cinema,
       String time,
       List<String> genre,
@@ -26,12 +30,14 @@ class TicketData with ChangeNotifier {
         'score': score,
         'cinema': cinema,
         'time': time,
-        'image': image,
+        'image1': imagePotrait,
+        'image2': imageLandscape,
         'seats': seats,
         'price': price
       };
 
       await documentReference.set(data);
+      ticket!.harga = price;
       debugPrint('Added user with ID: $id');
     } catch (e) {
       debugPrint('Error adding user: $e');
@@ -53,7 +59,8 @@ class TicketData with ChangeNotifier {
           Film film = Film(
             title: ticketData['film'] ?? 'Unknown',
             genres: List<String>.from(ticketData['genre'] ?? []),
-            backdropUrl: ticketData['image'] ?? '',
+            thumbnailUrl: ticketData['image1'] ?? '',
+            backdropUrl: ticketData['image2'] ?? '',
             rating: (ticketData['score'] as num?)?.toDouble() ?? 0.0,
           );
 
@@ -74,5 +81,10 @@ class TicketData with ChangeNotifier {
       debugPrint('Error getting tickets: $e');
       return [];
     }
+  }
+
+  void disposeVar() {
+    _ticket = Ticket();
+    _ticketList = null;
   }
 }

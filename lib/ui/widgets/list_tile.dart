@@ -6,10 +6,8 @@ class TicketTile extends StatefulWidget {
       required double width,
       required this.ticket,
       required this.onPressed,
-      this.leading = false})
-      : _width = width;
+      this.leading = false});
 
-  final double _width;
   final Ticket ticket;
   final VoidCallback onPressed;
   final bool leading;
@@ -27,41 +25,47 @@ class TicketTileState extends State<TicketTile> {
       child: ListTile(
         onTap: () => widget.onPressed(),
         tileColor: const Color(0xff393e46),
-        contentPadding: const EdgeInsets.all(8.0),
-        leading: Container(
-          width: 2 * widget._width / 10,
-          alignment: Alignment.center,
+        contentPadding: EdgeInsets.zero,
+        visualDensity: VisualDensity.compact,
+        leading: FractionallySizedBox(
+          heightFactor: 1.735,
           child: Image.network(
-            widget.ticket.film.backdropUrl!,
-            fit: BoxFit.contain,
+            widget.ticket.film.thumbnailUrl!,
+            fit: BoxFit.cover,
           ),
         ),
-        title: Text(
-          widget.ticket.film.title!,
-          style: const TextStyle(
-            color: Color(0xFFFFDF00),
-            fontSize: 11,
-          ),
-          overflow: TextOverflow.ellipsis,
-        ),
-        subtitle: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(
-              widget.ticket.time,
-              style: const TextStyle(
-                  color: Colors.white,
-                  fontSize: 8,
-                  fontWeight: FontWeight.bold),
+        title: Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Text(
+            widget.ticket.film.title!,
+            style: const TextStyle(
+              color: Color(0xFFFFDF00),
+              fontSize: 14,
             ),
-            Text(
-              widget.ticket.cinema,
-              style: const TextStyle(
-                color: Colors.white,
-                fontSize: 8,
+            overflow: TextOverflow.ellipsis,
+          ),
+        ),
+        subtitle: Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                widget.ticket.time,
+                style: const TextStyle(
+                    color: Colors.white,
+                    fontSize: 11,
+                    fontWeight: FontWeight.bold),
               ),
-            )
-          ],
+              Text(
+                widget.ticket.cinema,
+                style: const TextStyle(
+                  color: Colors.white,
+                  fontSize: 11,
+                ),
+              )
+            ],
+          ),
         ),
         trailing: null,
       ),

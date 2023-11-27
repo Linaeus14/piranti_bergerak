@@ -5,6 +5,7 @@ class TopUpSuccessPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    UserClass user = Provider.of<UserData>(context, listen: false).data!;
     return Scaffold(
       backgroundColor: const Color(0xFF393E46),
       body: Column(
@@ -61,7 +62,7 @@ class TopUpSuccessPage extends StatelessWidget {
                                 ),
                               ),
                               child: ClipOval(
-                                child: Image.asset('assets/profile.jpg'),
+                                child: Image.network(user.profile!),
                               ),
                             ),
                           ),
@@ -78,7 +79,7 @@ class TopUpSuccessPage extends StatelessWidget {
                                 ),
                               ),
                               Text(
-                                "Rp. ${NumberFormat("#,##0", "id_ID").format(Provider.of<UserData>(context, listen: false).data.wallet)}",
+                                "Rp. ${NumberFormat("#,##0", "id_ID").format(user.wallet)}",
                                 style: const TextStyle(
                                   color: Color(0xFFFFDF00),
                                   fontFamily: 'Roboto',

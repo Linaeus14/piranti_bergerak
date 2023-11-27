@@ -32,8 +32,8 @@ class SuccessPage extends StatelessWidget {
                   width: 5,
                 ),
                 image: DecorationImage(
-                  image: userData.data.profile != ""
-                  ? NetworkImage(userData.data.profile!)
+                  image: userData.data!.profile != ""
+                  ? NetworkImage(userData.data!.profile!)
                   : const AssetImage('assets/Profile.png') as ImageProvider<Object>,
                   fit: BoxFit.cover,
                 ),
@@ -49,7 +49,7 @@ class SuccessPage extends StatelessWidget {
               ),
             ),
             Text(
-              userData.data.nama!,
+              userData.data!.nama!,
               style: const TextStyle(
                 color: Colors.white,
                 fontFamily: 'Raleway',

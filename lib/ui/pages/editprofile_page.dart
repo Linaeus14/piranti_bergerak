@@ -22,7 +22,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
   void initState() {
     super.initState();
     UserData userData = Provider.of<UserData>(context, listen: false);
-    _nameController.text = userData.data.nama!;
+    _nameController.text = userData.data!.nama!;
   }
 
   @override
@@ -148,10 +148,8 @@ class _EditProfilePageState extends State<EditProfilePage> {
                               height: 120,
                               decoration: BoxDecoration(
                                 image: DecorationImage(
-                                    image: userData.data.profile != ""
-                                        ? NetworkImage(userData.data.profile!)
-                                        : const AssetImage('assets/Profile.png')
-                                            as ImageProvider<Object>,
+                                    image:
+                                        NetworkImage(userData.data!.profile!),
                                     fit: BoxFit.cover),
                                 border:
                                     Border.all(color: const Color(0xFFFFDF00)),
@@ -260,11 +258,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
                     setState(() {
                       backPressed = !backPressed;
                     });
-                    Navigator.of(context).push(MaterialPageRoute(
-                      builder: (context) {
-                        return const ProfilePage();
-                      },
-                    ));
+                    Navigator.of(context).pop();
                   },
                   style: ElevatedButton.styleFrom(
                     backgroundColor: backPressed

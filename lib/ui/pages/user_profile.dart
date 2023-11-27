@@ -259,74 +259,28 @@ class _UserProfileState extends State<UserProfile> {
               ),
             ),
           ]),
-          Container(
-            width: w + 100,
-            height: h / 5,
-            padding: const EdgeInsets.fromLTRB(34.3, 23, 34.3, 23),
-            margin: const EdgeInsets.only(bottom: 15),
-            child: Center(
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  SizedBox(
-                    width: w / 2 - 17.5,
-                    height: 34,
-                    child: OutlinedButton(
-                        style: OutlinedButton.styleFrom(
-                          foregroundColor: const Color(0xFFFFDF00),
-                          side: const BorderSide(
-                              width: 1, color: Color(0xFFFFDF00)),
-                        ),
-                        onPressed: () {
-                          Auth().signOut();
-                          Navigator.of(context)
-                              .pushReplacement(MaterialPageRoute(
-                            builder: (context) {
-                              return const SignIn();
-                            },
-                          ));
-                        },
-                        child: const Text(
-                          'Back',
-                          textAlign: TextAlign.center,
-                          style: TextStyle(
-                            fontSize: 16,
-                            fontFamily: 'Raleway',
-                            fontWeight: FontWeight.w700,
-                          ),
-                        )),
-                  ),
-                  SizedBox(
-                    width: w / 2 - 17.5,
-                    height: 34,
-                    child: ElevatedButton(
-                      style: ElevatedButton.styleFrom(
-                        backgroundColor: const Color(0xFFFFDF00),
-                        foregroundColor: Colors.black,
-                      ),
-                      onPressed: () {
-                        selectedGenres(context);
-                        selectedLanguage(context);
-                        Navigator.of(context).pushReplacement(MaterialPageRoute(
-                          builder: (context) {
-                            return const SuccessPage();
-                          },
-                        ));
-                      },
-                      child: const Text(
-                        'Continue',
-                        textAlign: TextAlign.center,
-                        style: TextStyle(
-                          fontSize: 16,
-                          fontFamily: 'Raleway',
-                          fontWeight: FontWeight.w700,
-                        ),
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-            ),
+          Padding(
+            padding: const EdgeInsets.only(bottom: 25),
+            child: RowButtons(
+                width: w,
+                height: h,
+                onPressedContinue: () {
+                  selectedGenres(context);
+                  selectedLanguage(context);
+                  Navigator.of(context).pushReplacement(MaterialPageRoute(
+                    builder: (context) {
+                      return const SuccessPage();
+                    },
+                  ));
+                },
+                onPressedBack: () {
+                  Auth().signOut();
+                  Navigator.of(context).pushReplacement(MaterialPageRoute(
+                    builder: (context) {
+                      return const SignIn();
+                    },
+                  ));
+                }),
           )
         ],
       ),
@@ -340,14 +294,11 @@ class _UserProfileState extends State<UserProfile> {
         selectedGenres.add(_genre[i]);
       }
     }
-
-    // String uid = FirebaseAuth.instance.currentUser!.uid;
-    String userId = Provider.of<UserData>(context, listen: false).userId;
-
-    debugPrint('user : $userId');
-
     try {
-      await FirebaseFirestore.instance.collection('users').doc(userId).update({
+      await FirebaseFirestore.instance
+          .collection('users')
+          .doc(Provider.of<UserData>(context, listen: false).id!)
+          .update({
         'genre': selectedGenres,
       });
     } catch (e) {
@@ -363,14 +314,11 @@ class _UserProfileState extends State<UserProfile> {
         selectedLanguage.add(_lang[i]);
       }
     }
-
-    // String uid = FirebaseAuth.instance.currentUser!.uid;
-    String userId = Provider.of<UserData>(context, listen: false).userId;
-
-    debugPrint('user : $userId');
-
     try {
-      await FirebaseFirestore.instance.collection('users').doc(userId).update({
+      await FirebaseFirestore.instance
+          .collection('users')
+          .doc(Provider.of<UserData>(context, listen: false).id!)
+          .update({
         'language': selectedLanguage,
       });
     } catch (e) {

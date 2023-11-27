@@ -7,7 +7,7 @@ class OrderSuccessPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Ticket ticket = Provider.of<TicketData>(context).ticket;
+    Ticket ticket = Provider.of<TicketData>(context).ticket!;
     return Scaffold(
       backgroundColor: Color(0xFF393E46),
       body: Center(

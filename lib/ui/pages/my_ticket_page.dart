@@ -8,7 +8,6 @@ class TicketPage extends StatefulWidget {
 }
 
 class _TicketPageState extends State<TicketPage> {
-  final int _index = 0;
   bool isUsedButtonActive = true;
 
   final ScrollController _scrollController = ScrollController();
@@ -29,80 +28,70 @@ class _TicketPageState extends State<TicketPage> {
   Widget build(BuildContext context) {
     UserData userData = Provider.of<UserData>(context, listen: false);
     final screenSize = MediaQuery.of(context).size;
-    return Scaffold(
-      backgroundColor: const Color(0xFF393E46),
-      appBar: AppBar(
-        toolbarHeight: 80,
-        title: const HomeAppbarTitle(),
-        backgroundColor: const Color(0xFFFFDF00),
-        automaticallyImplyLeading: false,
-      ),
-      body: Column(
-        children: [
-          Expanded(
-              child: isUsedButtonActive
-                  ? TicketList(
-                      userData: userData,
-                      screenSize: screenSize,
-                      controller: _scrollController)
-                  : TicketList(
-                      userData: userData,
-                      screenSize: screenSize,
-                      controller: _scrollController)),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.start,
-            children: [
-              ElevatedButton(
-                onPressed: () {
-                  if (!isUsedButtonActive) {
-                    toggleButtons();
-                  }
-                },
-                style: ElevatedButton.styleFrom(
-                  fixedSize: const Size(196, 50),
-                  backgroundColor: isUsedButtonActive
-                      ? const Color(0xFFFFDF00)
-                      : const Color(0xFFFFDF00),
-                  shape: const RoundedRectangleBorder(
-                    side: BorderSide(color: Colors.black, width: 0.5),
-                  ),
-                ),
-                child: Text(
-                  'Upcoming',
-                  style: TextStyle(
-                    color: isUsedButtonActive ? Colors.black : Colors.grey,
-                    fontSize: 12,
-                  ),
+    return Column(
+      children: [
+        Expanded(
+            child: isUsedButtonActive
+                ? TicketList(
+                    userData: userData,
+                    screenSize: screenSize,
+                    controller: _scrollController)
+                : TicketList(
+                    userData: userData,
+                    screenSize: screenSize,
+                    controller: _scrollController)),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.start,
+          children: [
+            ElevatedButton(
+              onPressed: () {
+                if (!isUsedButtonActive) {
+                  toggleButtons();
+                }
+              },
+              style: ElevatedButton.styleFrom(
+                fixedSize: const Size(196, 50),
+                backgroundColor: isUsedButtonActive
+                    ? const Color(0xFFFFDF00)
+                    : const Color(0xFFFFDF00),
+                shape: const RoundedRectangleBorder(
+                  side: BorderSide(color: Colors.black, width: 0.5),
                 ),
               ),
-              ElevatedButton(
-                onPressed: () {
-                  if (isUsedButtonActive) {
-                    toggleButtons();
-                  }
-                },
-                style: ElevatedButton.styleFrom(
-                  fixedSize: const Size(196, 50),
-                  backgroundColor: !isUsedButtonActive
-                      ? const Color(0xFFFFDF00)
-                      : const Color(0xFFFFDF00),
-                  shape: const RoundedRectangleBorder(
-                    side: BorderSide(color: Colors.black, width: 0.5),
-                  ),
-                ),
-                child: Text(
-                  'Used',
-                  style: TextStyle(
-                    color: !isUsedButtonActive ? Colors.black : Colors.grey,
-                    fontSize: 12,
-                  ),
+              child: Text(
+                'Upcoming',
+                style: TextStyle(
+                  color: isUsedButtonActive ? Colors.black : Colors.grey,
+                  fontSize: 12,
                 ),
               ),
-            ],
-          ),
-        ],
-      ),
-      bottomNavigationBar: BottomNav(index: _index),
+            ),
+            ElevatedButton(
+              onPressed: () {
+                if (isUsedButtonActive) {
+                  toggleButtons();
+                }
+              },
+              style: ElevatedButton.styleFrom(
+                fixedSize: const Size(196, 50),
+                backgroundColor: !isUsedButtonActive
+                    ? const Color(0xFFFFDF00)
+                    : const Color(0xFFFFDF00),
+                shape: const RoundedRectangleBorder(
+                  side: BorderSide(color: Colors.black, width: 0.5),
+                ),
+              ),
+              child: Text(
+                'Used',
+                style: TextStyle(
+                  color: !isUsedButtonActive ? Colors.black : Colors.grey,
+                  fontSize: 12,
+                ),
+              ),
+            ),
+          ],
+        ),
+      ],
     );
   }
 }
@@ -122,16 +111,16 @@ class TicketList extends StatelessWidget {
   Widget build(BuildContext context) {
     return FutureBuilder(
       future: Provider.of<TicketData>(context, listen: false)
-          .getTicketsFromFirestore(userData.userId),
+          .getTicketsFromFirestore(userData.id!),
       builder: (context, snapshot) {
         if (snapshot.connectionState == ConnectionState.waiting) {
           // Data is still loading
           return Padding(
             padding: EdgeInsets.fromLTRB(
-                screenSize.width / 2.15,
-                screenSize.height / 2.9,
                 screenSize.width / 3,
-                screenSize.height / 2.9),
+                screenSize.height / 2.5,
+                screenSize.width / 3,
+                screenSize.height / 2.5),
             child: const CircularProgressIndicator(
               color: Color(0xFFFFDF00),
             ),
@@ -164,6 +153,7 @@ class TicketList extends StatelessWidget {
             thumbVisibility: true,
             trackVisibility: false,
             child: ListView.builder(
+                controller: controller,
                 itemCount: tickets.length,
                 itemBuilder: (context, index) {
                   return Padding(

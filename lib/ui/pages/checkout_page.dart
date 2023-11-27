@@ -12,10 +12,10 @@ class _CheckoutPageState extends State<CheckoutPage> {
   Widget build(BuildContext context) {
     TicketData ticketData = Provider.of<TicketData>(context, listen: false);
     UserData userData = Provider.of<UserData>(context);
-    int price = 200000 * ticketData.ticket.seats.length;
-    Ticket ticket = ticketData.ticket;
+    int price = 200000 * ticketData.ticket!.seats.length;
+    Ticket ticket = ticketData.ticket!;
     Color payColor =
-        userData.data.wallet! < price ? Colors.red : const Color(0xFFFFDF00);
+        userData.data!.wallet! < price ? Colors.red : const Color(0xFFFFDF00);
     return Scaffold(
       backgroundColor: const Color(0xFF393E46),
       body: ListView(
@@ -202,7 +202,7 @@ class _CheckoutPageState extends State<CheckoutPage> {
                                   ),
                                 ),
                                 Text(
-                                  '${ticketData.ticket.seats.length}x200,000',
+                                  '${ticketData.ticket!.seats.length}x200,000',
                                   style: const TextStyle(
                                     color: Color(0xFFFFDF00),
                                     fontFamily: 'Raleway',
@@ -268,7 +268,7 @@ class _CheckoutPageState extends State<CheckoutPage> {
                                       ),
                                       child: ClipOval(
                                         child: Image.network(
-                                            userData.data.profile!),
+                                            userData.data!.profile!),
                                       ),
                                     ),
                                   ),
@@ -286,7 +286,7 @@ class _CheckoutPageState extends State<CheckoutPage> {
                                         ),
                                       ),
                                       Text(
-                                        "Rp. ${NumberFormat("#,##0", "id_ID").format(userData.data.wallet!)}",
+                                        "Rp. ${NumberFormat("#,##0", "id_ID").format(userData.data!.wallet!)}",
                                         style: TextStyle(
                                           color: payColor,
                                           fontFamily: 'Roboto',
@@ -336,8 +336,9 @@ class _CheckoutPageState extends State<CheckoutPage> {
                           onPressed: () async {
                             if (!(payColor == Colors.red)) {
                               await ticketData.addToFirestore(
-                                  userData.userId,
+                                  userData.id!,
                                   ticket.film.title!,
+                                  ticket.film.thumbnailUrl!,
                                   ticket.film.backdropUrl!,
                                   ticket.cinema,
                                   ticket.time,
@@ -346,7 +347,7 @@ class _CheckoutPageState extends State<CheckoutPage> {
                                   ticket.seats,
                                   price);
                               await userData.updateField(
-                                  "wallet", userData.data.wallet! - price);
+                                  "wallet", userData.data!.wallet! - price);
                               if (!context.mounted) return;
                               Navigator.of(context)
                                   .pushReplacement(MaterialPageRoute(

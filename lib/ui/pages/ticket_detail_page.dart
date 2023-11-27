@@ -144,7 +144,7 @@ class TicketDetailPage extends StatelessWidget {
                     left: 23,
                     top: 556,
                     child: Text(
-                      Provider.of<UserData>(context).data.nama!,
+                      Provider.of<UserData>(context).data!.nama!,
                       // ignore: prefer_const_constructors
                       style: TextStyle(
                         color: Colors.white,

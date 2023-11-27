@@ -96,8 +96,8 @@ class _MyWalletPageState extends State<MyWalletPage> {
                           child: ClipOval(
                             child: Image(
                               // Image.network(userDataListen.data.profile!),
-                              image: userData.data.profile != ""
-                                  ? NetworkImage(userDataListen.data.profile!)
+                              image: userData.data!.profile != ""
+                                  ? NetworkImage(userDataListen.data!.profile!)
                                   : const AssetImage('assets/Profile.png')
                                       as ImageProvider<Object>,
                             ),
@@ -118,7 +118,7 @@ class _MyWalletPageState extends State<MyWalletPage> {
                             ),
                           ),
                           Text(
-                            "Rp. ${NumberFormat("#,##0", "id_ID").format(userDataListen.data.wallet)}",
+                            "Rp. ${NumberFormat("#,##0", "id_ID").format(userDataListen.data!.wallet)}",
                             style: const TextStyle(
                               color: Color(0xFFFFDF00),
                               fontFamily: 'Roboto',
@@ -190,7 +190,7 @@ class _MyWalletPageState extends State<MyWalletPage> {
             child: ElevatedButton(
               onPressed: () async {
                 await userData.updateField("wallet",
-                    userData.data.wallet! + amounts[selectedTopUpIndex!]);
+                    userData.data!.wallet! + amounts[selectedTopUpIndex!]);
                 if (!context.mounted) return;
                 Navigator.of(context).push(MaterialPageRoute(
                   builder: (context) {

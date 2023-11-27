@@ -55,7 +55,7 @@ class _PlaceAndTimePickState extends State<PlaceAndTimePick> {
     var lebar = MediaQuery.of(context).size.width;
     var w = MediaQuery.of(context).size.width - 50;
     var h = MediaQuery.of(context).size.height - 257;
-    Ticket ticket = Provider.of<TicketData>(context, listen: false).ticket;
+    Ticket ticket = Provider.of<TicketData>(context, listen: false).ticket!;
 
     return Scaffold(
       backgroundColor: const Color(0xFF393E46),

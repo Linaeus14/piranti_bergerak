@@ -12,6 +12,7 @@ class Film {
   Film(
       {required this.title,
       required this.genres,
+      required this.thumbnailUrl,
       required this.backdropUrl,
       required this.rating});
 

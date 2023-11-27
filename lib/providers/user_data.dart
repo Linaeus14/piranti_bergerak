@@ -1,12 +1,12 @@
 part of './providers.dart';
 
 class UserData extends ChangeNotifier {
-  late String _userId;
-  late UserClass _data;
+  String? _userId;
+  UserClass? _data;
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
 
-  String get userId => _userId;
-  UserClass get data => _data;
+  String? get id => _userId;
+  UserClass? get data => _data;
 
   set userId(String value) {
     _userId = value;
@@ -47,11 +47,11 @@ class UserData extends ChangeNotifier {
     try {
       // Reference to the document you want to update
       DocumentReference documentReference =
-          FirebaseFirestore.instance.collection('users').doc(userId);
+          FirebaseFirestore.instance.collection('users').doc(id);
 
       // Update the specified field with the new value
       await documentReference.update({fieldName: newValue});
-      _data.wallet = newValue;
+      _data!.wallet = newValue;
 
       debugPrint('Document field updated successfully.');
       notifyListeners();
@@ -106,5 +106,10 @@ class UserData extends ChangeNotifier {
       debugPrint('Error getting document: $e');
       return null;
     }
+  }
+
+  void disposeVar() {
+    _userId = null;
+    _data = null;
   }
 }
