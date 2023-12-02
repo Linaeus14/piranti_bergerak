@@ -12,7 +12,7 @@ class _CheckoutPageState extends State<CheckoutPage> {
   Widget build(BuildContext context) {
     TicketData ticketData = Provider.of<TicketData>(context, listen: false);
     UserData userData = Provider.of<UserData>(context);
-    int price = 200000 * ticketData.ticket!.seats.length;
+    int price = 60000 * ticketData.ticket!.seats.length;
     Ticket ticket = ticketData.ticket!;
     Color payColor =
         userData.data!.wallet! < price ? Colors.red : const Color(0xFFFFDF00);
@@ -202,7 +202,7 @@ class _CheckoutPageState extends State<CheckoutPage> {
                                   ),
                                 ),
                                 Text(
-                                  '${ticketData.ticket!.seats.length}x200,000',
+                                  '${ticketData.ticket!.seats.length} x 60.000',
                                   style: const TextStyle(
                                     color: Color(0xFFFFDF00),
                                     fontFamily: 'Raleway',

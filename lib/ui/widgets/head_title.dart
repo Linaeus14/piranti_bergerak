@@ -1,7 +1,7 @@
 part of 'widgets.dart';
 
 class Headtitle extends StatelessWidget {
-  const Headtitle({super.key, required text, required size})
+  const Headtitle({super.key, required String text, required double size})
       : _text = text,
         _size = size;
 
