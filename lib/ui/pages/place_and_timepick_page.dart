@@ -489,7 +489,7 @@ class _PlaceAndTimePickState extends State<PlaceAndTimePick> {
             ),
             onPressed: () {
               late String cinema;
-              late String time;
+              String? time;
               List<bool> check = [false, false, false];
               for (int i = 0; i < _selectionsCinema.length; i++) {
                 if (_selectionsCinema[i] == true) {
@@ -507,14 +507,18 @@ class _PlaceAndTimePickState extends State<PlaceAndTimePick> {
               }
               for (int i = 0; i < _selectionsTime.length; i++) {
                 if (_selectionsTime[i] == true) {
-                  time += ", ${_time[i]}";
+                  if (time == null) {
+                    time = _time[i];
+                  } else {
+                    time += ", ${_time[i]}";
+                  }
                   check[2] = true;
                   break;
                 }
               }
               if (!check.contains(false)) {
                 ticket.cinema = cinema;
-                ticket.time = time;
+                ticket.time = time as String;
                 Navigator.of(context).push(MaterialPageRoute(
                   builder: (context) {
                     return const Seat();
