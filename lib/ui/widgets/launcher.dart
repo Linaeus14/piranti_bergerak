@@ -22,12 +22,12 @@ class LaunchApp extends StatelessWidget {
   }
 
   Future<Widget> checkFirstLaunch(BuildContext context) async {
-    Shared saveData = Shared();
-    await saveData.open();
-    bool isFirstLaunch = saveData.file.getBool('firstLaunch') ?? true;
+    Shared cache = Shared();
+    await cache.open();
+    bool isFirstLaunch = cache.file.getBool('firstLaunch') ?? true;
 
     if (isFirstLaunch) {
-      await saveData.file.setBool('firstLaunch', false);
+      await cache.file.setBool('firstLaunch', false);
       return const SplashPage();
     } else {
       if (!context.mounted) {

@@ -12,18 +12,44 @@ class MovieDetailPage extends StatefulWidget {
 }
 
 class _MovieDetailPageState extends State<MovieDetailPage> {
+  Future<List<Cast>>? _futureCast;
+
+  @override
+  void initState() {
+    super.initState();
+    _getApi();
+  }
+
   @override
   Widget build(BuildContext context) {
     double width = MediaQuery.of(context).size.width;
     double height = MediaQuery.of(context).size.height;
 
+    return Scaffold(
+        body: RefreshIndicator(
+            onRefresh: _refresh, child: _buildBody(width, height)));
+  }
+
+  void _getApi() {
+    _futureCast = Api.getCastList(widget.film.id.toString());
+  }
+
+  Future<void> _refresh() async {
+    // Wrap the rebuild logic inside setState
+    setState(() {
+      Shared cache = Shared();
+      cache.open();
+      cache.clearAllCache;
+      _getApi();
+    });
+  }
+
+  Widget _buildBody(double width, double height) {
     // Access film details from the widget parameter
     String title = widget.film.title ?? "";
     List<String> genre = widget.film.genres ?? [];
     String desc = widget.film.desc ?? "";
-
-    return Scaffold(
-        body: SingleChildScrollView(
+    return SingleChildScrollView(
       child: Column(
         children: [
           Stack(
@@ -157,7 +183,7 @@ class _MovieDetailPageState extends State<MovieDetailPage> {
                 Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: FutureBuilder<List<Cast>>(
-                    future: Api.getCastList(widget.film.id.toString()),
+                    future: _futureCast,
                     builder: (context, snapshot) {
                       if (snapshot.connectionState == ConnectionState.waiting) {
                         // While data is being fetched, show a loading indicator
@@ -168,8 +194,13 @@ class _MovieDetailPageState extends State<MovieDetailPage> {
                         );
                       } else if (snapshot.hasError) {
                         // If there is an error, display an error message
-                        return Center(
-                          child: Text('Error: ${snapshot.error}'),
+                        debugPrint('Error: ${snapshot.error}');
+                        return Container(
+                          alignment: Alignment.center,
+                          child: const Text(
+                            'Failed to load data. Please try again later.',
+                            style: TextStyle(color: Colors.red),
+                          ),
                         );
                       } else {
                         // If data is successfully fetched, build the UI with the cast information
@@ -224,7 +255,7 @@ class _MovieDetailPageState extends State<MovieDetailPage> {
           ),
         ],
       ),
-    ));
+    );
   }
 }
 

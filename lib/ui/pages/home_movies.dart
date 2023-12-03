@@ -24,6 +24,8 @@ class _MoviesState extends State<Movies> {
   ];
   final ScrollController _scrollController = ScrollController();
   final ScrollController _scrollController2 = ScrollController();
+  Future<List<Film>>? _filmsFuture;
+  Future<List<Film>>? _comingSoonFuture;
 
   @override
   void dispose() {
@@ -33,9 +35,22 @@ class _MoviesState extends State<Movies> {
   }
 
   @override
+  void initState() {
+    super.initState();
+    _getApi();
+  }
+
+  @override
   Widget build(BuildContext context) {
     var width = MediaQuery.of(context).size.width;
     var height = MediaQuery.of(context).size.height - 130;
+    return RefreshIndicator(
+      onRefresh: _refresh,
+      child: _buildBody(width, height),
+    );
+  }
+
+  Widget _buildBody(double width, double height) {
     return ListView(
       scrollDirection: Axis.vertical,
       children: [
@@ -48,7 +63,7 @@ class _MoviesState extends State<Movies> {
           ),
         ),
         FutureBuilder(
-          future: Api.futureData,
+          future: _filmsFuture,
           builder: (context, snapshot) {
             if (snapshot.connectionState == ConnectionState.waiting) {
               // Data is still loading
@@ -216,7 +231,7 @@ class _MoviesState extends State<Movies> {
           height: height * 3 / 8,
           color: Colors.transparent,
           child: FutureBuilder<List<Film>>(
-            future: Api.futureDataSoon,
+            future: _comingSoonFuture,
             builder: (context, snapshot) {
               if (snapshot.connectionState == ConnectionState.waiting) {
                 // While data is being fetched, show a loading indicator
@@ -229,7 +244,14 @@ class _MoviesState extends State<Movies> {
                 );
               } else if (snapshot.hasError) {
                 // If there is an error, display an error message
-                return Text('Error: ${snapshot.error}');
+                debugPrint('Error: ${snapshot.error}');
+                return Container(
+                  alignment: Alignment.center,
+                  child: const Text(
+                    'Failed to load data. Please try again later.',
+                    style: TextStyle(color: Colors.red),
+                  ),
+                );
               } else {
                 // If data is successfully fetched, build the UI with the film information
                 List<Film> films = snapshot.data ?? [];
@@ -321,5 +343,19 @@ class _MoviesState extends State<Movies> {
         ),
       ],
     );
+  }
+
+  void _getApi() {
+    _filmsFuture = Api.futureData;
+    _comingSoonFuture = Api.futureDataSoon;
+  }
+
+  Future<void> _refresh() async {
+    setState(() {
+      Shared cache = Shared();
+      cache.open();
+      cache.clearAllCache;
+      _getApi();
+    });
   }
 }

@@ -1,11 +1,12 @@
+import 'package:flutix/models/models.dart';
+import 'package:flutix/providers/providers.dart';
+import 'package:flutix/shared/shared.dart';
+import 'package:flutix/ui/widgets/widgets.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/gestures.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:intl/intl.dart';
-import 'package:piranti_bergerak/models/models.dart';
-import 'package:piranti_bergerak/providers/providers.dart';
-import 'package:piranti_bergerak/ui/widgets/widgets.dart';
 import 'package:provider/provider.dart';
 import '../../services/services.dart';
 

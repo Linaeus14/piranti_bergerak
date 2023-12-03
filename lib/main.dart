@@ -1,8 +1,8 @@
+import 'package:flutix/firebase_options.dart';
+import 'package:flutix/providers/providers.dart';
+import 'package:flutix/ui/widgets/widgets.dart';
 import 'package:flutter/material.dart';
-import 'package:piranti_bergerak/firebase_options.dart';
-import 'package:piranti_bergerak/providers/providers.dart';
 import 'package:firebase_core/firebase_core.dart';
-import 'package:piranti_bergerak/ui/widgets/widgets.dart';
 import 'package:provider/provider.dart';
 
 void main() async {
