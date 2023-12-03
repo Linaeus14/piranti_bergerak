@@ -7,11 +7,10 @@ class Shared {
     file = await SharedPreferences.getInstance();
   }
 
-  Future<void> clearCache(String cacheKey) async {
-    await file.remove(cacheKey);
-  }
-
-  Future<void> clearAllCache() async {
-    await file.clear();
+  Future<void> clearCache() async {
+    await file.remove("filmsCacheKey");
+    await file.remove("comingSoonCacheKey");
+    await file.remove("genreMapCacheKey");
+    await file.remove("castCacheKey");
   }
 }

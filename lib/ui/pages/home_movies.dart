@@ -351,10 +351,10 @@ class _MoviesState extends State<Movies> {
   }
 
   Future<void> _refresh() async {
-    setState(() {
+    setState(() async {
       Shared cache = Shared();
-      cache.open();
-      cache.clearAllCache;
+      await cache.open();
+      cache.clearCache;
       _getApi();
     });
   }

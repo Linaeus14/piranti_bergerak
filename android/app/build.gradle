@@ -23,7 +23,7 @@ if (flutterVersionName == null) {
 }
 
 android {
-    namespace "com.example.flutix"
+    namespace "com.example.piranti_bergerak"
     compileSdkVersion 34
     ndkVersion flutter.ndkVersion
 
@@ -41,9 +41,9 @@ android {
     }
 
     defaultConfig {
-        applicationId "com.example.flutix"
-        minSdkVersion 21
-        targetSdkVersion 34
+        applicationId "com.example.piranti_bergerak"
+        minSdkVersion flutter.minSdkVersion
+        targetSdkVersion flutter.targetSdkVersion
         versionCode flutterVersionCode.toInteger()
         versionName flutterVersionName
     }

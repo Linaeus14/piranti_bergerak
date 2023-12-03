@@ -36,10 +36,10 @@ class _MovieDetailPageState extends State<MovieDetailPage> {
 
   Future<void> _refresh() async {
     // Wrap the rebuild logic inside setState
-    setState(() {
+    setState(() async {
       Shared cache = Shared();
-      cache.open();
-      cache.clearAllCache;
+      await cache.open();
+      cache.clearCache;
       _getApi();
     });
   }
