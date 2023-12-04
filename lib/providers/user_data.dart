@@ -13,9 +13,6 @@ class UserData extends ChangeNotifier {
     notifyListeners();
   }
 
-  Stream<UserClass?> authStateChanges() {
-    return Stream.value(_data);
-  }
 
   Future<XFile?> getImage() async {
     return await ImagePicker().pickImage(source: ImageSource.gallery);
