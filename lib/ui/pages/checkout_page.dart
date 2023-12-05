@@ -267,8 +267,13 @@ class _CheckoutPageState extends State<CheckoutPage> {
                                         ),
                                       ),
                                       child: ClipOval(
-                                        child: Image.network(
-                                            userData.data!.profile!),
+                                        child: 
+                                        // Image.network(userData.data!.profile!),
+                                        Image(
+                                          image: userData.data!.profile != ""
+                                          ? NetworkImage(userData.data!.profile!)
+                                          : const AssetImage('assets/Profile.png') as ImageProvider<Object>,
+                                        )
                                       ),
                                     ),
                                   ),
