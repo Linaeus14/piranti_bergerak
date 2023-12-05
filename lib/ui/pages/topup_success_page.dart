@@ -62,7 +62,12 @@ class TopUpSuccessPage extends StatelessWidget {
                                 ),
                               ),
                               child: ClipOval(
-                                child: Image.network(user.profile!),
+                                child: Image(
+                                   image: user.profile != null
+                                    ? NetworkImage(user.profile!)
+                                    : const AssetImage('assets/Profile.png') as ImageProvider<Object>,
+                                ),
+                                // Image.network(user.profile!),
                               ),
                             ),
                           ),

@@ -153,7 +153,10 @@ class _EditProfilePageState extends State<EditProfilePage> {
                               decoration: BoxDecoration(
                                 image: DecorationImage(
                                     image:
-                                        NetworkImage(userData.data!.profile!),
+                                    userData.data!.profile != ""
+                                    ? NetworkImage(userData.data!.profile!)
+                                    : const AssetImage('assets/Profile.png') as ImageProvider<Object>,
+                                        // NetworkImage(userData.data!.profile!),
                                     fit: BoxFit.cover),
                                 border:
                                     Border.all(color: const Color(0xFFFFDF00)),
