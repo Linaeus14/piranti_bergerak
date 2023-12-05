@@ -189,8 +189,10 @@ class _MyWalletPageState extends State<MyWalletPage> {
             padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 60),
             child: ElevatedButton(
               onPressed: () async {
-                await userData.updateField("wallet",
-                    userData.data!.wallet! + amounts[selectedTopUpIndex!]);
+                int newBallance =
+                    userData.data!.wallet! + amounts[selectedTopUpIndex!];
+                await userData.updateField("wallet", newBallance);
+                userData.wallet = newBallance;
                 if (!context.mounted) return;
                 Navigator.of(context).push(MaterialPageRoute(
                   builder: (context) {

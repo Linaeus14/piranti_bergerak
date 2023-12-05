@@ -335,6 +335,7 @@ class _CheckoutPageState extends State<CheckoutPage> {
                         child: ElevatedButton(
                           onPressed: () async {
                             if (!(payColor == Colors.red)) {
+                              int newBallance = userData.data!.wallet! - price;
                               await ticketData.addToFirestore(
                                   userData.id!,
                                   ticket.film.title!,
@@ -346,8 +347,8 @@ class _CheckoutPageState extends State<CheckoutPage> {
                                   ticket.film.rating!,
                                   ticket.seats,
                                   price);
-                              await userData.updateField(
-                                  "wallet", userData.data!.wallet! - price);
+                              await userData.updateField("wallet", newBallance);
+                              userData.wallet = newBallance;
                               if (!context.mounted) return;
                               Navigator.of(context)
                                   .pushReplacement(MaterialPageRoute(

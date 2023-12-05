@@ -8,11 +8,15 @@ class UserData extends ChangeNotifier {
   String? get id => _userId;
   UserClass? get data => _data;
 
+  set wallet(int value) {
+    _data!.wallet = value;
+    notifyListeners();
+  }
+
   set userId(String value) {
     _userId = value;
     notifyListeners();
   }
-
 
   Future<XFile?> getImage() async {
     return await ImagePicker().pickImage(source: ImageSource.gallery);
@@ -42,13 +46,10 @@ class UserData extends ChangeNotifier {
 
   Future<void> updateField(String fieldName, dynamic newValue) async {
     try {
-      // Reference to the document you want to update
       DocumentReference documentReference =
           FirebaseFirestore.instance.collection('users').doc(id);
 
-      // Update the specified field with the new value
       await documentReference.update({fieldName: newValue});
-      _data!.wallet = newValue;
 
       debugPrint('Document field updated successfully.');
       notifyListeners();
@@ -78,6 +79,7 @@ class UserData extends ChangeNotifier {
         langs: userData?['language'],
         profile: userData?['profile'],
         wallet: userData?['wallet']);
+    notifyListeners();
   }
 
   Future<Map<String, dynamic>?> _getDocumentData() async {

@@ -22,7 +22,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
     _nameController.text = userData.data!.nama!;
   }
 
-    @override
+  @override
   void dispose() {
     _nameController.dispose();
     _passwordController.dispose();
@@ -222,23 +222,20 @@ class _EditProfilePageState extends State<EditProfilePage> {
                     padding: const EdgeInsets.symmetric(horizontal: 138.0),
                   ),
                   onPressed: () async {
-                    if (_passwordController.text.isEmpty) {
+                    if (_nameController.text.isNotEmpty) {
                       await userData.updateField("nama", _nameController.text);
-                      if (imagePath != "") {
-                        await userData.updateField("profile", imagePath);
-                      }
-                      if (!context.mounted) return;
-                      Navigator.of(context).pop();
-                    } else {
-                      await userData.updateField("nama", _nameController.text);
-                      if (imagePath != "") {
-                        await userData.updateField("profile", imagePath);
-                      }
-                      await userData.changePassword(_passwordController.text);
-                      if (!context.mounted) return;
-                      Navigator.of(context).pop();
                     }
-                    userData.getData();
+                    if (imagePath != "") {
+                      await userData.updateField("profile", imagePath);
+                    }
+                    if (_passwordController.text.isNotEmpty) {
+                      await userData
+                          .changePassword(_passwordController.text.toString());
+                    }
+                    await userData.getData();
+                    if (!context.mounted) return;
+                    Navigator.of(context).pushReplacement(
+                        MaterialPageRoute(builder: (context) => const Home()));
                   },
                   child: const Text(
                     "Update",
