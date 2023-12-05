@@ -9,12 +9,18 @@ class SignIn extends StatefulWidget {
 
 class _SignInState extends State<SignIn> {
   final _formKey = GlobalKey<FormState>();
-
   final TextEditingController _ctrlEmail = TextEditingController();
   final TextEditingController _ctrlPassword = TextEditingController();
   bool _isPasswordHidden = true;
-
   bool loginFailed = false;
+
+  @override
+  void dispose() {
+    _ctrlEmail.dispose();
+    _ctrlPassword.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     // ignore: unused_local_variable

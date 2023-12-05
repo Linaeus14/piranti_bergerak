@@ -10,12 +10,9 @@ class EditProfilePage extends StatefulWidget {
 class _EditProfilePageState extends State<EditProfilePage> {
   bool uploadPressed = false;
   bool backPressed = false;
-
   String imagePath = '';
-
   final TextEditingController _nameController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
-
   bool _isPasswordHidden = true;
 
   @override
@@ -23,6 +20,13 @@ class _EditProfilePageState extends State<EditProfilePage> {
     super.initState();
     UserData userData = Provider.of<UserData>(context, listen: false);
     _nameController.text = userData.data!.nama!;
+  }
+
+    @override
+  void dispose() {
+    _nameController.dispose();
+    _passwordController.dispose();
+    super.dispose();
   }
 
   @override
@@ -234,6 +238,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
                       if (!context.mounted) return;
                       Navigator.of(context).pop();
                     }
+                    userData.getData();
                   },
                   child: const Text(
                     "Update",
